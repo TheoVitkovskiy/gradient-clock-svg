@@ -1,0 +1,352 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap'); */
+
+@font-face {
+  font-family: "Lato-Thin";
+  src: url(./fonts/Lato-Thin.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Lato-Light";
+  src: url(./fonts/Lato-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Lato-Bold";
+  src: url(./fonts/Lato-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Lato-Black";
+  src: url(./fonts/Lato-Black.ttf) format("truetype");
+}
+:root {
+  /* --- config variables --- */
+  /* minutes */
+  --orange-ripe-minutes: 0.3;
+  --tomato-ripe-minutes: 0.1;
+  --apple-ripe-minutes: 0.1;
+  --pear-ripe-minutes: 0.3;
+  /* animations */
+  --pre-ripe-delay: 0.1s;
+  --pre-ripe-dur: 1s;
+  /* --- application variables --- */
+  --pre-ripe: calc(var(--pre-ripe-delay) + var(--pre-ripe-dur));
+  --orange-ripe-dur: calc(var(--orange-ripe-minutes) * 60 * 1s);
+  --tomato-ripe-dur: calc(var(--tomato-ripe-minutes) * 60 * 1s);
+  --pear-ripe-dur: calc(var(--pear-ripe-minutes) * 60 * 1s);
+  --apple-ripe-dur: calc(var(--apple-ripe-minutes) * 60 * 1s);
+  --orange-success-start: calc(
+    var(--pre-ripe) + var(--orange-ripe-dur) - (var(--orange-ripe-dur) * 0.3)
+  );
+  --tomato-success-start: calc(
+    var(--pre-ripe) + var(--tomato-ripe-dur) - (var(--tomato-ripe-dur) * 0.3)
+  ); /* the end remains a mystery to me */
+  --pear-success-start: calc(var(--pre-ripe) + var(--pear-ripe-dur) - 1.5s);
+  --apple-success-start: calc(var(--pre-ripe) + var(--apple-ripe-dur) - 1.5s);
+  --bk-rectangle: rgba(65, 105, 225);
+  --col-dot-start: #0ef0e2;
+  --col-dot-end: rgb(252, 250, 143);
+  /* --color-dot-end: #fcfa8f; */
+  --col-fruit-init: #60c0a7;
+  --col-apple-end: #fa4646;
+  --col-ripe-start: #7af471;
+  --col-pear-end: #ddb74f;
+  --col-orange-end: #f05e23;
+}
+body {
+  font-size: 62.5%;
+}
+.container {
+  background-color: var(--bg-color);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.grape {
+  display: none;
+  left: 100px;
+  bottom: 550px;
+  z-index: 100;
+  width: 5vw;
+  position: absolute;
+}
+.rectangle {
+  position: relative;
+  width: 80vw;
+  height: 14rem;
+  border-radius: 2rem;
+  background-color: var(--bk-rectangle);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.clockContainer {
+  position: relative;
+  display: flex;
+  width: 10vw;
+  height: 10vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.clockContainer > * {
+  transform: scale(1);
+  height: 100%;
+}
+.clockContainer > * > svg {
+  height: 100%;
+  width: 100%;
+}
+.clockBody svg {
+  fill: var(--col-fruit-init);
+}
+.time {
+  font-family: Lato-Black;
+  color: var(--col-dot-end);
+  font-size: 2.5vw;
+  z-index: 10;
+  position: absolute;
+  margin: 0 auto;
+  height: 45%;
+}
+.clockDot {
+  display: none;
+  scale: 0.8;
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+}
+.clockDot svg {
+  fill: var(--col-dot-start);
+}
+.clockContainer:hover .clockDot {
+  display: block;
+}
+.clockContainer:hover .clockDot svg {
+  animation: ticktack 2s ease forwards;
+}
+
+.clockFace {
+  height: 60%;
+  rotate: -9.5deg;
+  display: none;
+  z-index: 10;
+  position: absolute;
+  margin: 0 auto;
+}
+.clockContainer:hover .clockFace {
+  display: block;
+}
+
+.clockContainer:hover .time {
+  display: none;
+}
+
+.clockContainer:hover .clockBody {
+  animation: round 1s cubic-bezier(0.27, 0.82, 0.62, 0.89) 0.5;
+}
+/* .pear svg:hover {
+  animation: round 20s cubic-bezier(0.27, 0.82, 0.62, 0.89) 0.5;
+}
+.peach svg:hover {
+  animation: round 20s cubic-bezier(0.27, 0.82, 0.62, 0.89) 0.5;
+} */
+/* .tomato:hover svg {
+  animation: round 20s cubic-bezier(0.27, 0.82, 0.62, 0.89) 0.5;
+} */
+/* .clock1:hover {
+  animation: pear 5s 0.1s ease 0.5 forwards;
+} */
+
+.orange:hover .clock {
+  animation: orange1 1s 0.1s ease 2 alternate,
+    orange var(--orange-ripe-dur) 1.1s,
+    orange1 0.7s var(--orange-success-start) ease-in-out infinite
+      alternate-reverse;
+}
+.orange:hover .clockFace {
+  animation: round var(--orange-ripe-dur) 2s linear 0.5;
+}
+.tomato:hover .clock {
+  animation: apple1 1s 0.1s ease 2 alternate, apple var(--tomato-ripe-dur) 1.1s,
+    apple1 0.7s var(--tomato-success-start) ease-in-out infinite
+      alternate-reverse;
+}
+.tomato:hover .clockFace {
+  animation: round var(--tomato-ripe-dur) 2s linear 0.5;
+}
+.pear:hover .clock1 {
+  animation: pear1 1s 0.1s ease 2 alternate, pear var(--pear-ripe-dur) 1.1s,
+    pear1 0.7s var(--pear-success-start) ease-in-out infinite alternate-reverse;
+}
+.pear:hover .clockFace {
+  animation: round var(--pear-ripe-dur) 2s linear 0.5;
+}
+.apple:hover .clock {
+  animation: apple1 1s 0.1s ease 2 alternate, apple var(--apple-ripe-dur) 1.1s,
+    apple1 0.7s var(--apple-success-start) ease-in-out infinite
+      alternate-reverse;
+}
+.apple:hover .clockFace {
+  animation: round var(--apple-ripe-dur) 2s linear 0.5;
+}
+
+@keyframes ticktack {
+  from {
+    fill: var(--col-dot-start);
+    rotate: 0deg;
+    opacity: 0;
+  }
+
+  to {
+    fill: var(--col-dot-end);
+    opacity: 1;
+    rotate: 355deg;
+  }
+}
+@keyframes orange1 {
+  from {
+    fill: var(--col-ripe-init);
+  }
+
+  to {
+    fill: var(--col-orange-end);
+  }
+}
+@keyframes orange {
+  from {
+    fill: var(--col-ripe-start);
+  }
+
+  to {
+    fill: var(--col-orange-end);
+  }
+}
+@keyframes apple1 {
+  from {
+    fill: var(--col-ripe-init);
+  }
+
+  to {
+    fill: var(--col-apple-end);
+  }
+}
+@keyframes apple {
+  from {
+    fill: var(--col-ripe-start);
+  }
+
+  to {
+    fill: var(--col-apple-end);
+  }
+}
+@keyframes pear1 {
+  from {
+    fill: var(--col-ripe-init);
+  }
+
+  to {
+    fill: var(--col-pear-end);
+  }
+}
+@keyframes pear {
+  from {
+    fill: var(--col-ripe-start);
+  }
+
+  to {
+    fill: var(--col-pear-end);
+  }
+}
+
+@keyframes round {
+  0% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 360deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+
+/* .clock {
+  animation: d 3s;
+}
+@keyframes d {
+  100% {
+    rotate: 270deg;
+  }
+} */
+/* @keyframes apple {
+  from {
+    fill: #60c0a7;
+  }
+  to {
+    fill: #7cc060;
+  }
+  to {
+    fill: #b7c060;
+  }
+  to {
+    fill: #f0a94e;
+  }
+  to {
+    fill: #f0854e;
+  }
+
+  to {
+    fill: #fa4646;
+  }
+} */
+
+/* .clock:first-child:hover {
+  background: linear-gradient(
+    88deg,
+    #60c0a7,
+    #7cc060,
+    #b7c060,
+    #f0a94e,
+    #f0854e,
+    #f0534e
+  );
+  background-size: 1200% 1200%;
+
+  animation: apple 20s 0.1s ease 0.5 forwards;
+} */
+
+/* ////////////////for a shadowy watch/////////////
+
+.clockContainer:hover .clockFace {
+  -webkit-box-shadow: 0px 0px 142px 70px rgba(153, 31, 153, 1);
+  -moz-box-shadow: 0px 0px 142px 70px rgba(153, 31, 153, 1);
+  box-shadow: 0px 0px 142px 70px rgba(153, 31, 153, 1);
+  display: block;
+}
+
+///////////////////////////////////// */
+
+@media only screen and (max-width: 324px) {
+  .rectangle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .clockContainer {
+    display: flex;
+    width: 10vw;
+    height: 10vw;
+    min-height: 42%;
+    min-width: 40%;
+  }
+}
