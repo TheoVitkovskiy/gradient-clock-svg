@@ -26,8 +26,6 @@ const main = () => {
 function createFruit(name) {
     let startMs = null;
     let ripeMs = config[name + '-ripe-minutes'] * 60 * 1000;
-    let interval = null;
-    let currMs = null;
 
     const htmlElem = document.querySelector('.' + name);
 
@@ -50,11 +48,14 @@ function createFruit(name) {
 
     return {
         start() {
-            startMs = getNowMs();
+            startMs = getNowMs() + config['pre-ripe-delay'] + config['pre-ripe-dur'];
             addRipeAnim();
         },
         getStartMs() {
             return startMs;
+        },
+        getRipeMs() {
+            return ripeMs;
         },
         getName() {
             return name;
@@ -106,7 +107,8 @@ const clockOnClick = (e) => {
 
     if (fruit.isIdle()){
         fruit.start();
-
+        setSoundAlarm(fruit.getRipeMs());
+        // set the tab timer to the last turned-on timer
         clearInterval(currInterval);
         currMs = 0;
         currInterval = setInterval(onSec, 1000);
@@ -116,6 +118,16 @@ const clockOnClick = (e) => {
         clearInterval(currInterval);
         updateTitle(0);
     }
+}
+
+const setSoundAlarm = (ms) => {
+    setTimeout(playAlarm, ms);
+}
+
+const playAlarm = () => {
+    console.log('alarm');
+    console.log('alarm');
+    console.log('alarm');
 }
 
 const getClickedFruit = (clock) => {
