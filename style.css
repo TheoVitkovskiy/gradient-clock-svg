@@ -87,6 +87,7 @@ body {
 .clockContainer {
   position: relative;
   display: flex;
+  cursor: pointer;
   width: 10vw;
   height: 10vw;
   justify-content: center;

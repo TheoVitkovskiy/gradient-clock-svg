@@ -5,6 +5,17 @@ let pear = null;
 let apple = null;
 let currInterval = null;
 let currMs = null;
+let faviconInterval = null;
+let isAlarm = false;
+
+const ALARM_AMOUNT = 3;
+const ALARM_DELAY_MS = 4500;
+const ALARM_FAVICON_DELAY_MS = 800;
+
+const RED_HREF = 'img/favicon.png';
+const GREEN_HREF = 'img/faviconGreen.png';
+
+const audio = new Audio('./sounds/Tea-bell-sound-effect.mp3');
 
 const main = () => {
     setCustomTimer();
@@ -107,7 +118,7 @@ const clockOnClick = (e) => {
 
     if (fruit.isIdle()){
         fruit.start();
-        setSoundAlarm(fruit.getRipeMs());
+        setAlarm(fruit.getRipeMs());
         // set the tab timer to the last turned-on timer
         clearInterval(currInterval);
         currMs = 0;
@@ -116,18 +127,57 @@ const clockOnClick = (e) => {
         fruit.reset();
 
         clearInterval(currInterval);
+
+        isAlarm = false;
+        audio.pause();
+        audio.currentTime = 0;
+
+        clearInterval(faviconInterval);
+        const favicon = document.getElementById('favicon');
+        favicon.href = GREEN_HREF;
+
         updateTitle(0);
     }
 }
 
-const setSoundAlarm = (ms) => {
-    setTimeout(playAlarm, ms);
+const setAlarm = (ms) => {
+    setSoundAlarm(ms);
+    setFaviconAlarm(ms);
 }
 
-const playAlarm = () => {
-    console.log('alarm');
-    console.log('alarm');
-    console.log('alarm');
+const setSoundAlarm = (ms) => {
+    setTimeout(playSoundAlarm, ms);
+}
+
+const setFaviconAlarm = (ms) => {
+    setTimeout(playFaviconAlarm, ms);
+}
+
+const playFaviconAlarm = () => {
+    faviconInterval = setInterval(toggleFavicon, ALARM_FAVICON_DELAY_MS);
+}
+
+const toggleFavicon = () => {
+    const favicon = document.getElementById('favicon');
+
+    if (favicon.href.includes(GREEN_HREF)) {
+        favicon.href = RED_HREF;   
+    } else {
+        favicon.href = GREEN_HREF;
+    }
+}
+
+const playSoundAlarm = () => {
+    isAlarm = true;
+    for(let i = 0; i < ALARM_AMOUNT; i++) {
+        setTimeout(playSound, i * ALARM_DELAY_MS);
+    }
+}
+
+const playSound = () => {
+    if (isAlarm) {
+        audio.play();
+    }
 }
 
 const getClickedFruit = (clock) => {
