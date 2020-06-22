@@ -1,34 +1,57 @@
-const main = () => {
-    setCustomTimer();
-    config = getConfigFromCSS()
-    console.log(config);
-    orange = createFruit('orange');
-    tomato = createFruit('tomato');
-    pear = createFruit('pear');
-    apple = createFruit('apple');
-    setTimerOnClick();
-    setCSSVariables(
-        calculateDynamicValues()
-    );
-}
-
 let config = null;
 let orange = null;
 let tomato = null;
 let pear = null;
 let apple = null;
+let currInterval = null;
+let currMs = null;
+
+const main = () => {
+    setCustomTimer();
+
+    config = getConfigFromCSS()
+
+    orange = createFruit('orange');
+    tomato = createFruit('tomato');
+    pear = createFruit('pear');
+    apple = createFruit('apple');
+
+    setTimerOnClick();
+
+    setCSSVariables(
+        calculateDynamicValues()
+    );
+}
 
 function createFruit(name) {
     let startMs = null;
     let ripeMs = config[name + '-ripe-minutes'] * 60 * 1000;
+    let interval = null;
+    let currMs = null;
 
-    const htmlElement = document.querySelector('.' + name);
-    const clockMain = htmlElement.querySelector('.clock');
-    const clockFace = htmlElement.querySelector('.clockFace');
+    const htmlElem = document.querySelector('.' + name);
+
+    const clockMain = htmlElem.querySelector('.clock');
+    const clockFace = htmlElem.querySelector('.clockFace');
+    const clockBody = htmlElem.querySelector('.clockBody');
+    const clockTime = htmlElem.querySelector('.clockTime');
+    const clockDot = htmlElem.querySelector('.clockDot');
+    const clockDotSVG = htmlElem.querySelector('.clockDot svg');
+
+    const addRipeAnim = () => {
+        clockFace.classList.add('animClockFace');
+        clockBody.classList.add('animClockBody');
+        clockTime.classList.add('animClockTime');
+        clockDot.classList.add('animClockDot');
+        clockDotSVG.classList.add('animClockDot');
+        clockMain.classList.add('animClock' + capitalize(name));
+        clockFace.classList.add('animClockFace' + capitalize(name));
+    }
 
     return {
-        setStartMs(ms) {
-            startMs = ms;  
+        start() {
+            startMs = getNowMs();
+            addRipeAnim();
         },
         getStartMs() {
             return startMs;
@@ -42,11 +65,13 @@ function createFruit(name) {
         isIdle() {
             return startMs ? false : true;
         },
-        addRipeAnim() {
-            clockMain.classList.add('animClock' + capitalize(name));
-            clockFace.classList.add('animClockFace' + capitalize(name));
-        },
         reset() {
+            startMs = null;
+            clockFace.classList.remove('animClockFace');
+            clockBody.classList.remove('animClockBody');
+            clockTime.classList.remove('animClockTime');
+            clockDot.classList.remove('animClockDot');
+            clockDotSVG.classList.remove('animClockDot');
             clockMain.classList.remove('animClock' + capitalize(name));
             clockFace.classList.remove('animClockFace' + capitalize(name));
         }
@@ -58,6 +83,14 @@ const getNowMs = () => {
     return date.getTime();
 }
 
+const onSec = () => {
+    currMs += 1000;
+    updateTitle(currMs);
+}
+
+const updateTitle = (ms) => {
+    document.title = ms / 1000;
+}
 
 const setTimerOnClick = () => {
     const clocks = [...document.querySelectorAll('.clockContainer')]; 
@@ -69,34 +102,19 @@ const setTimerOnClick = () => {
 const clockOnClick = (e) => {
     const clock = e.currentTarget;
 
-    const clockMain = clock.querySelector('.clock');
-    const clockFace = clock.querySelector('.clockFace');
-    const clockBody = clock.querySelector('.clockBody');
-    const clockTime = clock.querySelector('.clockTime');
-    const clockDot = clock.querySelector('.clockDot');
-    const clockDotSVG = clock.querySelector('.clockDot svg');
-
     const fruit = getClickedFruit(clock);
-    console.log({'isIdle' : fruit.isIdle(), 'isRipe' : fruit.isRipe()});
 
     if (fruit.isIdle()){
-        fruit.setStartMs(getNowMs());
-        fruit.addRipeAnim();
-       
-        clockFace.classList.add('animClockFace');
-        clockBody.classList.add('animClockBody');
-        clockTime.classList.add('animClockTime');
-        clockDot.classList.add('animClockDot');
-        clockDotSVG.classList.add('animClockDot');
+        fruit.start();
+
+        clearInterval(currInterval);
+        currMs = 0;
+        currInterval = setInterval(onSec, 1000);
     } else if (fruit.isRipe()) {
-        fruit.setStartMs(null);
         fruit.reset();
 
-        clockFace.classList.remove('animClockFace');
-        clockBody.classList.remove('animClockBody');
-        clockTime.classList.remove('animClockTime');
-        clockDot.classList.remove('animClockDot');
-        clockDotSVG.classList.remove('animClockDot');
+        clearInterval(currInterval);
+        updateTitle(0);
     }
 }
 
