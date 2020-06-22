@@ -77,7 +77,7 @@ body {
 .rectangle {
   position: relative;
   width: 80vw;
-  height: 14rem;
+  height: 12vw;
   border-radius: 2rem;
   background-color: var(--bk-rectangle);
   display: flex;
@@ -348,5 +348,8 @@ body {
     height: 10vw;
     min-height: 42%;
     min-width: 40%;
+  }
+  .rectangle {
+    height: 14rem;
   }
 }
