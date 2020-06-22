@@ -119,6 +119,7 @@ const clockOnClick = (e) => {
     if (fruit.isIdle()){
         fruit.start();
         setAlarm(fruit.getRipeMs());
+
         // set the tab timer to the last turned-on timer
         clearInterval(currInterval);
         currMs = 0;
@@ -126,16 +127,18 @@ const clockOnClick = (e) => {
     } else if (fruit.isRipe()) {
         fruit.reset();
 
-        clearInterval(currInterval);
-
+        // reset sound alarm
         isAlarm = false;
         audio.pause();
         audio.currentTime = 0;
 
+        // reset favicon alarm
         clearInterval(faviconInterval);
         const favicon = document.getElementById('favicon');
         favicon.href = GREEN_HREF;
 
+        // reset tab timer
+        clearInterval(currInterval);
         updateTitle(0);
     }
 }
