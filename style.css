@@ -44,25 +44,28 @@
   --col-pear-end: #ddb74f;
   --col-orange-end: #f05e23;
   /* --- dynamic variables --- */
-  --ripe-delay: '';
-  --orange-ripe-dur: '';
-  --tomato-ripe-dur: '';
-  --pear-ripe-dur: '';
-  --apple-ripe-dur: '';
-  --orange-success-start: '';
-  --tomato-success-start: '';
-  --pear-success-start: '';
-  --apple-success-start: '';
+  --ripe-delay: "";
+  --orange-ripe-dur: "";
+  --tomato-ripe-dur: "";
+  --pear-ripe-dur: "";
+  --apple-ripe-dur: "";
+  --orange-success-start: "";
+  --tomato-success-start: "";
+  --pear-success-start: "";
+  --apple-success-start: "";
 }
 body {
   font-size: 62.5%;
 }
 .container {
+  background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
+    no-repeat center/100% url(/img/containerBckgrApples.svg);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: rgba(204, 204, 204);
 }
 .grape {
   display: none;
@@ -92,12 +95,18 @@ body {
   height: 10vw;
   justify-content: center;
   align-items: center;
+  background-color: rgb(152, 172, 231);
+  transition: background-color 2s;
+  border-radius: 2rem;
 }
-
+.clockContainer:hover {
+  background-color: rgb(7, 41, 143);
+}
 .clockContainer > * {
   transform: scale(1);
   height: 100%;
 }
+
 .clockContainer > * > svg {
   height: 100%;
   width: 100%;
@@ -148,32 +157,42 @@ body {
 }
 
 .animClockBody {
-  animation: round var(--pre-ripe-dur) var(--pre-ripe-delay) cubic-bezier(0.27, 0.82, 0.62, 0.89) 1;
+  animation: round var(--pre-ripe-dur) var(--pre-ripe-delay)
+    cubic-bezier(0.27, 0.82, 0.62, 0.89) 1;
 }
 
 .animClockOrange {
-  animation: orange1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate, orange var(--orange-ripe-dur) var(--ripe-delay), orange1 var(--success-dur) var(--orange-success-start) ease-in-out infinite alternate-reverse;
+  animation: orange1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate,
+    orange var(--orange-ripe-dur) var(--ripe-delay),
+    orange1 var(--success-dur) var(--orange-success-start) ease-in-out infinite
+      alternate-reverse;
 }
 .animClockFaceOrange {
   animation: round var(--orange-ripe-dur) var(--ripe-delay) linear 1;
 }
 .animClockTomato {
-  animation: apple1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate, apple var(--tomato-ripe-dur) var(--ripe-delay),
-  apple1 var(--success-dur) var(--tomato-success-start) ease-in-out infinite alternate-reverse;
+  animation: apple1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate,
+    apple var(--tomato-ripe-dur) var(--ripe-delay),
+    apple1 var(--success-dur) var(--tomato-success-start) ease-in-out infinite
+      alternate-reverse;
 }
 .animClockFaceTomato {
   animation: round var(--tomato-ripe-dur) var(--ripe-delay) linear 1;
 }
 .animClockPear {
-  animation: pear1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate, pear var(--pear-ripe-dur) var(--ripe-delay),
-    pear1 var(--success-dur) var(--pear-success-start) ease-in-out infinite alternate-reverse;
+  animation: pear1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate,
+    pear var(--pear-ripe-dur) var(--ripe-delay),
+    pear1 var(--success-dur) var(--pear-success-start) ease-in-out infinite
+      alternate-reverse;
 }
 .animClockFacePear {
   animation: round var(--pear-ripe-dur) var(--ripe-delay) linear 1;
 }
-.animClockApple{
-  animation: apple1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2, apple var(--apple-ripe-dur) var(--ripe-delay),
-    apple1 var(--success-dur) var(--apple-success-start) ease-in-out infinite alternate-reverse;
+.animClockApple {
+  animation: apple1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2,
+    apple var(--apple-ripe-dur) var(--ripe-delay),
+    apple1 var(--success-dur) var(--apple-success-start) ease-in-out infinite
+      alternate-reverse;
 }
 .animClockFaceApple {
   animation: round var(--apple-ripe-dur) var(--ripe-delay) linear 1;
