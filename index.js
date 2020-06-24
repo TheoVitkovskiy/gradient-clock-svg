@@ -4,7 +4,9 @@ let tomato = null;
 let pear = null;
 let apple = null;
 let currInterval = null;
-let currMs = null;
+let startMs = null;
+let ripeMs = null;
+let remainingMs = null;
 let faviconInterval = null;
 let isAlarm = false;
 
@@ -12,13 +14,17 @@ const ALARM_AMOUNT = 3;
 const ALARM_DELAY_MS = 4500;
 const ALARM_FAVICON_DELAY_MS = 800;
 
-const RED_HREF = 'img/favicon.png';
-const GREEN_HREF = 'img/faviconGreen.png';
+const HREF_ALT = 'img/favicon.png';
+const HREF_MAIN = 'img/faviconGreen.png';
+const APP_TITLE = 'Fruit Timer';
 
 const audio = new Audio('./sounds/Tea-bell-sound-effect.mp3');
+const time = new Date(0);
+let fruits;
 
 const main = () => {
     setCustomTimer();
+    updateTitle(0);
 
     config = getConfigFromCSS()
 
@@ -26,6 +32,8 @@ const main = () => {
     tomato = createFruit('tomato');
     pear = createFruit('pear');
     apple = createFruit('apple');
+
+    fruits = [orange, tomato, pear, apple];
 
     setTimerOnClick();
 
@@ -90,20 +98,6 @@ function createFruit(name) {
     }
 }
 
-const getNowMs = () => {
-    const date = new Date();
-    return date.getTime();
-}
-
-const onSec = () => {
-    currMs += 1000;
-    updateTitle(currMs);
-}
-
-const updateTitle = (ms) => {
-    document.title = ms / 1000;
-}
-
 const setTimerOnClick = () => {
     const clocks = [...document.querySelectorAll('.clockContainer')]; 
     clocks.forEach(clock => {
@@ -118,42 +112,97 @@ const clockOnClick = (e) => {
 
     if (fruit.isIdle()){
         fruit.start();
-        setAlarm(fruit.getRipeMs());
-
-        // set the tab timer to the last turned-on timer
-        clearInterval(currInterval);
-        currMs = 0;
-        currInterval = setInterval(onSec, 1000);
+        const startDelayMs = (config['pre-ripe-delay'] + config['pre-ripe-dur']) * 1000;
+        setTimeout(() => {
+            setGlobalTimer(fruit.getRipeMs());
+            setAlarm(fruit.getRipeMs());
+        }, startDelayMs);
     } else if (fruit.isRipe()) {
         fruit.reset();
+        updateGlobalTimer();
+        resetAlarm();
+    }
+}
 
-        // reset sound alarm
-        isAlarm = false;
-        audio.pause();
-        audio.currentTime = 0;
+const getNowMs = () => {
+    const date = new Date();
+    return date.getTime();
+}
 
-        // reset favicon alarm
-        clearInterval(faviconInterval);
-        const favicon = document.getElementById('favicon');
-        favicon.href = GREEN_HREF;
+const onSec = () => {
+    const remainingMs = ripeMs - (getNowMs() - startMs);
+    //if (remainingMs < 0) {
+    //    resetGlobalTimer();
+    //    return;
+    //}
+    updateTitle(remainingMs);
+}
 
-        // reset tab timer
-        clearInterval(currInterval);
-        updateTitle(0);
+const updateTitle = (ms) => {
+    let title = '';
+    if (ms <= 0) {
+        title = APP_TITLE; 
+    } else {
+        title = Math.round(ms / 1000);
+        //time.setMilliseconds(ms);
+        //title = time.toISOString().substr(11, 8);
+        //time.setMilliseconds(-ms);
+
+    }
+    document.title = title;
+}
+
+
+const setGlobalTimer = (timeMs) => {
+    clearInterval(currInterval);
+    currInterval = setInterval(onSec, 1000);
+    updateGlobalTimer(timeMs);
+}
+
+const resetGlobalTimer = () => {
+    clearInterval(currInterval);
+    updateTitle(0);
+}
+
+const updateGlobalTimer = (timeMs = null) => {
+    const nextFruit = fruits.find(fruit => !fruit.isRipe() && !fruit.isIdle());
+
+    if (nextFruit) {
+        startMs = nextFruit.getStartMs();
+        ripeMs = nextFruit.getRipeMs();
+    } else if (timeMs) {
+        startMs = getNowMs();
+        ripeMs = timeMs;
+    } else {
+        resetGlobalTimer();
     }
 }
 
 const setAlarm = (ms) => {
-    setSoundAlarm(ms);
-    setFaviconAlarm(ms);
+    setTimeout(playAlarm, ms);
 }
 
-const setSoundAlarm = (ms) => {
-    setTimeout(playSoundAlarm, ms);
+const resetAlarm = () => {
+    isAlarm = false;
+    resetSoundAlarm();
+    resetFaviconAlarm();
 }
 
-const setFaviconAlarm = (ms) => {
-    setTimeout(playFaviconAlarm, ms);
+const playAlarm = () => {
+    isAlarm = true;
+    playSoundAlarm();    
+    playFaviconAlarm();
+};
+
+const resetFaviconAlarm = () => {
+    clearInterval(faviconInterval);
+    const favicon = document.getElementById('favicon');
+    favicon.href = HREF_MAIN;
+}
+
+const resetSoundAlarm = () => {
+    audio.pause();
+    audio.currentTime = 0;
 }
 
 const playFaviconAlarm = () => {
@@ -163,15 +212,10 @@ const playFaviconAlarm = () => {
 const toggleFavicon = () => {
     const favicon = document.getElementById('favicon');
 
-    if (favicon.href.includes(GREEN_HREF)) {
-        favicon.href = RED_HREF;   
-    } else {
-        favicon.href = GREEN_HREF;
-    }
+    favicon.href = favicon.href.includes(HREF_MAIN) ? HREF_ALT : HREF_MAIN;
 }
 
 const playSoundAlarm = () => {
-    isAlarm = true;
     for(let i = 0; i < ALARM_AMOUNT; i++) {
         setTimeout(playSound, i * ALARM_DELAY_MS);
     }
