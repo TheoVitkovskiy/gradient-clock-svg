@@ -1,32 +1,30 @@
-let config = null;
+import createFruit from './createFruit.js';
+import config from './config.js';
+import { getNowMs } from './helpers.js';
+
 let orange = null;
 let tomato = null;
 let pear = null;
 let apple = null;
+let fruits = [];
 let currInterval = null;
 let startMs = null;
 let ripeMs = null;
-let remainingMs = null;
 let faviconInterval = null;
 let isAlarm = false;
 
 const ALARM_AMOUNT = 3;
 const ALARM_DELAY_MS = 4500;
 const ALARM_FAVICON_DELAY_MS = 800;
-
 const HREF_ALT = 'img/favicon.png';
 const HREF_MAIN = 'img/faviconGreen.png';
-const APP_TITLE = 'Fruit Timer';
+const APP_TITLE = document.title;
 
 const audio = new Audio('./sounds/Tea-bell-sound-effect.mp3');
 const time = new Date(0);
-let fruits;
 
 const main = () => {
     setCustomTimer();
-    updateTitle(0);
-
-    config = getConfigFromCSS()
 
     orange = createFruit('orange');
     tomato = createFruit('tomato');
@@ -42,62 +40,6 @@ const main = () => {
     );
 }
 
-function createFruit(name) {
-    let startMs = null;
-    let ripeMs = config[name + '-ripe-minutes'] * 60 * 1000;
-
-    const htmlElem = document.querySelector('.' + name);
-
-    const clockMain = htmlElem.querySelector('.clock');
-    const clockFace = htmlElem.querySelector('.clockFace');
-    const clockBody = htmlElem.querySelector('.clockBody');
-    const clockTime = htmlElem.querySelector('.clockTime');
-    const clockDot = htmlElem.querySelector('.clockDot');
-    const clockDotSVG = htmlElem.querySelector('.clockDot svg');
-
-    const addRipeAnim = () => {
-        clockFace.classList.add('animClockFace');
-        clockBody.classList.add('animClockBody');
-        clockTime.classList.add('animClockTime');
-        clockDot.classList.add('animClockDot');
-        clockDotSVG.classList.add('animClockDot');
-        clockMain.classList.add('animClock' + capitalize(name));
-        clockFace.classList.add('animClockFace' + capitalize(name));
-    }
-
-    return {
-        start() {
-            startMs = getNowMs() + config['pre-ripe-delay'] + config['pre-ripe-dur'];
-            addRipeAnim();
-        },
-        getStartMs() {
-            return startMs;
-        },
-        getRipeMs() {
-            return ripeMs;
-        },
-        getName() {
-            return name;
-        },
-        isRipe() {
-            return startMs && ((getNowMs() - startMs) > ripeMs);
-        },
-        isIdle() {
-            return startMs ? false : true;
-        },
-        reset() {
-            startMs = null;
-            clockFace.classList.remove('animClockFace');
-            clockBody.classList.remove('animClockBody');
-            clockTime.classList.remove('animClockTime');
-            clockDot.classList.remove('animClockDot');
-            clockDotSVG.classList.remove('animClockDot');
-            clockMain.classList.remove('animClock' + capitalize(name));
-            clockFace.classList.remove('animClockFace' + capitalize(name));
-        }
-    }
-}
-
 const setTimerOnClick = () => {
     const clocks = [...document.querySelectorAll('.clockContainer')]; 
     clocks.forEach(clock => {
@@ -106,15 +48,16 @@ const setTimerOnClick = () => {
 }
 
 const clockOnClick = (e) => {
-    const clock = e.currentTarget;
+    const fruit = getClickedFruit(e.currentTarget);
+    updateFruit(fruit);
+}
 
-    const fruit = getClickedFruit(clock);
-
+const updateFruit = (fruit) => {
     if (fruit.isIdle()){
         fruit.start();
+        setGlobalTimer(fruit.getRipeMs());
         const startDelayMs = (config['pre-ripe-delay'] + config['pre-ripe-dur']) * 1000;
         setTimeout(() => {
-            setGlobalTimer(fruit.getRipeMs());
             setAlarm(fruit.getRipeMs());
         }, startDelayMs);
     } else if (fruit.isRipe()) {
@@ -124,13 +67,10 @@ const clockOnClick = (e) => {
     }
 }
 
-const getNowMs = () => {
-    const date = new Date();
-    return date.getTime();
-}
-
 const onSec = () => {
     const remainingMs = ripeMs - (getNowMs() - startMs);
+    const fractionPassed = ripeMs / remainingMs;
+    console.log(fractionPassed);
     //if (remainingMs < 0) {
     //    resetGlobalTimer();
     //    return;
@@ -140,7 +80,7 @@ const onSec = () => {
 
 const updateTitle = (ms) => {
     let title = '';
-    if (ms <= 0) {
+    if (ms < 0) {
         title = APP_TITLE; 
     } else {
         title = Math.round(ms / 1000);
@@ -161,7 +101,7 @@ const setGlobalTimer = (timeMs) => {
 
 const resetGlobalTimer = () => {
     clearInterval(currInterval);
-    updateTitle(0);
+    //updateTitle(0);
 }
 
 const updateGlobalTimer = (timeMs = null) => {
@@ -265,24 +205,6 @@ const getQueryParamValue = (qParam) => {
     return urlParams.get(qParam);
 }
 
-const getConfigFromCSS = () => {
-    const config = {};
-
-    const docStyle = getComputedStyle(document.documentElement);
-
-    // ToDo: find a way to make it dynamic
-    config['orange-ripe-minutes'] = parseFloat(docStyle.getPropertyValue('--orange-ripe-minutes'));
-    config['tomato-ripe-minutes'] = parseFloat(docStyle.getPropertyValue('--tomato-ripe-minutes'));
-    config['apple-ripe-minutes'] = parseFloat(docStyle.getPropertyValue('--apple-ripe-minutes'));
-    config['pear-ripe-minutes'] = parseFloat(docStyle.getPropertyValue('--pear-ripe-minutes'));
-    config['pre-ripe-delay'] = parseFloat(docStyle.getPropertyValue('--pre-ripe-delay'));
-    config['pre-ripe-dur'] = parseFloat(docStyle.getPropertyValue('--pre-ripe-dur'));
-    config['dot-delay'] = parseFloat(docStyle.getPropertyValue('--dot-delay'));
-    config['success-dur'] = parseFloat(docStyle.getPropertyValue('--success-dur'));
-
-    return config;
-}
-
 const calculateDynamicValues = () => {
     const dynamicValues = {}; 
 
@@ -313,9 +235,4 @@ const setDocProperty = (key, value) => {
     document.documentElement.style.setProperty(key, value);
 }
 
-const capitalize = (s) => {
-  if (typeof s !== 'string') return ''
-  return s.charAt(0).toUpperCase() + s.slice(1)
-}
-
-document.addEventListener("DOMContentLoaded", main)
+document.addEventListener("DOMContentLoaded", main);
