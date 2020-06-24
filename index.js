@@ -19,6 +19,7 @@ const HREF_MAIN = 'img/faviconGreen.png';
 const APP_TITLE = 'Fruit Timer';
 
 const audio = new Audio('./sounds/Tea-bell-sound-effect.mp3');
+const time = new Date(0);
 let fruits;
 
 const main = () => {
@@ -143,6 +144,10 @@ const updateTitle = (ms) => {
         title = APP_TITLE; 
     } else {
         title = Math.round(ms / 1000);
+        //time.setMilliseconds(ms);
+        //title = time.toISOString().substr(11, 8);
+        //time.setMilliseconds(-ms);
+
     }
     document.title = title;
 }
@@ -162,11 +167,8 @@ const resetGlobalTimer = () => {
 const updateGlobalTimer = (timeMs = null) => {
     const nextFruit = fruits.find(fruit => !fruit.isRipe() && !fruit.isIdle());
 
-    console.log(nextFruit);
     if (nextFruit) {
-        // set startMs to the startMs of that fruit
         startMs = nextFruit.getStartMs();
-        // set ripeMs to the ripeMs of that fruit
         ripeMs = nextFruit.getRipeMs();
     } else if (timeMs) {
         startMs = getNowMs();
@@ -195,7 +197,6 @@ const playAlarm = () => {
 const resetFaviconAlarm = () => {
     clearInterval(faviconInterval);
     const favicon = document.getElementById('favicon');
-    console.log('reset favicon');
     favicon.href = HREF_MAIN;
 }
 
