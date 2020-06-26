@@ -106,7 +106,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgb(152, 172, 231);
-  transition: background-color 2s;
+  transition: background-color 1s;
   border-radius: 2rem;
 }
 .clockContainer:hover {
