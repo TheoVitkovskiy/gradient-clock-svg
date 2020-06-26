@@ -127,11 +127,29 @@ body {
 .clockTime {
   font-family: Lato-Black;
   color: var(--col-dot-end);
-  font-size: 2.5vw;
+  font-size: 3.5vw;
+  font-weight: 900;
   z-index: 10;
+  width: 100%;
   position: absolute;
-  margin: 0 auto;
-  height: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.customTime {
+    color: inherit;
+    font-size: inherit;
+    text-align: center;
+    font-weight: inherit;
+    position: absolute;
+    box-sizing: border-box;
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 .clockDot {
   display: block;
@@ -180,7 +198,7 @@ body {
 .clockTime .break_icon {
   height: 4.5vw;
   width: 4.5vw;
-  transform: translate(-0.3rem, 0.5rem);
+  transform: translateY(.1rem);
 }
 .animClockDot {
   animation: ticktack var(--pre-ripe-dur) var(--dot-delay) ease forwards;

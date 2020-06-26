@@ -1,6 +1,6 @@
 import createFruit from './createFruit.js';
 import config from './config.js';
-import { getNowMs } from './helpers.js';
+import { getNowMs, setVariableInSec } from './helpers.js';
 
 let orange = null;
 let tomato = null;
@@ -45,7 +45,7 @@ const main = () => {
 }
 
 const setTimerOnClick = () => {
-    const clocks = [...document.querySelectorAll('.clockContainer')]; 
+    const clocks = [...document.querySelectorAll('.clockContainer:not(:last-child)')]; 
     clocks.forEach(clock => {
         clock.addEventListener('click', clockOnClick);
     });
@@ -207,8 +207,32 @@ const getClickedFruit = (clock) => {
 
 const setCustomTimer = () => {
     const customTime = config['apple-ripe-minutes'];
-    const timeDomElement = document.querySelector('.customTime h2');
-    timeDomElement.innerText = customTime || 'XXX';
+
+    const clock = document.querySelector('.clockContainer:last-child');
+    const customTimeInput = clock.querySelector('.customTime');
+
+    customTimeInput.value = customTime || 'XXX';
+
+    clock.addEventListener('click', () => {
+        if (apple.isIdle()) {
+            customTimeInput.focus();
+        } else {
+            updateFruit(apple);  
+        }
+    });
+
+    customTimeInput.addEventListener('keydown', (e) => {
+        const customTimeInput = clock.querySelector('.customTime');
+        console.log(customTimeInput.value);
+
+        if (e.keyCode === 13) {
+            apple.setRipeMs(customTimeInput.value);
+            updateFruit(apple);
+            console.log()
+            const docStyle = getComputedStyle(document.documentElement);
+            console.log(docStyle.getPropertyValue('--apple-ripe-minutes'))
+        }
+    });
 }
 
 const calculateDynamicValues = () => {
@@ -233,12 +257,8 @@ const calculateDynamicValues = () => {
 
 const setCSSVariables = (values) => {
     for (const key in values) {
-        setDocProperty('--' + key, values[key] + 's');
+        setVariableInSec('--' + key, values[key]);
     }
-}
-
-const setDocProperty = (key, value) => {
-    document.documentElement.style.setProperty(key, value);
 }
 
 document.addEventListener("DOMContentLoaded", main);

@@ -1,18 +1,13 @@
 import config from './config.js';
-import { getNowMs, capitalize } from './helpers.js';
+import { getNowMs, capitalize, setVariableInSec } from './helpers.js';
 
 export default function createFruit(name) {
-    let startMs = null;
-    let ripeMs = config[name + '-ripe-minutes'] * 60 * 1000;
-
-    const htmlElem = document.querySelector('.' + name);
-
-    const clockMain = htmlElem.querySelector('.clock');
-    const clockFace = htmlElem.querySelector('.clockFace');
-    const clockBody = htmlElem.querySelector('.clockBody');
-    const clockTime = htmlElem.querySelector('.clockTime');
-    const clockDot = htmlElem.querySelector('.clockDot');
-    const clockDotSVG = htmlElem.querySelector('.clockDot svg');
+    const minutesToMs = (minutes) => {
+        return minutes * 60 * 1000;
+    }
+    const minutesToSec = (minutes) => {
+        return minutes * 60;
+    }
 
     const addRipeAnim = () => {
         clockFace.classList.add('animClockFace');
@@ -24,6 +19,19 @@ export default function createFruit(name) {
         clockFace.classList.add('animClockFace' + capitalize(name));
     }
 
+    let startMs = null;
+    let ripeMs = minutesToMs(config[name + '-ripe-minutes']);
+
+    const htmlElem = document.querySelector('.' + name);
+
+    const clockMain = htmlElem.querySelector('.clock');
+    const clockFace = htmlElem.querySelector('.clockFace');
+    const clockBody = htmlElem.querySelector('.clockBody');
+    const clockTime = htmlElem.querySelector('.clockTime');
+    const clockDot = htmlElem.querySelector('.clockDot');
+    const clockDotSVG = htmlElem.querySelector('.clockDot svg');
+
+
     return {
         start() {
             startMs = getNowMs() + config['pre-ripe-delay'] + config['pre-ripe-dur'];
@@ -34,6 +42,10 @@ export default function createFruit(name) {
         },
         getRipeMs() {
             return ripeMs;
+        },
+        setRipeMs(minutes) {
+            setVariableInSec('--' + name + '-ripe-dur', minutesToSec(minutes));
+            ripeMs = minutesToMs(minutes); 
         },
         getName() {
             return name;

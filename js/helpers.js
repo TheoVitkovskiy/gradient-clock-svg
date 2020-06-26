@@ -8,7 +8,17 @@ const capitalize = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
+const setDocProperty = (key, value) => {
+    document.documentElement.style.setProperty(key, value);
+}
+
+const setVariableInSec = (key, value) => {
+  setDocProperty(key, value + 's');
+}
+
 export {
     getNowMs,
-    capitalize
+    capitalize,
+    setDocProperty,
+    setVariableInSec
 }
