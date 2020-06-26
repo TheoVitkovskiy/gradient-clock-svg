@@ -58,14 +58,24 @@ body {
   font-size: 62.5%;
 }
 .container {
-  background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
-    no-repeat center/100% url(/img/containerBckgrApples.svg);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: rgba(204, 204, 204);
+}
+.container::before {
+  filter: opacity(0.4) blur(1px);
+  /* filter: blur(4px); */
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  content: "";
+  background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
+    no-repeat center/100% url(/img/containerBckgrApples.svg);
 }
 .grape {
   display: none;
@@ -331,7 +341,37 @@ body {
 
 ///////////////////////////////////// */
 
+/* ------------------- bootstrap break points: */
+
+/* Extra small devices (xs) - portrait phones,
+under 576 px - no media query,
+default in Bootstrap Small (sm) devices - landscape phones,
+576 px and up - @media (min-width: 576px) {
+  ...;
+}
+
+Medium (md) devices - tablets,
+768 px and up - @media (min-width: 768px) {
+  ...;
+}
+
+Large (lg) devices - desktops,
+992 px and up - @media (min-width: 992px) {
+  ...;
+}
+
+Extra large (xl) devices - large desktops,
+1200px and up - @media (min-width: 1200px) {
+  ...;
+} */
+
+/* ////////////////////////////////////// */
+
 @media only screen and (max-width: 324px) {
+  .container {
+    background-size: cover;
+    background: center, url(/img/containerBckgrApples.svg);
+  }
   .rectangle {
     display: flex;
     flex-direction: row;
@@ -348,5 +388,21 @@ body {
   }
   .rectangle {
     height: 14rem;
+  }
+}
+@media only screen and (max-width: 991px) and (min-width: 769px) {
+  .rectangle::before {
+    border-radius: 2rem;
+    position: absolute;
+    content: "";
+    height: 20vw;
+    width: 90vw;
+    background-color: rgba(255, 255, 255, 0.466);
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .container {
+    margin: 0 5%;
   }
 }
