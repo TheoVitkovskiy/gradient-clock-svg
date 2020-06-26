@@ -16,15 +16,18 @@ let isAlarm = false;
 const ALARM_AMOUNT = 3;
 const ALARM_DELAY_MS = 4500;
 const ALARM_FAVICON_DELAY_MS = 800;
-const HREF_ALT = 'img/favicon.png';
-const HREF_MAIN = 'img/faviconGreen.png';
 const APP_TITLE = document.title;
-
+const favicon = document.getElementById('favicon');
 const audio = new Audio('./sounds/Tea-bell-sound-effect.mp3');
 const time = new Date(0);
+const HREF_ALT = 'img/favicon.png';
+const HREF_MAIN = 'img/faviconGreen.png';
+const HREF_1 = 'img/faviconGreenLight.png';
+const HREF_2 = 'img/faviconYellow.png';
+const HREF_3 = 'img/faviconOrange.png';
+const HREF_4 = 'img/favicon.png';
 
 const main = () => {
-    setCustomTimer();
 
     orange = createFruit('orange');
     tomato = createFruit('tomato');
@@ -35,6 +38,7 @@ const main = () => {
 
     setTimerOnClick();
 
+    setCustomTimer();
     setCSSVariables(
         calculateDynamicValues()
     );
@@ -68,14 +72,27 @@ const updateFruit = (fruit) => {
 }
 
 const onSec = () => {
-    const remainingMs = ripeMs - (getNowMs() - startMs);
-    const fractionPassed = ripeMs / remainingMs;
-    console.log(fractionPassed);
-    //if (remainingMs < 0) {
-    //    resetGlobalTimer();
-    //    return;
-    //}
-    updateTitle(remainingMs);
+    if (!isAlarm) {
+        const remainingMs = ripeMs - (getNowMs() - startMs);
+        const fractionFilled = 1 - (remainingMs / ripeMs);
+        updateFavicon(fractionFilled);
+        updateTitle(remainingMs);
+    }
+}
+
+const updateFavicon = (fractionFilled) => {
+    if (fractionFilled > 0) {
+        favicon.href = HREF_1; 
+    }
+    if (fractionFilled > 0.25) {
+        favicon.href = HREF_2; 
+    }
+    if (fractionFilled > 0.5) {
+        favicon.href = HREF_3; 
+    }
+    if (fractionFilled > 0.75) {
+        favicon.href = HREF_4; 
+    }
 }
 
 const updateTitle = (ms) => {
@@ -189,20 +206,9 @@ const getClickedFruit = (clock) => {
 }
 
 const setCustomTimer = () => {
-    const customTime = getCustomTime();
+    const customTime = config['apple-ripe-minutes'];
     const timeDomElement = document.querySelector('.customTime h2');
     timeDomElement.innerText = customTime || 'XXX';
-    setDocProperty('--apple-ripe-minutes', customTime || 0);
-}
-
-const getCustomTime = () => {
-    const customTime = getQueryParamValue('minutes');
-    return customTime;
-}
-
-const getQueryParamValue = (qParam) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(qParam);
 }
 
 const calculateDynamicValues = () => {
