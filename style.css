@@ -24,10 +24,10 @@
 :root {
   /* --- config variables --- */
   /* minutes */
-  --orange-ripe-minutes: 0.1;
+  --orange-ripe-minutes: 5;
   --tomato-ripe-minutes: 0.1;
   --apple-ripe-minutes: 0.1;
-  --pear-ripe-minutes: 5;
+  --pear-ripe-minutes: 15;
   /* animations */
   --pre-ripe-delay: 0.1;
   --pre-ripe-dur: 1;
