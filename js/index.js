@@ -45,7 +45,7 @@ const main = () => {
 }
 
 const setTimerOnClick = () => {
-    const clocks = [...document.querySelectorAll('.clockContainer:not(:last-child)')]; 
+    const clocks = [...document.querySelectorAll('.clockContainer:not(:last-child)')];
     clocks.forEach(clock => {
         clock.addEventListener('click', clockOnClick);
     });
@@ -57,7 +57,7 @@ const clockOnClick = (e) => {
 }
 
 const updateFruit = (fruit) => {
-    if (fruit.isIdle()){
+    if (fruit.isIdle()) {
         fruit.start();
         setGlobalTimer(fruit.getRipeMs());
         const startDelayMs = (config['pre-ripe-delay'] + config['pre-ripe-dur']) * 1000;
@@ -82,23 +82,23 @@ const onSec = () => {
 
 const updateFavicon = (fractionFilled) => {
     if (fractionFilled > 0) {
-        favicon.href = HREF_1; 
+        favicon.href = HREF_1;
     }
     if (fractionFilled > 0.25) {
-        favicon.href = HREF_2; 
+        favicon.href = HREF_2;
     }
     if (fractionFilled > 0.5) {
-        favicon.href = HREF_3; 
+        favicon.href = HREF_3;
     }
     if (fractionFilled > 0.75) {
-        favicon.href = HREF_4; 
+        favicon.href = HREF_4;
     }
 }
 
 const updateTitle = (ms) => {
     let title = '';
     if (ms < 0) {
-        title = APP_TITLE; 
+        title = APP_TITLE;
     } else {
         title = Math.round(ms / 1000);
         //time.setMilliseconds(ms);
@@ -147,7 +147,7 @@ const resetAlarm = () => {
 
 const playAlarm = () => {
     isAlarm = true;
-    playSoundAlarm();    
+    playSoundAlarm();
     playFaviconAlarm();
 };
 
@@ -173,7 +173,7 @@ const toggleFavicon = () => {
 }
 
 const playSoundAlarm = () => {
-    for(let i = 0; i < ALARM_AMOUNT; i++) {
+    for (let i = 0; i < ALARM_AMOUNT; i++) {
         setTimeout(playSound, i * ALARM_DELAY_MS);
     }
 }
@@ -217,7 +217,7 @@ const setCustomTimer = () => {
         if (apple.isIdle()) {
             customTimeInput.focus();
         } else {
-            updateFruit(apple);  
+            updateFruit(apple);
         }
     });
 
@@ -226,17 +226,19 @@ const setCustomTimer = () => {
         console.log(customTimeInput.value);
 
         if (e.keyCode === 13) {
+            config['apple-ripe-minutes'] = customTimeInput.value;
+            setCSSVariables(
+                calculateDynamicValues()
+            );
             apple.setRipeMs(customTimeInput.value);
             updateFruit(apple);
-            console.log()
             const docStyle = getComputedStyle(document.documentElement);
-            console.log(docStyle.getPropertyValue('--apple-ripe-minutes'))
         }
     });
 }
 
 const calculateDynamicValues = () => {
-    const dynamicValues = {}; 
+    const dynamicValues = {};
 
     dynamicValues['pre-ripe-dur'] = config['pre-ripe-dur']; // to add s (seconds) at the end
     dynamicValues['pre-ripe-delay'] = config['pre-ripe-delay']; // to add s (seconds) at the end

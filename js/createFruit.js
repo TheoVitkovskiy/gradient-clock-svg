@@ -44,8 +44,7 @@ export default function createFruit(name) {
             return ripeMs;
         },
         setRipeMs(minutes) {
-            setVariableInSec('--' + name + '-ripe-dur', minutesToSec(minutes));
-            ripeMs = minutesToMs(minutes); 
+            ripeMs = minutesToMs(minutes);
         },
         getName() {
             return name;
