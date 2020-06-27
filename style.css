@@ -137,19 +137,31 @@ body {
   justify-content: center;
   z-index: 100;
 }
-.customTime {
-    color: inherit;
-    font-size: inherit;
-    text-align: center;
-    font-weight: inherit;
-    position: absolute;
-    box-sizing: border-box;
-    border:none;
-    background-image:none;
-    background-color:transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+/* .clockTime input {
+width
+} */
+.customTime,
+.customTime:focus {
+  outline-width: 0;
+  width: 100%;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  text-align: center;
+  font-weight: inherit;
+  position: absolute;
+  box-sizing: border-box;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.customTime + i {
+  margin-top: 63%;
+  margin-left: 60%;
+  display: flex;
 }
 .clockDot {
   display: block;
@@ -185,20 +197,26 @@ body {
   width: 10rem;
   background: no-repeat url(img/break.svg);
 } */
-.break_icon::before {
+.ico::before {
   display: inline-block;
   content: "";
   /*  background-image: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 21.26"><g id="Ebene_2" data-name="Ebene 2"><rect y="18.37" width="26" height="2.89" rx="1.44" style="fill:#fcfa8f"/></g><g id="Ebene_3_Kopie" data-name="Ebene 3 Kopie"><path d="M25.5,12.32a7.45,7.45,0,0,1-2.05,5A11.41,11.41,0,0,1,15,20.82c-5.8,0-10.5-3.81-10.5-8.5Z" transform="translate(-2 -3.13)" style="fill:#fcfa8f;fill-rule:evenodd"/><path d="M29.5,13.5c0,1.45-1.66,3.75-3.51,4.74-.86.46-1.84-.34-2.47-.88a7.45,7.45,0,0,0,2.05-5H25.2a4.07,4.07,0,0,1,.79-.08C27.92,12.24,29.52,11.85,29.5,13.5Z" transform="translate(-2 -3.13)" style="fill:none;stroke:#fcfa8f;stroke-miterlimit:10;fill-rule:evenodd"/></g><g id="Ebene_5" data-name="Ebene 5"><polyline points="4.5 0.37 5.5 1.37 4.5 3.59 5.5 5.37" style="fill:none;stroke:#fcfa8f;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.7459079037795565px"/><polyline points="8.5 0.37 9.5 1.37 8.5 3.59 9.5 5.37" style="fill:none;stroke:#fcfa8f;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.7459079037795565px"/><polyline points="12.5 0.37 13.5 1.37 12.5 3.59 13.5 5.37" style="fill:none;stroke:#fcfa8f;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.7459079037795565px"/><polyline points="16.5 0.37 17.5 1.37 16.5 3.59 17.5 5.37" style="fill:none;stroke:#fcfa8f;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.7459079037795565px"/><polyline points="20.5 0.37 21.5 1.37 20.5 3.59 21.5 5.37" style="fill:none;stroke:#fcfa8f;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.7459079037795565px"/></g></svg>  '); */
-  background: no-repeat url(img/break.svg);
+  background-repeat: no-repeat;
   height: inherit;
   width: inherit;
   transform: inherit;
   /* background-size: 4rem 4rem; */
 }
+.break_ico::before {
+  background-image: url(img/break.svg);
+}
+.key_return_ico::before {
+  background-image: url(img/return_key.svg);
+}
 .clockTime i {
   height: 4.5vw;
   width: 4.5vw;
-  transform: translateY(.1rem);
+  transform: translateY(0.1rem);
 }
 .animClockDot {
   animation: ticktack var(--pre-ripe-dur) var(--dot-delay) ease forwards;
@@ -430,8 +448,11 @@ Extra large (xl) devices - large desktops,
     width: 70vw;
   }
   .clockTime {
-    transform: translateY(0.7rem);
-    font-size: 1.3rem;
+    font-size: 2rem;
+  }
+  .clockTime i {
+    height: 2rem;
+    width: 2rem;
   }
 }
 @media only screen and (max-width: 991px) and (min-width: 769px) {
