@@ -177,7 +177,7 @@ body {
   transform: inherit;
   /* background-size: 4rem 4rem; */
 }
-.clockTime .break_icon {
+.clockTime i {
   height: 4.5vw;
   width: 4.5vw;
   transform: translate(-0.3rem, 0.5rem);
