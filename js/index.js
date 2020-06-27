@@ -1,6 +1,6 @@
 import createFruit from './createFruit.js';
 import config from './config.js';
-import { getNowMs, setVariableInSec } from './helpers.js';
+import { getNowMs, setVariableInSec, minutesToMs } from './helpers.js';
 
 let orange = null;
 let tomato = null;
@@ -26,6 +26,7 @@ const HREF_1 = 'img/faviconGreenLight.png';
 const HREF_2 = 'img/faviconYellow.png';
 const HREF_3 = 'img/faviconOrange.png';
 const HREF_4 = 'img/favicon.png';
+const CUSTOM_PLACEHOLDER = 'XXX';
 
 const main = () => {
 
@@ -211,11 +212,14 @@ const setCustomTimer = () => {
     const clock = document.querySelector('.clockContainer:last-child');
     const customTimeInput = clock.querySelector('.customTime');
 
-    customTimeInput.value = customTime || 'XXX';
+    customTimeInput.value = customTime || CUSTOM_PLACEHOLDER;
 
     clock.addEventListener('click', () => {
         if (apple.isIdle()) {
             customTimeInput.focus();
+            if (customTimeInput.value === CUSTOM_PLACEHOLDER) {
+                customTimeInput.value = '';
+            }
         } else {
             updateFruit(apple);
         }
@@ -230,9 +234,8 @@ const setCustomTimer = () => {
             setCSSVariables(
                 calculateDynamicValues()
             );
-            apple.setRipeMs(customTimeInput.value);
+            apple.setRipeMs(minutesToMs(customTimeInput.value));
             updateFruit(apple);
-            const docStyle = getComputedStyle(document.documentElement);
         }
     });
 }

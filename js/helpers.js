@@ -1,6 +1,10 @@
 const getNowMs = () => {
-    const date = new Date();
-    return date.getTime();
+  const date = new Date();
+  return date.getTime();
+}
+
+const minutesToMs = (minutes) => {
+  return minutes * 60 * 1000;
 }
 
 const capitalize = (s) => {
@@ -9,7 +13,7 @@ const capitalize = (s) => {
 }
 
 const setDocProperty = (key, value) => {
-    document.documentElement.style.setProperty(key, value);
+  document.documentElement.style.setProperty(key, value);
 }
 
 const setVariableInSec = (key, value) => {
@@ -17,8 +21,9 @@ const setVariableInSec = (key, value) => {
 }
 
 export {
-    getNowMs,
-    capitalize,
-    setDocProperty,
-    setVariableInSec
+  getNowMs,
+  capitalize,
+  setDocProperty,
+  setVariableInSec,
+  minutesToMs
 }

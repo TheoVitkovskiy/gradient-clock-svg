@@ -1,14 +1,7 @@
 import config from './config.js';
-import { getNowMs, capitalize, setVariableInSec } from './helpers.js';
+import { getNowMs, capitalize, minutesToMs } from './helpers.js';
 
 export default function createFruit(name) {
-    const minutesToMs = (minutes) => {
-        return minutes * 60 * 1000;
-    }
-    const minutesToSec = (minutes) => {
-        return minutes * 60;
-    }
-
     const addRipeAnim = () => {
         clockFace.classList.add('animClockFace');
         clockBody.classList.add('animClockBody');
@@ -43,8 +36,8 @@ export default function createFruit(name) {
         getRipeMs() {
             return ripeMs;
         },
-        setRipeMs(minutes) {
-            ripeMs = minutesToMs(minutes);
+        setRipeMs(ms) {
+            ripeMs = ms;
         },
         getName() {
             return name;
