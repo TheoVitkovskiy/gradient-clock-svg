@@ -2,14 +2,18 @@ import createFruit from './createFruit.js';
 import config from './config.js';
 import { getNowMs, setVariableInSec, minutesToMs } from './helpers.js';
 
+const loadInitialValue = (key) => {
+    return localStorage.getItem(key);
+}
+
 let orange = null;
 let tomato = null;
 let pear = null;
 let apple = null;
 let fruits = [];
 let currInterval = null;
-let startMs = null;
-let ripeMs = null;
+let startMs = loadInitialValue('startMs');
+let ripeMs = loadInitialValue('ripeMs');
 let faviconInterval = null;
 let isAlarm = false;
 
@@ -29,7 +33,6 @@ const HREF_4 = 'img/favicon.png';
 const CUSTOM_PLACEHOLDER = 'XXX';
 
 const main = () => {
-
     orange = createFruit('orange');
     tomato = createFruit('tomato');
     pear = createFruit('pear');
@@ -39,10 +42,20 @@ const main = () => {
 
     setTimerOnClick();
 
+    setGlobalTimer(ripeMs - (getNowMs() - startMs));
     setCustomTimer();
     setCSSVariables(
         calculateDynamicValues()
     );
+}
+
+const loadData = () => {
+    console.log(startMs);
+}
+
+
+const saveValue = (key, value) => {
+    return localStorage.setItem(key, value);
 }
 
 const setTimerOnClick = () => {
@@ -266,4 +279,13 @@ const setCSSVariables = (values) => {
     }
 }
 
-document.addEventListener("DOMContentLoaded", main);
+const saveData = () => {
+    saveValue('startMs', startMs);
+    saveValue('ripeMs', ripeMs);
+}
+
+document.addEventListener('DOMContentLoaded', main);
+
+window.addEventListener('beforeunload', (e) => {
+    saveData();
+});
