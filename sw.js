@@ -18,7 +18,8 @@ const staticAssets = [
   './img/containerBckgrFlies.svg',
   './img/containerBckgrAnim.svg',
   './img/containerBckgApplesPoly.svg',
-  './img/return_key.svg'
+  './img/return_key.svg',
+  './img/faviconGreen144x144.png'
 ];
 async function cacheFirst(req) {
   const cache = await caches.open(cacheName);

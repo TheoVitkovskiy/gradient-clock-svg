@@ -7,7 +7,7 @@
   "description": "Track your time everywhere.",
   "icons": [
     {
-      "src": "./placeholder-icon.png",
+      "src": "./faviconGreen144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     }
