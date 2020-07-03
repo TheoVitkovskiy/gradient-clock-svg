@@ -12,9 +12,9 @@
           fill: #eeeeee;
         } */
 
-        svg {
+        <!-- svg {
           animation: whirl 165s infinite;
-        }
+        } -->
   #i {
     fill: red;
   }

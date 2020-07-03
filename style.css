@@ -321,6 +321,12 @@ width
 .animClockFaceApple {
   animation: round var(--apple-ripe-dur) var(--ripe-delay) linear 1;
 }
+.pear:hover svg {
+  filter: blur(32px);
+}
+/* .blur {
+  filter: blur(40px);
+} */
 
 @keyframes ticktack {
   from {
