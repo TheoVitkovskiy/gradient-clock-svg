@@ -1,0 +1,15 @@
+{
+  "name" : "Fruit Timer",
+  "short_name": "Fruit Timer",
+  "start_url": ".",
+  "display": "browser",
+  "background_color": "#fff",
+  "description": "Track your time everywhere.",
+  "icons": [
+    {
+      "src": "./placeholder-icon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
+}

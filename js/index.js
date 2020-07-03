@@ -43,6 +43,7 @@ const main = () => {
     setCSSVariables(
         calculateDynamicValues()
     );
+    registerSW();
 }
 
 const setTimerOnClick = () => {
@@ -264,6 +265,16 @@ const setCSSVariables = (values) => {
     for (const key in values) {
         setVariableInSec('--' + key, values[key]);
     }
+}
+
+async function registerSW() {
+  if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('../sw.js')
+    } catch (e) {
+      console.log(`Service Worker registration failed`, e);
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", main);
