@@ -47,6 +47,7 @@ const main = () => {
     setCSSVariables(
         calculateDynamicValues()
     );
+    registerSW();
 }
 
 const loadData = () => {
@@ -162,6 +163,7 @@ const resetAlarm = () => {
 const playAlarm = () => {
     isAlarm = true;
     playSoundAlarm();
+    playVibrateAlarm();
     playFaviconAlarm();
 };
 
@@ -178,6 +180,10 @@ const resetSoundAlarm = () => {
 
 const playFaviconAlarm = () => {
     faviconInterval = setInterval(toggleFavicon, ALARM_FAVICON_DELAY_MS);
+}
+
+const playVibrateAlarm = () => {
+    window.navigator.vibrate([30, 100]);
 }
 
 const toggleFavicon = () => {
@@ -289,3 +295,15 @@ document.addEventListener('DOMContentLoaded', main);
 window.addEventListener('beforeunload', (e) => {
     saveData();
 });
+
+async function registerSW() {
+  if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('../sw.js')
+    } catch (e) {
+      console.log(`Service Worker registration failed`, e);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", main);
