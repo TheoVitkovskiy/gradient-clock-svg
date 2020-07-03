@@ -178,7 +178,8 @@ width
 
 .clockFace {
   height: 60%;
-  transform: rotate(-9.5deg);
+  /* transform: rotate(-9.5deg); */
+  transform: rotate(-15deg);
   display: none;
   z-index: 10;
   position: absolute;
@@ -301,7 +302,8 @@ width
       alternate-reverse;
 }
 .animClockFaceTomato {
-  animation: round var(--tomato-ripe-dur) var(--ripe-delay) linear 1;
+  animation: tickstart 0.7s var(--ripe-delay) ease-in 0.5,
+    round var(--tomato-ripe-dur) calc(var(--ripe-delay) + 0.35s) linear 1;
 }
 .animClockPear {
   animation: pear1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate,
@@ -327,7 +329,10 @@ width
 /* .blur {
   filter: blur(40px);
 } */
-
+/* .clockFace:hover {
+  animation: tickstart 0.3 calc(var(--tomato-ripe-dur) + var(--ripe-delay))
+    linear 1;
+} */
 @keyframes ticktack {
   from {
     fill: var(--col-dot-start);
@@ -339,6 +344,18 @@ width
     fill: var(--col-dot-end);
     opacity: 1;
     transform: rotate(355deg);
+  }
+}
+@keyframes tickstart {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-25deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 @keyframes orange1 {
