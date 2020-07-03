@@ -150,6 +150,7 @@ const resetAlarm = () => {
 const playAlarm = () => {
     isAlarm = true;
     playSoundAlarm();
+    playVibrateAlarm();
     playFaviconAlarm();
 };
 
@@ -166,6 +167,10 @@ const resetSoundAlarm = () => {
 
 const playFaviconAlarm = () => {
     faviconInterval = setInterval(toggleFavicon, ALARM_FAVICON_DELAY_MS);
+}
+
+const playVibrateAlarm = () => {
+    window.navigator.vibrate([30, 100]);
 }
 
 const toggleFavicon = () => {
