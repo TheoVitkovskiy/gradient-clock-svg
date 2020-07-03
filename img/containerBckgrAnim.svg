@@ -19,14 +19,14 @@
     fill: red;
   }
 
-        .item:nth-child(even) {
+        <!-- .item:nth-child(even) {
           fill: #777;
           animation: lightup 6s alternate infinite;
         }
         .item:nth-child(odd) {
           fill: #777;
           animation: lightup 4s alternate-reverse infinite;
-        }
+        } -->
 
         @keyframes lightup {
           from {
