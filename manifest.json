@@ -2,7 +2,7 @@
   "name" : "Fruit Timer",
   "short_name": "Fruit Timer",
   "start_url": ".",
-  "display": "minimal-ui",
+  "display": "standalone",
   "background_color": "#fff",
   "description": "Track your time everywhere.",
   "icons": [
