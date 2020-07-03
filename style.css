@@ -302,7 +302,7 @@ width
       alternate-reverse;
 }
 .animClockFaceTomato {
-  animation: tickstart 0.7s var(--ripe-delay) ease-in 0.5,
+  animation: tickstart 0.7s var(--ripe-delay) ease-out 0.5,
     round var(--tomato-ripe-dur) calc(var(--ripe-delay) + 0.35s) linear 1;
 }
 .animClockPear {
