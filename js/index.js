@@ -67,6 +67,7 @@ const setTimerOnClick = () => {
 }
 
 const clockOnClick = (e) => {
+    window.navigator.vibrate(10);
     const fruit = getClickedFruit(e.currentTarget);
     updateFruit(fruit);
 }
@@ -183,7 +184,7 @@ const playFaviconAlarm = () => {
 }
 
 const playVibrateAlarm = () => {
-    window.navigator.vibrate([30, 100]);
+    window.navigator.vibrate([40, 30, 100]);
 }
 
 const toggleFavicon = () => {
