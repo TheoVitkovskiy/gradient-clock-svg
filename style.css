@@ -25,7 +25,7 @@
   /* --- config variables --- */
   /* minutes */
   --orange-ripe-minutes: 5;
-  --tomato-ripe-minutes: 0.1;
+  --tomato-ripe-minutes: 1;
   --apple-ripe-minutes: 0.1;
   --pear-ripe-minutes: 15;
   /* animations */
@@ -323,9 +323,9 @@ width
 .animClockFaceApple {
   animation: round var(--apple-ripe-dur) var(--ripe-delay) linear 1;
 }
-.pear:hover svg {
+/* .pear:hover svg {
   filter: blur(32px);
-}
+} */
 /* .blur {
   filter: blur(40px);
 } */
