@@ -166,6 +166,10 @@ const playAlarm = () => {
     playSoundAlarm();
     playVibrateAlarm();
     playFaviconAlarm();
+    new Notification('Alarm!', {
+        body: 'Alarm!!!',
+        vibrate: [150, 50, 150, 50, 150]
+    })
 };
 
 const resetFaviconAlarm = () => {
