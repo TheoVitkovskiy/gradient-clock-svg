@@ -166,10 +166,7 @@ const playAlarm = () => {
     playSoundAlarm();
     playVibrateAlarm();
     playFaviconAlarm();
-    new Notification('Alarm!', {
-        body: 'Alarm!!!',
-        vibrate: [150, 50, 150, 50, 150]
-    })
+    playNotificationAlarm();
 };
 
 const resetFaviconAlarm = () => {
@@ -181,6 +178,14 @@ const resetFaviconAlarm = () => {
 const resetSoundAlarm = () => {
     audio.pause();
     audio.currentTime = 0;
+}
+
+const playNotificationAlarm = () => {
+    new Notification('Alarm!', {
+        body: 'Alarm!!!',
+        vibrate: [150, 50, 150, 50, 150]
+    })
+
 }
 
 const playFaviconAlarm = () => {
