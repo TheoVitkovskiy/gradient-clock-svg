@@ -15,6 +15,7 @@ export default function createFruit(name) {
     let startMs = null;
     let ripeMs = null;
     let lastClickedMs = null;
+    let disableBlurTimeout = null;
 
     if (name !== 'apple') {
         ripeMs = minutesToMs(config[name + '-ripe-minutes']);
@@ -60,15 +61,32 @@ export default function createFruit(name) {
         setLastClickedMs(ms) {
             lastClickedMs = ms;
         },
-        disableBlur() {
-            clockFace.classList.remove(blurClass);
-            clockBody.classList.remove(blurClass);
-            clockDot.classList.remove(blurClass);
+        disableBlur(delayMs) {
+            const disableBlur = () => {
+                clockFace.classList.remove(blurClass);
+                clockBody.classList.remove(blurClass);
+                clockDot.classList.remove(blurClass);
+                clockTime.classList.remove(blurClass);
+            }
+
+            if (delayMs) {
+                disableBlurTimeout = setTimeout(disableBlur, delayMs);
+            } else {
+                disableBlur();
+            }
         },
         applyBlur() {
-            clockFace.classList.add(blurClass);
-            clockBody.classList.add(blurClass);
-            clockDot.classList.add(blurClass);
+            clearTimeout(disableBlurTimeout);
+
+            const clockTimeVisible = !(getComputedStyle(clockTime).display == 'none');
+
+            if (clockTimeVisible) {
+                clockTime.classList.add(blurClass);
+            } else {
+                clockFace.classList.add(blurClass);
+                clockBody.classList.add(blurClass);
+                clockDot.classList.add(blurClass);
+            }
         },
         reset() {
             startMs = null;
