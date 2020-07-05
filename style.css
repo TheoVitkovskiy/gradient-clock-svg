@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap'); */
 
@@ -106,8 +107,12 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgb(152, 172, 231);
-  transition: background-color 1s;
+  transition: all 1s;
   border-radius: 2rem;
+  touch-action: none;
+}
+.clockFace, .clockBody, .clockDot { 
+  transition: filter 0.3s ease-in-out;
 }
 .clockContainer:hover {
   background-color: rgb(7, 41, 143);
@@ -135,13 +140,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   z-index: 100;
 }
-/* .clockTime input {
-width
-} */
+.clockContainer input {
+  caret-color: var(--col-dot-end) !important;
+}
 .customTime,
 .customTime:focus {
+  caret-color: var(--col-dot-end);
   outline-width: 0;
   width: 100%;
   font-family: inherit;
@@ -333,6 +340,10 @@ width
   animation: tickstart 0.3 calc(var(--tomato-ripe-dur) + var(--ripe-delay))
     linear 1;
 } */
+.blur {
+  filter: blur(8px);
+}
+
 @keyframes ticktack {
   from {
     fill: var(--col-dot-start);

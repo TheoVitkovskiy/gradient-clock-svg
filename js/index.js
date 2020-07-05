@@ -15,15 +15,19 @@ let currInterval = null;
 let startMs = loadInitialValue('startMs');
 let ripeMs = loadInitialValue('ripeMs');
 let faviconInterval = null;
+let alarmTimeout = null;
 let isAlarm = false;
+let isUserTyping = false;
+let isUserInputDirty = false;
 
 const ALARM_AMOUNT = 3;
 const ALARM_DELAY_MS = 4500;
 const ALARM_FAVICON_DELAY_MS = 800;
+const TIME_TO_DECIDE_MS = 1700;
 const APP_TITLE = document.title;
 const favicon = document.getElementById('favicon');
+const customTimeInput = document.querySelector('.customTime');
 const audio = new Audio('./sounds/Tea-bell-sound-effect.mp3');
-const time = new Date(0);
 const HREF_ALT = 'img/favicon.png';
 const HREF_MAIN = 'img/faviconGreen.png';
 const HREF_1 = 'img/faviconGreenLight.png';
@@ -40,28 +44,29 @@ const main = () => {
 
     fruits = [orange, tomato, pear, apple];
 
-    setTimerOnClick();
+    addOnClickToClocks();
 
     setGlobalTimer(ripeMs - (getNowMs() - startMs));
     setCustomTimer();
     setCSSVariables(
         calculateDynamicValues()
     );
+    customTimeInput.addEventListener('blur', () => {
+        if (customTimeInput.value == '') {
+            customTimeInput.value = CUSTOM_PLACEHOLDER;
+        }
+        isUserTyping = false;
+        isUserInputDirty = false;
+    });
     registerSW();
 }
-
-const loadData = () => {
-    console.log(startMs);
-}
-
 
 const saveValue = (key, value) => {
     return localStorage.setItem(key, value);
 }
 
-const setTimerOnClick = () => {
-    const clocks = [...document.querySelectorAll('.clockContainer:not(:last-child)')];
-    clocks.forEach(clock => {
+const addOnClickToClocks = () => {
+    [...document.querySelectorAll('.clockContainer')].forEach(clock => {
         clock.addEventListener('click', clockOnClick);
     });
 }
@@ -73,7 +78,20 @@ const clockOnClick = (e) => {
 }
 
 const updateFruit = (fruit) => {
+    if (fruit.getName() == 'apple' && !isUserTyping) {
+        customTimeInput.focus();
+        if (customTimeInput.value === CUSTOM_PLACEHOLDER) {
+            customTimeInput.value = '';
+        }
+        isUserTyping = true;
+    }
+
+    if (!fruit.getRipeMs()) {
+        return;
+    }
+
     if (fruit.isIdle()) {
+        isUserTyping = false;
         fruit.start();
         setGlobalTimer(fruit.getRipeMs());
         const startDelayMs = (config['pre-ripe-delay'] + config['pre-ripe-dur']) * 1000;
@@ -81,9 +99,27 @@ const updateFruit = (fruit) => {
             setAlarm(fruit.getRipeMs());
         }, startDelayMs);
     } else if (fruit.isRipe()) {
-        fruit.reset();
-        updateGlobalTimer();
-        resetAlarm();
+        resetClock(fruit);
+    } else {
+        const isSecondClick = (getNowMs() - fruit.getLastClickedMs()) < TIME_TO_DECIDE_MS;
+        if (isSecondClick) {
+            resetClock(fruit);
+        } else { // first click
+            fruit.setLastClickedMs(getNowMs());
+            fruit.applyBlur();
+            setTimeout(fruit.disableBlur, TIME_TO_DECIDE_MS)
+        }
+    }
+}
+
+const resetClock = (fruit) => {
+    fruit.reset();
+    fruit.disableBlur();
+    updateGlobalTimer();
+    clearTimeout(alarmTimeout);
+    resetAlarm();
+    if (fruit.getName() == 'apple') {
+        customTimeInput.focus();
     }
 }
 
@@ -113,7 +149,7 @@ const updateFavicon = (fractionFilled) => {
 
 const updateTitle = (ms) => {
     let title = '';
-    if (ms < 0) {
+    if (ms <= 0) {
         title = APP_TITLE;
     } else {
         title = Math.round(ms / 1000);
@@ -134,7 +170,9 @@ const setGlobalTimer = (timeMs) => {
 
 const resetGlobalTimer = () => {
     clearInterval(currInterval);
-    //updateTitle(0);
+    updateTitle(0);
+    startMs = null;
+    ripeMs = null;
 }
 
 const updateGlobalTimer = (timeMs = null) => {
@@ -152,7 +190,7 @@ const updateGlobalTimer = (timeMs = null) => {
 }
 
 const setAlarm = (ms) => {
-    setTimeout(playAlarm, ms);
+    alarmTimeout = setTimeout(playAlarm, ms);
 }
 
 const resetAlarm = () => {
@@ -238,32 +276,24 @@ const getClickedFruit = (clock) => {
 const setCustomTimer = () => {
     const customTime = config['apple-ripe-minutes'];
 
-    const clock = document.querySelector('.clockContainer:last-child');
-    const customTimeInput = clock.querySelector('.customTime');
-
     customTimeInput.value = customTime || CUSTOM_PLACEHOLDER;
 
-    clock.addEventListener('click', () => {
-        if (apple.isIdle()) {
-            customTimeInput.focus();
-            if (customTimeInput.value === CUSTOM_PLACEHOLDER) {
-                customTimeInput.value = '';
-            }
-        } else {
-            updateFruit(apple);
-        }
-    });
-
     customTimeInput.addEventListener('keydown', (e) => {
-        const customTimeInput = clock.querySelector('.customTime');
-        console.log(customTimeInput.value);
+        const minutesFromInput = e.target.value;
+
+        if (!isUserInputDirty) {
+            customTimeInput.value = ''; 
+            isUserInputDirty = true;
+        }
 
         if (e.keyCode === 13) {
-            config['apple-ripe-minutes'] = customTimeInput.value;
+            isUserInputDirty = false;
+            isUserTyping = false;
+            config['apple-ripe-minutes'] = minutesFromInput;
             setCSSVariables(
                 calculateDynamicValues()
             );
-            apple.setRipeMs(minutesToMs(customTimeInput.value));
+            apple.setRipeMs(minutesToMs(minutesFromInput));
             updateFruit(apple);
         }
     });
@@ -307,6 +337,12 @@ window.addEventListener('beforeunload', (e) => {
 });
 
 async function registerSW() {
+  const isQA = window.location.host.includes('preview');
+
+  if (isQA) {
+    return;
+  }
+
   if ('serviceWorker' in navigator) {
     try {
       await navigator.serviceWorker.register('../sw.js')
