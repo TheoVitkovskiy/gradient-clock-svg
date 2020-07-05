@@ -296,7 +296,7 @@ const setCustomTimer = () => {
         const minutesFromInput = e.target.value;
 
         if (!isUserInputDirty) {
-            customTimeInput.value = ''; 
+            customTimeInput.value = '';
             isUserInputDirty = true;
         }
 
@@ -351,19 +351,20 @@ window.addEventListener('beforeunload', (e) => {
 });
 
 async function registerSW() {
-  const isQA = window.location.host.includes('preview');
+    const isQA = window.location.host.includes('preview');
+    const isDev = window.location.href.includes('127') || window.location.href.includes('localhost');
 
-  if (isQA) {
-    return;
-  }
-
-  if ('serviceWorker' in navigator) {
-    try {
-      await navigator.serviceWorker.register('../sw.js')
-    } catch (e) {
-      console.log(`Service Worker registration failed`, e);
+    if (isQA || isDev) {
+        return;
     }
-  }
+
+    if ('serviceWorker' in navigator) {
+        try {
+            await navigator.serviceWorker.register('../sw.js')
+        } catch (e) {
+            console.log(`Service Worker registration failed`, e);
+        }
+    }
 }
 
 document.addEventListener("DOMContentLoaded", main);
