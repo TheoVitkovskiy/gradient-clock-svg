@@ -111,7 +111,7 @@ body {
   border-radius: 2rem;
   touch-action: none;
 }
-.clockFace, .clockBody, .clockDot { 
+.clockFace, .clockBody, .clockDot, .clockTime { 
   transition: filter 0.3s ease-in-out;
 }
 .clockContainer:hover {

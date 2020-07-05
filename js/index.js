@@ -79,6 +79,12 @@ const clockOnClick = (e) => {
 }
 
 const updateFruit = (fruit) => {
+    const isSecondClick = (getNowMs() - fruit.getLastClickedMs()) < TIME_TO_DECIDE_MS;
+
+    if (!isSecondClick) {
+        fruit.setLastClickedMs(getNowMs());
+    }
+
     if (!orange.isIdle() && fruit.getName() != 'orange') {
         return;
     }
@@ -97,7 +103,18 @@ const updateFruit = (fruit) => {
 
     if (fruit.isIdle()) {
         if (fruit.getName() == 'orange') { // break timer
-            fruits.filter(fruit => fruit.getName() != 'orange').forEach(fruit => resetClock(fruit));
+            fruits.filter(fruit => fruit.getName() != 'orange').forEach(fruit => {
+                if (isSecondClick) {
+                    resetClock(fruit);
+                    fruit.applyBlur();
+                } else { // first click
+                    fruit.applyBlur();
+                    fruit.disableBlur(TIME_TO_DECIDE_MS);
+                }
+            });
+            if (!isSecondClick) {
+                return;
+            }
             favicon.href = HREF_BREAK_1;
             customTimeInput.blur();
         } else {
@@ -112,11 +129,9 @@ const updateFruit = (fruit) => {
     } else if (fruit.isRipe()) {
         resetClock(fruit);
     } else {
-        const isSecondClick = (getNowMs() - fruit.getLastClickedMs()) < TIME_TO_DECIDE_MS;
         if (isSecondClick) {
             resetClock(fruit);
         } else { // first click
-            fruit.setLastClickedMs(getNowMs());
             fruit.applyBlur();
             setTimeout(fruit.disableBlur, TIME_TO_DECIDE_MS)
         }
@@ -124,6 +139,11 @@ const updateFruit = (fruit) => {
 }
 
 const resetClock = (fruit) => {
+    if (fruit.getName() == 'orange') { // break timer
+        fruits.filter(fruit => fruit.getName() != 'orange').forEach(fruit => {
+            fruit.disableBlur();
+        });
+    }
     fruit.reset();
     fruit.disableBlur();
     updateGlobalTimer();
