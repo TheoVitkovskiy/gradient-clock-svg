@@ -147,16 +147,19 @@ const updateFavicon = (fractionFilled) => {
     }
 }
 
+const getTimeString = (ms) => {
+    const timeInSeconds = ms / 1000;
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds - (minutes * 60));
+    return `${minutes}:${seconds}`
+}
+
 const updateTitle = (ms) => {
     let title = '';
     if (ms <= 0) {
         title = APP_TITLE;
     } else {
-        title = Math.round(ms / 1000);
-        //time.setMilliseconds(ms);
-        //title = time.toISOString().substr(11, 8);
-        //time.setMilliseconds(-ms);
-
+        title = getTimeString(ms);
     }
     document.title = title;
 }
