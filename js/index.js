@@ -34,6 +34,7 @@ const HREF_1 = 'img/faviconGreenLight.png';
 const HREF_2 = 'img/faviconYellow.png';
 const HREF_3 = 'img/faviconOrange.png';
 const HREF_4 = 'img/favicon.png';
+const HREF_BREAK_1 = 'img/favicon_breakGreen_center.png';
 const CUSTOM_PLACEHOLDER = 'XXX';
 
 const main = () => {
@@ -78,6 +79,10 @@ const clockOnClick = (e) => {
 }
 
 const updateFruit = (fruit) => {
+    if (!orange.isIdle() && fruit.getName() != 'orange') {
+        return;
+    }
+
     if (fruit.getName() == 'apple' && !isUserTyping) {
         customTimeInput.focus();
         if (customTimeInput.value === CUSTOM_PLACEHOLDER) {
@@ -91,9 +96,15 @@ const updateFruit = (fruit) => {
     }
 
     if (fruit.isIdle()) {
+        if (fruit.getName() == 'orange') { // break timer
+            fruits.filter(fruit => fruit.getName() != 'orange').forEach(fruit => resetClock(fruit));
+            favicon.href = HREF_BREAK_1;
+            customTimeInput.blur();
+        } else {
+            setGlobalTimer(fruit.getRipeMs());
+        }
         isUserTyping = false;
         fruit.start();
-        setGlobalTimer(fruit.getRipeMs());
         const startDelayMs = (config['pre-ripe-delay'] + config['pre-ripe-dur']) * 1000;
         setTimeout(() => {
             setAlarm(fruit.getRipeMs());
