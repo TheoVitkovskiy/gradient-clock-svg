@@ -20,10 +20,20 @@ const setVariableInSec = (key, value) => {
   setDocProperty(key, value + 's');
 }
 
+const vibrateInMs = (ms) => {
+  window.navigator.vibrate(ms);
+}
+
+const vibrateInPattern = (pattern) => {
+  window.navigator.vibrate(pattern);
+}
+
 export {
   getNowMs,
   capitalize,
   setDocProperty,
   setVariableInSec,
-  minutesToMs
+  minutesToMs,
+  vibrateInMs,
+  vibrateInPattern
 }
