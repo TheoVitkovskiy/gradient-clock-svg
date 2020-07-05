@@ -7,7 +7,7 @@ const getConfig = () => {
     // ToDo: find a way to make it dynamic
     config['orange-ripe-minutes'] = parseFloat(docStyle.getPropertyValue('--orange-ripe-minutes'));
     config['tomato-ripe-minutes'] = parseFloat(docStyle.getPropertyValue('--tomato-ripe-minutes'));
-    config['apple-ripe-minutes'] = getCustomTime();
+    config['apple-ripe-minutes'] = getCustomTime()
     config['pear-ripe-minutes'] = parseFloat(docStyle.getPropertyValue('--pear-ripe-minutes'));
     config['pre-ripe-delay'] = parseFloat(docStyle.getPropertyValue('--pre-ripe-delay'));
     config['pre-ripe-dur'] = parseFloat(docStyle.getPropertyValue('--pre-ripe-dur'));

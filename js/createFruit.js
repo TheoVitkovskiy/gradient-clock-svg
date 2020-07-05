@@ -13,7 +13,12 @@ export default function createFruit(name) {
     }
 
     let startMs = null;
-    let ripeMs = minutesToMs(config[name + '-ripe-minutes']);
+    let ripeMs = null;
+    let lastClickedMs = null;
+
+    if (name !== 'apple') {
+        ripeMs = minutesToMs(config[name + '-ripe-minutes']);
+    }
 
     const htmlElem = document.querySelector('.' + name);
 
@@ -24,6 +29,7 @@ export default function createFruit(name) {
     const clockDot = htmlElem.querySelector('.clockDot');
     const clockDotSVG = htmlElem.querySelector('.clockDot svg');
 
+    const blurClass = 'blur';
 
     return {
         start() {
@@ -48,8 +54,27 @@ export default function createFruit(name) {
         isIdle() {
             return startMs ? false : true;
         },
+        getLastClickedMs() {
+            return lastClickedMs;
+        },
+        setLastClickedMs(ms) {
+            lastClickedMs = ms;
+        },
+        disableBlur() {
+            clockFace.classList.remove(blurClass);
+            clockBody.classList.remove(blurClass);
+            clockDot.classList.remove(blurClass);
+        },
+        applyBlur() {
+            clockFace.classList.add(blurClass);
+            clockBody.classList.add(blurClass);
+            clockDot.classList.add(blurClass);
+        },
         reset() {
             startMs = null;
+            if (name == 'apple') {
+                ripeMs = null;
+            }
             clockFace.classList.remove('animClockFace');
             clockBody.classList.remove('animClockBody');
             clockTime.classList.remove('animClockTime');
