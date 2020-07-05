@@ -302,8 +302,8 @@ width
       alternate-reverse;
 }
 .animClockFaceTomato {
-  animation: tickstart 1.2s var(--ripe-delay) ease-out 1,
-    round var(--tomato-ripe-dur) calc(var(--ripe-delay) + 1.2s) linear 1;
+  animation: tickstart 0.8s var(--ripe-delay) cubic-bezier(0, 0.2, 0.01, 0.7) 1,
+    round var(--tomato-ripe-dur) calc(var(--ripe-delay) + 0.8s) linear 1;
 }
 .animClockPear {
   animation: pear1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate,
@@ -352,8 +352,9 @@ width
   }
 
   50% {
-    transform: rotate(-25deg);
+    transform: rotate(-20deg);
   }
+
   100% {
     transform: rotate(0deg);
   }
