@@ -6,7 +6,7 @@ const staticAssets = [
   './js/index.js',
   './js/config.js',
   './js/helpers.js',
-  './js/createFruit.js',
+  './js/fruit.js',
   './vendor/url-search-params-polyfill.js',
   './sounds/Tea-bell-sound-effect.mp3',
   './fonts/Lato-Bold.ttf',
