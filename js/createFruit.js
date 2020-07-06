@@ -32,6 +32,7 @@ export default function createFruit(name) {
 
     const blurClass = 'blur';
 
+
     return {
         start() {
             startMs = getNowMs() + config['pre-ripe-delay'] + config['pre-ripe-dur'];

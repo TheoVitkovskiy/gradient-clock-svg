@@ -1,6 +1,6 @@
 import createFruit from './createFruit.js';
 import config from './config.js';
-import { getNowMs, setVariableInSec, minutesToMs } from './helpers.js';
+import { getNowMs, setVariableInSec, minutesToMs, vibrateInPattern, vibrateInMs } from './helpers.js';
 
 const loadInitialValue = (key) => {
     return localStorage.getItem(key);
@@ -73,7 +73,7 @@ const addOnClickToClocks = () => {
 }
 
 const clockOnClick = (e) => {
-    window.navigator.vibrate(10);
+    vibrateInMs(10);
     const fruit = getClickedFruit(e.currentTarget);
     updateFruit(fruit);
 }
@@ -86,6 +86,7 @@ const updateFruit = (fruit) => {
     }
 
     if (!orange.isIdle() && fruit.getName() != 'orange') {
+        vibrateInPattern([50, 30, 80]);
         return;
     }
 
@@ -97,7 +98,8 @@ const updateFruit = (fruit) => {
         isUserTyping = true;
     }
 
-    if (!fruit.getRipeMs()) {
+    const fruitRipeMs = fruit.getRipeMs();
+    if (!fruitRipeMs || fruitRipeMs === 0) {
         return;
     }
 
@@ -121,6 +123,7 @@ const updateFruit = (fruit) => {
             setGlobalTimer(fruit.getRipeMs());
         }
         isUserTyping = false;
+        vibrateInPattern(vibrateStartPattern());
         fruit.start();
         const startDelayMs = (config['pre-ripe-delay'] + config['pre-ripe-dur']) * 1000;
         setTimeout(() => {
@@ -161,6 +164,16 @@ const onSec = () => {
         updateFavicon(fractionFilled);
         updateTitle(remainingMs);
     }
+}
+
+const vibrateStartPattern = () => {
+    const pattern = [];
+    let dur = 60;
+    for (let i = 0; i < 10; i++) {
+        pattern.push(2); 
+        pattern.push(dur += 10); 
+    }
+    return pattern;
 }
 
 const updateFavicon = (fractionFilled) => {
@@ -265,7 +278,7 @@ const playFaviconAlarm = () => {
 }
 
 const playVibrateAlarm = () => {
-    window.navigator.vibrate([40, 30, 100]);
+    vibrateInPattern([40, 30, 100]);
 }
 
 const toggleFavicon = () => {
