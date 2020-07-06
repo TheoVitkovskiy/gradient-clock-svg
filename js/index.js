@@ -47,7 +47,11 @@ const main = () => {
     setCSSVariables(
         calculateDynamicValues()
     );
-    registerSW();
+    const isQA = window.location.href.includes('preview');
+    const isDev = window.location.href.includes('127') || window.location.href.includes('localhost');
+    if (!isQA && !isDev) {
+        registerSW();
+    }
 }
 
 const loadData = () => {
@@ -307,13 +311,13 @@ window.addEventListener('beforeunload', (e) => {
 });
 
 async function registerSW() {
-  if ('serviceWorker' in navigator) {
-    try {
-      await navigator.serviceWorker.register('../sw.js')
-    } catch (e) {
-      console.log(`Service Worker registration failed`, e);
+    if ('serviceWorker' in navigator) {
+        try {
+            await navigator.serviceWorker.register('../sw.js')
+        } catch (e) {
+            console.log(`Service Worker registration failed`, e);
+        }
     }
-  }
 }
 
 document.addEventListener("DOMContentLoaded", main);

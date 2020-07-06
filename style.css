@@ -24,10 +24,10 @@
 :root {
   /* --- config variables --- */
   /* minutes */
-  --orange-ripe-minutes: 5;
+  --orange-ripe-minutes: 0.1;
   --tomato-ripe-minutes: 1;
   --apple-ripe-minutes: 0.1;
-  --pear-ripe-minutes: 15;
+  --pear-ripe-minutes: 0.3;
   /* animations */
   --pre-ripe-delay: 0.1;
   --pre-ripe-dur: 1;
@@ -86,6 +86,7 @@ body {
   position: absolute;
 }
 .rectangle {
+  background-color: #fff !important;
   position: relative;
   width: 80vw;
   height: 12vw;
@@ -178,8 +179,7 @@ width
 
 .clockFace {
   height: 60%;
-  /* transform: rotate(-9.5deg); */
-  transform: rotate(-15deg);
+  /* transform: rotate(-15deg); */
   display: none;
   z-index: 10;
   position: absolute;
@@ -292,8 +292,16 @@ width
     orange1 var(--success-dur) var(--orange-success-start) ease-in-out infinite
       alternate-reverse;
 }
+.orange .clockFace {
+  /* background-color: rgba(255, 255, 0, 0.294); */
+  height: 1.8rem;
+  height: 58%;
+  transform-origin: center center;
+}
+
 .animClockFaceOrange {
-  animation: round var(--orange-ripe-dur) var(--ripe-delay) linear 1;
+  animation: tickstart 0.7s var(--ripe-delay) cubic-bezier(0, 0.2, 0.01, 0.7) 1,
+    round var(--orange-ripe-dur) calc(var(--ripe-delay) + 0.25s) linear 1;
 }
 .animClockTomato {
   animation: apple1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate,
@@ -302,8 +310,9 @@ width
       alternate-reverse;
 }
 .animClockFaceTomato {
-  animation: tickstart 0.8s var(--ripe-delay) cubic-bezier(0, 0.2, 0.01, 0.7) 1,
-    round var(--tomato-ripe-dur) calc(var(--ripe-delay) + 0.8s) linear 1;
+  animation: tickstart 0.7s var(--ripe-delay) cubic-bezier(0, 0.2, 0.01, 0.7)
+      0.5,
+    round var(--tomato-ripe-dur) calc(var(--ripe-delay) + 0.7s) linear 1;
 }
 .animClockPear {
   animation: pear1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2 alternate,
@@ -312,7 +321,8 @@ width
       alternate-reverse;
 }
 .animClockFacePear {
-  animation: round var(--pear-ripe-dur) var(--ripe-delay) linear 1;
+  animation: tickstart 0.7s var(--ripe-delay) cubic-bezier(0, 0.2, 0.01, 0.7) 1,
+    round var(--pear-ripe-dur) calc(var(--ripe-delay) + 0.7s) linear 1;
 }
 .animClockApple {
   animation: apple1 var(--pre-ripe-dur) var(--pre-ripe-delay) ease 2,
@@ -321,7 +331,9 @@ width
       alternate-reverse;
 }
 .animClockFaceApple {
-  animation: round var(--apple-ripe-dur) var(--ripe-delay) linear 1;
+  animation: tickstart 0.7s var(--ripe-delay) cubic-bezier(0, 0.2, 0.01, 0.7)
+      0.5,
+    round var(--apple-ripe-dur) calc(var(--ripe-delay) + 0.25s) linear 1;
 }
 /* .pear:hover svg {
   filter: blur(32px);
@@ -343,7 +355,7 @@ width
   to {
     fill: var(--col-dot-end);
     opacity: 1;
-    transform: rotate(355deg);
+    transform: rotate(360deg);
   }
 }
 @keyframes tickstart {
@@ -352,7 +364,7 @@ width
   }
 
   50% {
-    transform: rotate(-20deg);
+    transform: rotate(-9deg);
   }
 
   100% {
@@ -423,6 +435,14 @@ width
   }
 }
 
+/* @keyframes round {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
 /* .clock {
   animation: d 3s;
 }
