@@ -1,4 +1,4 @@
-import config from './config.js';
+import { config } from './config.js';
 import { getNowMs, capitalize, minutesToMs } from './helpers.js';
 
 export default function createFruit(name) {
@@ -101,6 +101,12 @@ export default function createFruit(name) {
             clockDotSVG.classList.remove('animClockDot');
             clockMain.classList.remove('animClock' + capitalize(name));
             clockFace.classList.remove('animClockFace' + capitalize(name));
+        },
+        equals(fruit) {
+            return fruit.getName() === name;
+        },
+        isBreakTimer() {
+            return name == 'orange';
         }
     }
 }

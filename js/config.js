@@ -27,5 +27,8 @@ const getQueryParamValue = (qParam) => {
     return urlParams.get(qParam);
 }
 
+const config = getConfig();
 
-export default getConfig();
+export {
+    config
+}

@@ -28,6 +28,10 @@ const vibrateInPattern = (pattern) => {
   window.navigator.vibrate(pattern);
 }
 
+const saveValue = (key, value) => {
+    return localStorage.setItem(key, value);
+}
+
 export {
   getNowMs,
   capitalize,
@@ -35,5 +39,6 @@ export {
   setVariableInSec,
   minutesToMs,
   vibrateInMs,
-  vibrateInPattern
+  vibrateInPattern,
+  saveValue
 }
