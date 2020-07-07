@@ -37,29 +37,70 @@ const HREF_4 = 'img/favicon.png';
 const HREF_BREAK_1 = 'img/favicon_breakGreen_center.png';
 const CUSTOM_PLACEHOLDER = 'XXX';
 
-const main = () => {
-    orange = createFruit('orange');
-    tomato = createFruit('tomato');
-    pear = createFruit('pear');
-    apple = createFruit('apple');
+//   background: no-repeat center/100% url(/img/containerBg_flex1.svg),
+//     /* no-repeat center/100% url(/img/bg/containerBg_flex2.svg), */ no-repeat
+//       center/100% url(/img/bg/containerBg_flex3.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex4.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex5.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex6.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex7.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex8.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex9.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex10.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex11.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex12.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex13.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex14.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex15.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex16.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex17.svg),
+//     no-repeat center/100% url(/img/bg/containerBg_flex18.svg),
+//       no-repeat center/100% url(/img/bg/containerBg_flex19.svg), no-repeat
+//       center/100% url(/img/bg/containerBg_flex20.svg);
 
-    fruits = [orange, tomato, pear, apple];
 
-    addOnClickToClocks();
+// const main = () => {
+//     const container = document.querySelector('.container');
+//     container.classList.add('bgMap_2');
+//     setTimeout(() => {
+//         container.classList.remove('bgMap_2');
+//         container.classList.add('bgMap_3');
+//     }, 2000)
 
-    setGlobalTimer(ripeMs - (getNowMs() - startMs));
-    setCustomTimer();
-    setCSSVariables(
-        calculateDynamicValues()
-    );
-    customTimeInput.addEventListener('blur', () => {
-        if (customTimeInput.value == '') {
-            customTimeInput.value = CUSTOM_PLACEHOLDER;
-        }
-        isUserTyping = false;
-        isUserInputDirty = false;
-    });
-    registerSW();
+setTimeout(() => {
+    container.classList.add('bgMap_2');
+    container.classList.remove('bgMap_3');
+}, 4000)
+container.classList.add('bgMap_6');
+setTimeout(() => {
+    container.classList.remove('bgMap_6');
+    container.classList.add('bgMap_7')
+}, 6000)
+
+
+console.log(container);
+orange = createFruit('orange');
+tomato = createFruit('tomato');
+pear = createFruit('pear');
+apple = createFruit('apple');
+
+fruits = [orange, tomato, pear, apple];
+
+addOnClickToClocks();
+
+setGlobalTimer(ripeMs - (getNowMs() - startMs));
+setCustomTimer();
+setCSSVariables(
+    calculateDynamicValues()
+);
+customTimeInput.addEventListener('blur', () => {
+    if (customTimeInput.value == '') {
+        customTimeInput.value = CUSTOM_PLACEHOLDER;
+    }
+    isUserTyping = false;
+    isUserInputDirty = false;
+});
+registerSW();
 }
 
 const saveValue = (key, value) => {
