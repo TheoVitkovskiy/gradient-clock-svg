@@ -54,6 +54,7 @@
   --tomato-success-start: "";
   --pear-success-start: "";
   --apple-success-start: "";
+  --bg-background: "";
 }
 body {
   font-size: 62.5%;
@@ -75,8 +76,9 @@ body {
   top: 0;
   position: absolute;
   content: "";
-  background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
-    no-repeat center/100% url(/img/containerBckgrApples.svg);
+  /* background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
+    no-repeat center/100% url(/img/containerBckgrApples.svg); */
+  background: var(--bg-background);
 }
 .grape {
   display: none;
@@ -111,7 +113,10 @@ body {
   border-radius: 2rem;
   touch-action: none;
 }
-.clockFace, .clockBody, .clockDot, .clockTime { 
+.clockFace,
+.clockBody,
+.clockDot,
+.clockTime {
   transition: filter 0.3s ease-in-out;
 }
 .clockContainer:hover {
