@@ -11,7 +11,7 @@ import calculateDynamicValues from './calculateDynamicValues.js';
 const { orange, tomato, pear, apple } = fruitContainer;
 
 const main = () => {
-    animateBackground();
+    setInterval(animateBackground, 4000);
     addOnClickToClocks();
     calculateDynamicValues();
     customTimer.set();
@@ -43,9 +43,14 @@ const main = () => {
 
 const animateBackground = () => {
     const imgCount = 20;
-    const turnOffPositions = [14, 17, 19, 20];
+    // const turnOffPositions = [4, 14, 17, 19, 20];
+    const turnOffPositions = [];
+    let randomPosition = Math.floor(Math.random() * imgCount) + 1;
+    turnOffPositions.push(randomPosition);
+    randomPosition = Math.floor(Math.random() * imgCount) + 1;
+    turnOffPositions.push(randomPosition);
+    console.log(turnOffPositions);
     const backgroundString = generateBackgroundString(imgCount, turnOffPositions);
-    console.log(backgroundString);
     setDocProperty('--bg-background', backgroundString);
 }
 
@@ -71,7 +76,6 @@ const generateBackgroundString = (imgCount, turnOffPositions) => {
         string += ',';
     }
     string = string.slice(0, -1);
-    string += ';';
     return string;
 }
 
