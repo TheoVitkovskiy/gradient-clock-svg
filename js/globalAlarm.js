@@ -2,6 +2,7 @@ import { getNowMs } from './helpers.js';
 import { fruitContainer } from './fruitContainer.js';
 import { alarm } from './alarm.js';
 import { saveValue } from './helpers.js';
+import { favicon } from './favicon.js';
 
 const { getNextActiveFruit } = fruitContainer;
 
@@ -10,11 +11,6 @@ const loadInitialValue = (key) => {
 }
 
 function createGlobalAlarm() {
-    const HREF_1 = 'img/faviconGreenLight.png';
-    const HREF_2 = 'img/faviconYellow.png';
-    const HREF_3 = 'img/faviconOrange.png';
-    const HREF_4 = 'img/favicon.png';
-    const favicon = document.getElementById('favicon');
     const APP_TITLE = document.title;
 
     let startMs = loadInitialValue('startMs');
@@ -24,6 +20,7 @@ function createGlobalAlarm() {
     const reset = () => {
         clearInterval(currInterval);
         updateTitle(0);
+        favicon.reset();
         startMs = null;
         ripeMs = null;
     }
@@ -31,30 +28,18 @@ function createGlobalAlarm() {
     const onSec = () => {
         if (!alarm.isPlaying()) {
             const remainingMs = ripeMs - (getNowMs() - startMs);
+            if (!remainingMs || remainingMs < 0) {
+                update();
+            }
             const fractionFilled = 1 - (remainingMs / ripeMs);
-            updateFavicon(fractionFilled);
+            favicon.updateRipe(fractionFilled);
             updateTitle(remainingMs);
-        }
-    }
-
-    const updateFavicon = (fractionFilled) => {
-        if (fractionFilled > 0) {
-            favicon.href = HREF_1;
-        }
-        if (fractionFilled > 0.25) {
-            favicon.href = HREF_2;
-        }
-        if (fractionFilled > 0.5) {
-            favicon.href = HREF_3;
-        }
-        if (fractionFilled > 0.75) {
-            favicon.href = HREF_4;
         }
     }
 
     const updateTitle = (ms) => {
         let title = '';
-        if (ms <= 0) {
+        if (!ms || ms <= 0) {
             title = APP_TITLE;
         } else {
             title = getTimeString(ms);
@@ -82,14 +67,19 @@ function createGlobalAlarm() {
             startMs = nextFruit.getStartMs();
             ripeMs = nextFruit.getRipeMs();
         } else if (timeMs) {
-            startMs = getNowMs();
+            if (!startMs) {
+                startMs = getNowMs();
+            }
             ripeMs = timeMs;
         } else {
             reset();
         }
     }
 
-    set(ripeMs - (getNowMs() - startMs));
+    // set, if page reloaded
+    if (startMs && ripeMs) {
+        set(ripeMs);
+    }
 
     return {
         set(timeMs) {

@@ -7,10 +7,9 @@ import {
     getNowMs,
     vibrateInPattern,
 } from './helpers.js';
+import { favicon } from './favicon.js';
 
 const TIME_TO_DECIDE_MS = 1700;
-const favicon = document.getElementById('favicon');
-const HREF_BREAK_1 = 'img/favicon_breakGreen_center.png';
 const { orange, apple, fruits } = fruitContainer;
 
 const updateFruit = (fruit) => {
@@ -48,7 +47,7 @@ const updateFruit = (fruit) => {
             if (!isSecondClick) {
                 return;
             }
-            favicon.href = HREF_BREAK_1;
+            favicon.setToBreak();
             customTimer.blur();
         } else {
             globalAlarm.set(fruit.getRipeMs());
