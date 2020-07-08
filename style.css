@@ -82,14 +82,7 @@ body {
   background: var(--bg-background);
   /* background: no-repeat center/100% url(/img/containerBg_flex4.svg); */
 }
-.grape {
-  display: none;
-  left: 100px;
-  bottom: 550px;
-  z-index: 100;
-  width: 5vw;
-  position: absolute;
-}
+
 .rectangle {
   position: relative;
   width: 80vw;
