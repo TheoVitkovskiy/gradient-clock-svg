@@ -69,7 +69,7 @@ body {
 }
 .container::after {
   /* z-index: 0; */
-  filter: opacity(0.5) blur(2px);
+  filter: opacity(0.3);
   /* filter: blur(4px); */
   width: 100%;
   height: 100%;
@@ -84,7 +84,7 @@ body {
 }
 .container::before {
   /* z-index: -1.2; */
-  filter: opacity(0.3) blur(5px);
+  filter: opacity(0.3) blur(10px);
   /* filter: blur(4px); */
   width: 100%;
   height: 100%;
@@ -242,7 +242,7 @@ body {
   background-image: url(img/return_key.svg);
 }
 .key_return_ico {
-  transform: translate3d(0, 0, 0);
+  transform: translate(0, 0);
 }
 
 .key_return_ico::before {
@@ -281,19 +281,19 @@ body {
 @keyframes inputJumping {
   80% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate(0, 0);
   }
   85% {
     opacity: 0.8;
-    transform: translate3d(0, 2.5px, 0);
+    transform: translate(0, 2.5px);
   }
   95% {
     opacity: 0.8;
-    transform: translate3d(0, 2.5px, 0);
+    transform: translate(0, 2.5px);
   }
   100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate(0, 0);
   }
 }
 .clockTime i {
