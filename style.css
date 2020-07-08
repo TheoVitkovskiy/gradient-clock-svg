@@ -67,8 +67,24 @@ body {
   height: 100vh;
   background-color: rgba(204, 204, 204);
 }
+.container::after {
+  /* z-index: 0; */
+  filter: opacity(0.5) blur(2px);
+  /* filter: blur(4px); */
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  content: "";
+  /* background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
+    no-repeat center/100% url(/img/containerBckgrApples.svg); */
+  background: no-repeat center/100% url(img/containerBckgrApples.svg);
+  /* background: no-repeat center/100% url(/img/containerBg_flex4.svg); */
+}
 .container::before {
-  filter: opacity(0.4) blur(1px);
+  /* z-index: -1.2; */
+  filter: opacity(0.3) blur(5px);
   /* filter: blur(4px); */
   width: 100%;
   height: 100%;
@@ -79,18 +95,11 @@ body {
   /* background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
     no-repeat center/100% url(/img/containerBckgrApples.svg); */
   background: var(--bg-background);
-  transition: background-image 1s ease-in-out;
   /* background: no-repeat center/100% url(/img/containerBg_flex4.svg); */
 }
-.grape {
-  display: none;
-  left: 100px;
-  bottom: 550px;
-  z-index: 100;
-  width: 5vw;
-  position: absolute;
-}
+
 .rectangle {
+  z-index: 1;
   position: relative;
   width: 80vw;
   height: 12vw;
