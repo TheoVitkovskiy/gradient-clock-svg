@@ -11,7 +11,8 @@ import calculateDynamicValues from './calculateDynamicValues.js';
 const { orange, tomato, pear, apple } = fruitContainer;
 
 const main = () => {
-    setInterval(animateBackground, 4000);
+    animateBackground();
+    setInterval(animateBackground, 3000);
     addOnClickToClocks();
     calculateDynamicValues();
     customTimer.set();
@@ -43,15 +44,40 @@ const main = () => {
 
 const animateBackground = () => {
     const imgCount = 20;
-    // const turnOffPositions = [4, 14, 17, 19, 20];
-    const turnOffPositions = [];
-    let randomPosition = Math.floor(Math.random() * imgCount) + 1;
-    turnOffPositions.push(randomPosition);
-    randomPosition = Math.floor(Math.random() * imgCount) + 1;
-    turnOffPositions.push(randomPosition);
-    console.log(turnOffPositions);
-    const backgroundString = generateBackgroundString(imgCount, turnOffPositions);
+    const turnOffCount = 4;
+
+    const turnOffPositions = getRandomPositions(turnOffCount, imgCount);
+    const randomApple = getRandomApple();
+    const backgroundString = generateBackgroundString(imgCount, randomApple);
+
     setDocProperty('--bg-background', backgroundString);
+}
+
+const getRandomApple = () => {
+    const firstApple = [1, 2, 3, 6, 7, 8, 14, 17, 13];
+    const secondApple = [4, 5, 9, 10];
+    const thirdApple = [14, 15, 18, 16];
+    const fourthApple = [9, 11, 12, 13, 17, 19];
+    const fifthApple = [20, 11];
+
+    const apples = [firstApple, secondApple, thirdApple, fourthApple, fifthApple];
+    const appleIndex = Math.floor(Math.random() * apples.length) + 1;
+    return apples[appleIndex];
+}
+
+const getRandomPositions = (count, maxCount) => {
+    const randomPositions = [];
+    while (randomPositions.length < count) {
+        for (let i = 0; i < count; i++) {
+            const position = Math.floor(Math.random() * maxCount) + 1;
+            if (randomPositions.includes(position)) {
+                continue;
+            }
+            randomPositions.push(position);
+        }
+    }
+
+    return randomPositions;
 }
 
 // const swapAnimation = () => {
@@ -76,6 +102,7 @@ const generateBackgroundString = (imgCount, turnOffPositions) => {
         string += ',';
     }
     string = string.slice(0, -1);
+    console.log(string);
     return string;
 }
 

@@ -79,8 +79,8 @@ body {
   content: "";
   /* background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
     no-repeat center/100% url(/img/containerBckgrApples.svg); */
-  /* background: no-repeat 40% 90% / 90% url(img/containerBckgrApples.svg); */
-  background: no-repeat center/100% url(/img/containerBckgrApples.svg);
+  background: no-repeat center/100% url(img/containerBckgrApples.svg);
+  /* background: no-repeat center/100% url(/img/containerBg_flex4.svg); */
 }
 .container::before {
   /* z-index: -1.2; */
