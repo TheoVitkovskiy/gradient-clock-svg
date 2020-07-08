@@ -19,19 +19,18 @@ body {
   content: "";
   /* width: 400%;
   height: 400%; */
-  width: 300%;
-  height: 300%;
+  width: 400%;
+  height: 400%;
   position: absolute;
-  top: -1050px;
-  left: -1080px;
-  animation: 135s round linear infinite;
+  top: -100vw;
+  left: -150vw;
+  animation: 85s round linear infinite;
   /* animation: 10s move linear infinite; */
   transform: translate(0, 0);
   background-image: url(img/containerBckgr.svg);
   background: url("img/Unbenannt-1.svg") no-repeat scroll 50% 50%;
-  background: 50% 100% / cover url(img/Filter2.svg);
+  background: 100% 100% / contain url(img/Filter3.svg);
   background-repeat: no-repeat;
-  overflow: hidden;
 }
 @keyframes round {
   0% {
