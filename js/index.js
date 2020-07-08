@@ -11,7 +11,7 @@ import calculateDynamicValues from './calculateDynamicValues.js';
 const { orange, tomato, pear, apple } = fruitContainer;
 
 const main = () => {
-    setInterval(animateBackground, 4000);
+    setInterval(animateBackground, 6000);
     addOnClickToClocks();
     calculateDynamicValues();
     customTimer.set();
@@ -44,11 +44,11 @@ const main = () => {
 const animateBackground = () => {
     const imgCount = 20;
     // const turnOffPositions = [4, 14, 17, 19, 20];
-    const turnOffPositions = [];
+    const turnOffPositions = []
     let randomPosition = Math.floor(Math.random() * imgCount) + 1;
     turnOffPositions.push(randomPosition);
-    randomPosition = Math.floor(Math.random() * imgCount) + 1;
-    turnOffPositions.push(randomPosition);
+    // randomPosition = Math.floor(Math.random() * imgCount) + 1;
+    // turnOffPositions.push(randomPosition);
     console.log(turnOffPositions);
     const backgroundString = generateBackgroundString(imgCount, turnOffPositions);
     setDocProperty('--bg-background', backgroundString);
@@ -71,8 +71,10 @@ const generateBackgroundString = (imgCount, turnOffPositions) => {
     for (let i = 1; i <= imgCount; i++) {
         if (turnOffPositions.includes(i)) {
             continue;
+            string += `no-repeat center/100% url(/img/containerBg_flex1.svg)`;
+        } else {
+            string += `no-repeat center/100% url(/img/containerBg_flex${i}.svg)`;
         }
-        string += `no-repeat center/100% url(/img/containerBg_flex${i}.svg)`;
         string += ',';
     }
     string = string.slice(0, -1);

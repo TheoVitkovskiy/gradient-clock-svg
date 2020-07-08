@@ -78,8 +78,8 @@ body {
   content: "";
   /* background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
     no-repeat center/100% url(/img/containerBckgrApples.svg); */
+  transition: background 3s linear;
   background: var(--bg-background);
-  transition: background-image 1s ease-in-out;
   /* background: no-repeat center/100% url(/img/containerBg_flex4.svg); */
 }
 .grape {
