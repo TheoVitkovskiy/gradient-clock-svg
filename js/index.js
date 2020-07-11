@@ -1,4 +1,4 @@
-import { globalAlarm } from './globalAlarm.js';
+import { globalTimer } from './globalTimer.js';
 import { customTimer } from './customTimer.js';
 import { fruitContainer } from './fruitContainer.js';
 import {
@@ -13,10 +13,10 @@ const main = () => {
     addOnClickToClocks();
     calculateDynamicValues();
     customTimer.set();
-    registerSW();
     window.addEventListener('beforeunload', (e) => {
-        globalAlarm.saveData();
+        globalTimer.saveData();
     });
+    registerSW();
 }
 
 const addOnClickToClocks = () => {

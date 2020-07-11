@@ -2,7 +2,7 @@ import { config } from './config.js';
 import { alarm } from './alarm.js';
 import { fruitContainer } from './fruitContainer.js';
 import { customTimer } from './customTimer.js';
-import { globalAlarm } from './globalAlarm.js';
+import { globalTimer } from './globalTimer.js';
 import {
     getNowMs,
     vibrateInPattern,
@@ -50,7 +50,7 @@ const updateFruit = (fruit) => {
             favicon.setToBreak();
             customTimer.blur();
         } else {
-            globalAlarm.set(fruit.getRipeMs());
+            globalTimer.set(fruit.getRipeMs());
         }
         vibrateInPattern(vibrateStartPattern());
         fruit.start();
@@ -79,7 +79,7 @@ const resetClock = (fruit) => {
     fruit.reset();
     fruit.disableBlur();
     alarm.reset();
-    globalAlarm.update();
+    globalTimer.update();
     if (fruit.equals(apple)) {
         customTimer.focus();
     }
