@@ -10,7 +10,7 @@ const loadInitialValue = (key) => {
     return localStorage.getItem(key);
 }
 
-function createGlobalAlarm() {
+function createGlobalTimer() {
     const APP_TITLE = document.title;
 
     let startMs = loadInitialValue('startMs');
@@ -28,12 +28,11 @@ function createGlobalAlarm() {
     const onSec = () => {
         if (!alarm.isPlaying()) {
             const remainingMs = ripeMs - (getNowMs() - startMs);
-            if (!remainingMs || remainingMs < 0) {
-                update();
+            if (remainingMs || remainingMs > 0) {
+                const fractionFilled = 1 - (remainingMs / ripeMs);
+                favicon.updateRipe(fractionFilled);
+                updateTitle(remainingMs);
             }
-            const fractionFilled = 1 - (remainingMs / ripeMs);
-            favicon.updateRipe(fractionFilled);
-            updateTitle(remainingMs);
         }
     }
 
@@ -98,8 +97,8 @@ function createGlobalAlarm() {
     }
 }
 
-const globalAlarm = createGlobalAlarm();
+const globalTimer = createGlobalTimer();
 
 export {
-    globalAlarm
+    globalTimer
 }
