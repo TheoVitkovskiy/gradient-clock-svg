@@ -38,6 +38,8 @@
   --bk-rectangle: rgba(65, 105, 225);
   --col-dot-start: #0ef0e2;
   --col-dot-end: rgb(252, 250, 143);
+  /* --- theme --- */
+  --bg-moving-opacity: 0.3;
   /* --color-dot-end: #fcfa8f; */
   --col-fruit-init: #60c0a7;
   --col-apple-end: #fa4646;
@@ -72,21 +74,24 @@ body {
   background-color: #29364c;
   /* background-color: #0e1e24; */
 }
-.container::before {
+/* .container::before {
   animation: whirl 300s infinite;
   z-index: 0.2;
-  /* filter: opacity(0.2); */
-  /* filter: blur(4px); */
   width: 200%;
   height: 200%;
   left: 0;
   top: 0;
   position: absolute;
   content: "";
-
-  /* background: url(/img/particlesnew3.svg) no-repeat center/contain; */
   background: url(/img/bg-moving.svg) no-repeat center/contain;
+} */
+bg-moving {
+  top: 48%;
+  left: 21%;
+  width: 150%;
+  height: 150%;
 }
+
 .container::after {
   /* filter: opacity(0.8); */
   z-index: 0.1;
