@@ -56,37 +56,105 @@
   --apple-success-start: "";
 }
 body {
+  overflow: hidden;
   font-size: 62.5%;
 }
 .container {
+  overflow: hidden;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: rgba(204, 204, 204);
+
+  /* background-color: #29424c; */
+  background-color: #29364c;
+  /* background-color: #0e1e24; */
 }
 .container::before {
-  filter: opacity(0.4) blur(1px);
+  animation: whirl 300s infinite;
+  z-index: 0.2;
+  /* filter: opacity(0.2); */
   /* filter: blur(4px); */
-  width: 100%;
-  height: 100%;
+  width: 200%;
+  height: 200%;
   left: 0;
   top: 0;
   position: absolute;
   content: "";
-  background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
-    no-repeat center/100% url(/img/containerBckgrApples.svg);
+
+  /* background: url(/img/particlesnew3.svg) no-repeat center/contain; */
+  background: url(/img/bg-moving.svg) no-repeat center/contain;
 }
-.grape {
-  display: none;
-  left: 100px;
-  bottom: 550px;
-  z-index: 100;
-  width: 5vw;
+.container::after {
+  /* filter: opacity(0.8); */
+  z-index: 0.1;
+  /* transform-origin: center; */
+
+  /* filter: opacity(0.4); */
+  width: 100%;
+  height: 100%;
+  left: 30;
+  top: 0;
   position: absolute;
+  content: "";
+  background: no-repeat center/100% url(/img/bg-static.svg);
+}
+@keyframes whirl {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(270deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+.ui {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.219); */
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.219);
+  top: 4vw;
+  left: 2vw;
+  border-radius: 2rem;
+
+  background-color: rgba(255, 255, 255, 0.945);
+  background: radial-gradient(rgba(255, 255, 255, 0.945), rgba(0, 0, 0, 0.219));
+  background: radial-gradient(rgba(255, 255, 255, 0.945), #29364c);
+  position: absolute;
+  display: flex;
+  width: 12vw;
+  height: 12vw;
+}
+.ui1,
+.ui2,
+.ui3,
+.ui4 {
+  border-radius: 0.5rem;
+  margin: 0.3rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 5vw;
+  height: 5vw;
+}
+.ui1 {
+  background: no-repeat center/100% url(img/theams.svg);
+}
+.ui2 {
+  background: no-repeat center/100% url(img/share1.svg);
+}
+.ui3 {
+  background: center/100% url(img/mute.svg);
+}
+.ui4 {
+  background: center/100% url(img/fullscreen.svg);
 }
 .rectangle {
+  box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+  z-index: 1;
   position: relative;
   width: 80vw;
   height: 12vw;
@@ -111,7 +179,10 @@ body {
   border-radius: 2rem;
   touch-action: none;
 }
-.clockFace, .clockBody, .clockDot, .clockTime { 
+.clockFace,
+.clockBody,
+.clockDot,
+.clockTime {
   transition: filter 0.3s ease-in-out;
 }
 .clockContainer:hover {
