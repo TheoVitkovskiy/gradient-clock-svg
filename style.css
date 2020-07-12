@@ -38,7 +38,14 @@
   --bk-rectangle: rgba(65, 105, 225);
   --col-dot-start: #0ef0e2;
   --col-dot-end: rgb(252, 250, 143);
-  /* --- theme --- */
+  /* --- theme ---, dark first */
+  /* --body-color: 
+  --body-color: */
+  /* --ui-colorto: #29364c; */
+  --ui-colorto: rgba(0, 0, 0, 0.219);
+  /* --bg-color: #29364c; */
+  --bg-color: rgba(204, 204, 204);
+  /* --bg-moving-opacity: 0.1; */
   --bg-moving-opacity: 0.3;
   /* --color-dot-end: #fcfa8f; */
   --col-fruit-init: #60c0a7;
@@ -68,10 +75,10 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgba(204, 204, 204);
+  background-color: var(--bg-color);
 
   /* background-color: #29424c; */
-  background-color: #29364c;
+  
   /* background-color: #0e1e24; */
 }
 /* .container::before {
@@ -128,8 +135,8 @@ bg-moving {
   border-radius: 2rem;
 
   background-color: rgba(255, 255, 255, 0.945);
-  background: radial-gradient(rgba(255, 255, 255, 0.945), rgba(0, 0, 0, 0.219));
-  background: radial-gradient(rgba(255, 255, 255, 0.945), #29364c);
+  background: radial-gradient(rgba(255, 255, 255, 0.945), var(--ui-colorto));
+  /* background: radial-gradient(rgba(255, 255, 255, 0.945), #29364c); */
   position: absolute;
   display: flex;
   width: 12vw;
@@ -625,7 +632,13 @@ Extra large (xl) devices - large desktops,
   }
 }
 @media only screen and (max-width: 991px) and (min-width: 769px) {
-  .rectangle::before {
+  .rectangle {
+    background-color: var(--bk-rectangle);
+    /* background-color: green; */
+    z-index: 22;
+  }
+  .rectangle::after {
+    z-index: -10;
     border-radius: 2rem;
     position: absolute;
     content: "";
