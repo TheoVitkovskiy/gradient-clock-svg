@@ -66,6 +66,50 @@ body {
   height: 100vh;
   background-color: rgba(204, 204, 204);
 }
+          /* #333030
+          #3a3939 */
+
+          /*.item:nth-child(odd) {
+            fill: #eeeeee;
+          } */
+
+    /* svg {
+      animation: whirl 165s infinite;
+    } */
+    /* #i {
+      fill: red;
+    } */
+
+    /* /* .item:nth-child(even) {
+      fill: #777;
+      animation: lightup 6s alternate infinite;
+    } */
+    /* .item:first-child {
+      fill: #777;
+      animation: lightup 4s alternate-reverse infinite;
+    } */
+
+    @keyframes lightup {
+      from {
+        fill: #777;
+      }
+      to {
+        fill: #eeeeee;
+      }
+    }
+
+  @keyframes whirl {
+    0% {
+      transform: rotate(0deg) translateZ(0);
+    }
+    /* 50% {
+      scale: 1.2;
+      rotate: -270deg;
+    } */
+    100% {
+      transform: rotate(360deg) translateZ(0);
+    }
+  }
 .container::before {
   filter: opacity(0.4) blur(1px);
   /* filter: blur(4px); */
@@ -75,8 +119,20 @@ body {
   top: 0;
   position: absolute;
   content: "";
-  background: url(/img/containerBckgrAnim.svg) no-repeat center/100%,
-    no-repeat center/100% url(/img/containerBckgrApples.svg);
+  background: no-repeat center/100% url(/img/containerBckgrApples.svg);
+}
+.bgParticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.bgParticles .svg {
+  width: 100%;
+  height: 100%;
+  /* animation: whirl 165s infinite; */
 }
 .grape {
   display: none;
