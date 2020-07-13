@@ -39,14 +39,14 @@
   --col-dot-start: #0ef0e2;
   --col-dot-end: rgb(252, 250, 143);
   /* --- theme ---, dark first */
-  /* --body-color: 
-  --body-color: */
-  /* --ui-colorto: #29364c; */
-  --ui-colorto: rgba(0, 0, 0, 0.219);
-  /* --bg-color: #29364c; */
-  --bg-color: rgba(204, 204, 204);
-  /* --bg-moving-opacity: 0.1; */
-  --bg-moving-opacity: 0.3;
+  --body-color: rgb(57, 67, 98);
+  /* --body-color: aquamarine; */
+  --ui-colorto: #29364c;
+  /* --ui-colorto: rgba(0, 0, 0, 0.219); */
+  --bg-color: #29364c;
+  /* --bg-color: rgba(204, 204, 204); */
+  --bg-moving-opacity: 0.1;
+  /* --bg-moving-opacity: 0.3; */
   /* --color-dot-end: #fcfa8f; */
   --col-fruit-init: #60c0a7;
   --col-apple-end: #fa4646;
@@ -600,11 +600,35 @@ Extra large (xl) devices - large desktops,
 /* ////////////////////////////////////// */
 
 @media only screen and (max-width: 420px) {
+  
   .container {
     background-size: cover;
     background: center, url(/img/containerBckgrApples.svg);
   }
+  .container::after {
+    display: none;
+  }
+  bg-moving {
+    display: none;
+  }
+  .ui {
+    opacity: 0.8;
+    width: 35vw;
+    height: 35vw;
+    border: solid 2px rgba(41, 54, 76, 0.383);
+    background-image: none;
+    box-shadow: none;
+  }
+  .ui > * {
+    width: 11vw;
+    height: 11vw;
+    background-color: aquamarine;
+  }
+  .ui4 {
+    display: none;
+  }
   .rectangle {
+    box-shadow: none;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -649,6 +673,9 @@ Extra large (xl) devices - large desktops,
 }
 
 @media only screen and (min-width: 1280px) {
+  body {
+    background-color: var(--body-color);
+  }
   .container {
     margin: 0 5%;
   }
