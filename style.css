@@ -38,6 +38,15 @@
   --bk-rectangle: rgba(65, 105, 225);
   --col-dot-start: #0ef0e2;
   --col-dot-end: rgb(252, 250, 143);
+  /* --- theme ---, dark first */
+  --body-color: rgb(57, 67, 98);
+  /* --body-color: aquamarine; */
+  --ui-colorto: #29364c;
+  /* --ui-colorto: rgba(0, 0, 0, 0.219); */
+  --bg-color: #29364c;
+  /* --bg-color: rgba(204, 204, 204); */
+  --bg-moving-opacity: 0.1;
+  /* --bg-moving-opacity: 0.3; */
   /* --color-dot-end: #fcfa8f; */
   --col-fruit-init: #60c0a7;
   --col-apple-end: #fa4646;
@@ -66,28 +75,31 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgba(204, 204, 204);
+  background-color: var(--bg-color);
 
   /* background-color: #29424c; */
-  background-color: #29364c;
+
   /* background-color: #0e1e24; */
 }
-.container::before {
+/*s.container::before {
   opacity: 0.3;
   animation: whirl 300s infinite;
   z-index: 0.2;
-  /* filter: opacity(0.2); */
-  /* filter: blur(4px); */
   width: 200%;
   height: 200%;
   left: 0;
   top: 0;
   position: absolute;
   content: "";
-
-  /* background: url(/img/particlesnew3.svg) no-repeat center/contain; */
   background: url(/img/bg-moving.svg) no-repeat center/contain;
+} */
+bg-moving {
+  top: 48%;
+  left: 21%;
+  width: 150%;
+  height: 150%;
 }
+
 .container::after {
   filter: opacity(0.6);
   z-index: 0.1;
@@ -128,8 +140,8 @@ body {
   left: 8vw;
   border-radius: 20%;
   background-color: rgba(255, 255, 255, 0.945);
-  background: radial-gradient(rgba(255, 255, 255, 0.945), rgba(0, 0, 0, 0.219));
-  background: radial-gradient(rgba(255, 255, 255, 0.945), #29364c);
+  background: radial-gradient(rgba(255, 255, 255, 0.945), var(--ui-colorto));
+  /* background: radial-gradient(rgba(255, 255, 255, 0.945), #29364c); */
   position: absolute;
   display: flex;
   width: 2vw;
@@ -633,7 +645,30 @@ Extra large (xl) devices - large desktops,
     background-size: cover;
     background: center, url(/img/containerBckgrApples.svg);
   }
+  .container::after {
+    display: none;
+  }
+  bg-moving {
+    display: none;
+  }
+  .ui {
+    opacity: 0.8;
+    width: 35vw;
+    height: 35vw;
+    border: solid 2px rgba(41, 54, 76, 0.383);
+    background-image: none;
+    box-shadow: none;
+  }
+  .ui > * {
+    width: 11vw;
+    height: 11vw;
+    background-color: aquamarine;
+  }
+  .ui4 {
+    display: none;
+  }
   .rectangle {
+    box-shadow: none;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -661,7 +696,13 @@ Extra large (xl) devices - large desktops,
   }
 }
 @media only screen and (max-width: 991px) and (min-width: 769px) {
-  .rectangle::before {
+  .rectangle {
+    background-color: var(--bk-rectangle);
+    /* background-color: green; */
+    z-index: 22;
+  }
+  .rectangle::after {
+    z-index: -10;
     border-radius: 2rem;
     position: absolute;
     content: "";
@@ -672,6 +713,9 @@ Extra large (xl) devices - large desktops,
 }
 
 @media only screen and (min-width: 1280px) {
+  body {
+    background-color: var(--body-color);
+  }
   .container {
     margin: 0 5%;
   }
