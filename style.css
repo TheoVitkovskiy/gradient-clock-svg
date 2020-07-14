@@ -43,7 +43,7 @@
   /* --ui-colorto: #29364c; */
   --ui-colorto: rgba(0, 0, 0, 0.219);
   /* --bg-color: #29364c; */
-  --bg-color: rgba(204, 204, 204);
+  /* --bg-color: rgba(204, 204, 204); */
   --bg-moving-opacity: 0.05;
   /* --bg-moving-opacity: 0.3; */
   /* --color-dot-end: #fcfa8f; */
@@ -113,6 +113,9 @@ bg-moving {
   content: "";
   /* background: no-repeat center/100% url(/img/bg-static.svg), #f1f3f56b; */
   background: no-repeat center/80% url(/img/bg-static-blur4.svg);
+  background: no-repeat 20% 30%/20% url(/img/flies.svg),
+    no-repeat center/100% url(/img/bg-static-blurF.svg), #f1f3f534;
+  /* background: no-repeat 20% 30%/20% url(/img/flies.svg), #f1f3f534; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #2c303334; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #ffffff75; */
 }
