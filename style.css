@@ -647,8 +647,9 @@ Extra large (xl) devices - large desktops,
 
 @media only screen and (max-width: 420px) {
   .container {
+    filter: blur(1px);
     background-size: cover;
-    background: center, url(/img/containerBckgrApples.svg);
+    background: 20% 30%/120% url(/img/containerBckgrApples.svg);
   }
   .container::after {
     display: none;
@@ -656,22 +657,29 @@ Extra large (xl) devices - large desktops,
   bg-moving {
     display: none;
   }
+
   .ui {
-    opacity: 0.8;
-    width: 35vw;
-    height: 35vw;
-    border: solid 2px rgba(41, 54, 76, 0.383);
+    margin-top: 2%;
+    left: 41%;
+    justify-content: space-around;
     background-image: none;
     box-shadow: none;
+    flex-wrap: nowrap;
+    width: 18vw;
+    height: 7vh;
   }
   .ui > * {
-    width: 11vw;
-    height: 11vw;
+    /* padding: 0 !important; */
     background-color: aquamarine;
   }
-  .ui4 {
-    display: none;
+  .ui::before {
+    background-color: aquamarine;
   }
+
+  i-full-screen {
+    display: none !important;
+  }
+
   .rectangle {
     box-shadow: none;
     display: flex;
