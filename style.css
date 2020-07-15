@@ -180,8 +180,8 @@ bg-moving {
   border-radius: 15%;
   transition: all 0.1s ease-in;
   opacity: 0;
-  width: 40%;
-  height: 40%;
+  width: 39%;
+  height: 39%;
   transform: scale(0);
 }
 .ui:hover > * {
@@ -192,7 +192,7 @@ bg-moving {
   /* background-color: rgba(255, 255, 255, 0.5); */
 }
 .ui1 {
-  background: no-repeat center/100% url(img/theams.svg);
+  background: no-repeat center/100% url(img/themes1.svg);
   background-color: #fcfa8f2c;
 }
 .ui2 {
