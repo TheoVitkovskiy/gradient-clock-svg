@@ -54,9 +54,10 @@ function createGlobalTimer() {
     }
 
     const set = (timeMs) => {
-        clearInterval(currInterval);
+        reset();
         currInterval = setInterval(onSec, 1000);
-        update(timeMs);
+        startMs = getNowMs();
+        ripeMs = timeMs;
     }
 
     const update = (timeMs = null) => {
