@@ -76,7 +76,7 @@ body {
   align-items: center;
   height: 100vh;
   /* background: no-repeat 20% 30%/50% url(img/containerBckgr1.svg), var(--bg-color); */
-  background: no-repeat 50% 50%/80% url(img/particles1.svg), var(--bg-color);
+  /*background: no-repeat 50% 50%/80% url(img/particles1.svg), var(--bg-color);*/
 
   /* background-color: #29424c; */
 
