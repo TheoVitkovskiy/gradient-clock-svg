@@ -12,7 +12,7 @@ class BgMoving extends HTMLElement {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                animation: whirl 300s infinite;
+                animation: whirl 600s infinite;
             }
 
             @keyframes whirl {

@@ -45,7 +45,7 @@
   --ui-colorto: rgba(0, 0, 0, 0.219);
   /* --bg-color: #29364c; */
   /* --bg-color: rgba(204, 204, 204); */
-  --bg-moving-opacity: 0.2;
+  --bg-moving-opacity: 0.5;
   /* --bg-moving-opacity: 0.3; */
   /* --color-dot-end: #fcfa8f; */
   --col-fruit-init: #60c0a7;
@@ -113,8 +113,24 @@ bg-moving {
   position: absolute;
   content: "";
   /* background: no-repeat center/100% url(/img/bg-static.svg), #f1f3f56b; */
-  background: no-repeat 20% 30%/20% url(/img/flies.svg),
-    no-repeat center/100% url(/img/bg-static-blurF.svg), #f1f3f534;
+  /* background: no-repeat 20% 30%/20% url(/img/flies.svg),
+    no-repeat center/100% url(/img/bg-static-blurF.svg), #f1f3f534; */
+  background: no-repeat center/100% url(/img/bg-static-blur6.svg), #f1f3f534;
+  background: no-repeat center/100% url(/img/blur_filter.svg), #f1f3f534;
+  /* background: no-repeat center/100% url(/img/blur_filterBigApple.svg), #f1f3f534; */
+  background: no-repeat center/100% url(/img/blur_filterBA1.svg), #f1f3f534;
+  /* background: no-repeat center/100% url(/img/blur_filterBA2.svg), #f1f3f534; */
+  background: no-repeat center/100% url(/img/blur_filterBA3.svg), #f1f3f534;
+  background: no-repeat center/100% url(/img/blur_filterBA5.svg), #f1f3f534;
+  background: no-repeat 20% 30%/80% url(/img/blur_filtere.svg), #f1f3f534;
+  background: no-repeat 20% 30%/80% url(/img/blur_filterS1.svg), #f1f3f534;
+  background: no-repeat 20% 30%/80% url(/img/blur_filterW.svg), #f1f3f534;
+  background: no-repeat 20% 30%/80% url(/img/blur_filterW1.svg), #f1f3f534;
+  background: no-repeat 20% 30%/80% url(/img/blur_filterW2.svg), #f1f3f534;
+  background: no-repeat center/100% url(/img/bg-static-blurM.svg), #f1f3f534;
+
+  background: no-repeat center/100% url(/img/blur_filterBA5.svg), #f1f3f534;
+
   /* background: no-repeat 20% 30%/20% url(/img/flies.svg), #f1f3f534; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #2c303334; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #ffffff75; */
@@ -344,8 +360,8 @@ i-full-screen {
   /* background-size: 4rem 4rem; */
 }
 .break_ico::before {
-  /* background-image: url(img/cup.svg); */
-  background-image: url(img/break.svg);
+  background-image: url(img/cup.svg);
+  /* background-image: url(img/break.svg); */
 }
 .break_ico {
   transform: translateY(0.2rem);
