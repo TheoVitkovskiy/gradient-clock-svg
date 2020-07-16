@@ -26,8 +26,7 @@
   /* --- config variables --- */
   /* minutes */
   --orange-ripe-minutes: 5;
-  --tomato-ripe-minutes: 1;
-  --apple-ripe-minutes: 0.1;
+  --tomato-ripe-minutes: 25;
   --pear-ripe-minutes: 15;
   /* animations */
   --pre-ripe-delay: 0.1;
