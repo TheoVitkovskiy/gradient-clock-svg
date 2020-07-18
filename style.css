@@ -75,7 +75,7 @@ body {
   align-items: center;
   height: 100vh;
   /* background: no-repeat 20% 30%/50% url(img/containerBckgr1.svg), var(--bg-color); */
-  /*background: no-repeat 50% 50%/80% url(img/particles1.svg), var(--bg-color);*/
+  background: no-repeat 50% 50%/85% url(img/particles11.svg);
 
   /* background-color: #29424c; */
 
@@ -112,7 +112,7 @@ bg-moving {
   position: absolute;
   content: "";
   /* background: no-repeat center/100% url(/img/bg-static.svg), #f1f3f56b; */
-  background: no-repeat center/100% url(/img/bg-static-blur4.svg), #f1f3f534;
+  background: no-repeat center/80% url(/img/bg-static-blur4.svg);
   /* background: no-repeat center/100% url(/img/bg-static.svg), #2c303334; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #ffffff75; */
 }
