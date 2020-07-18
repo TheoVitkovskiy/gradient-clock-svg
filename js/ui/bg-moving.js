@@ -12,18 +12,18 @@ class BgMoving extends HTMLElement {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                animation: whirl 600s infinite;
+                animation: whirl 600s linear infinite;
             }
 
             @keyframes whirl {
                 0% {
-                    transform: scale(1) rotate(0deg);
+                    transform: scale(1) rotate(-270deg);
                 }
                 50% {
-                    transform: scale(1.2) rotate(270deg);
+                    transform: scale(1) rotate(0deg);
                 }
                 100% {
-                    transform: scale(1) rotate(0deg);
+                    transform: scale(1) rotate(-270deg);
                 }
             }
             .cls-1{fill:none;stroke-linecap:round;stroke-width:5px;}
