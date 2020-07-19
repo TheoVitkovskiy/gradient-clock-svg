@@ -5,25 +5,29 @@ class BgMoving extends HTMLElement {
         this.html = /*html*/`
             <style>
             :host {
-              
                 display: block;
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                animation: whirl 300s infinite;
+                animation: whirl 100s linear infinite;
+                
             }
-
+            :host svg {
+                width: 100%;
+                height: 100%;
+            }
+            
             @keyframes whirl {
                 0% {
-                    transform: scale(1) rotate(0deg);
+                    transform: scale(1) rotate(-270deg);
                 }
                 50% {
-                    transform: scale(1.2) rotate(270deg);
+                    transform: scale(1) rotate(0deg);
                 }
                 100% {
-                    transform: scale(1) rotate(0deg);
+                    transform: scale(1) rotate(-270deg);
                 }
             }
             .cls-1{fill:none;stroke-linecap:round;stroke-width:5px;}
