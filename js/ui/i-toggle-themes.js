@@ -5,7 +5,8 @@ class ThemeToggling extends HTMLElement {
         this.html = /*html*/`
             <style>
             :host {
-                padding-top: 1px;
+                weight: 100%;
+                height: 100%;
             }
 
             .animLeftFill {
@@ -13,8 +14,7 @@ class ThemeToggling extends HTMLElement {
                 opacity: 0.2;
             }
             .animRightFill {
-                fill: black;
-                opacity: 1;
+                fill: #000 !important;
             }
 
             #left, #right {
@@ -24,11 +24,12 @@ class ThemeToggling extends HTMLElement {
                 fill: #fff;
 
             }
-           /* #right .fillArea {
-                fill: ;
-            }*/
+           
             #right .strokeArea  {
                 fill: #fff;
+            }
+            #right .fillArea {
+                fill: none;
             }
            
             </style>
