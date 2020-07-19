@@ -38,13 +38,16 @@
   --col-dot-start: #0ef0e2;
   --col-dot-end: rgb(252, 250, 143);
   /* --- theme ---, dark first */
-  /* --body-color: rgb(57, 67, 98); */
+  --body-color: #29364c;
   /* --body-color: rgba(127, 255, 212, 0.541); */
   /* --ui-colorto: #29364c; */
   --ui-colorto: rgba(0, 0, 0, 0.219);
   /* --bg-color: #29364c; */
   /* --bg-color: rgba(204, 204, 204); */
   --bg-moving-opacity: 0.5;
+  /* dark */
+  --bg-moving-opacity: 0.05;
+  /* dark */
   /* --bg-moving-opacity: 0.3; */
   /* --color-dot-end: #fcfa8f; */
   --col-fruit-init: #60c0a7;
@@ -84,6 +87,9 @@ body {
     rgba(255,255,255,0.9) 95%,
     rgba(255,255,255,1) 100%
     ); */
+    /*dark*/
+    background: none; 
+    /*dark*/
 }
 body::after {
   display: block;
@@ -93,6 +99,7 @@ body::after {
   background: linear-gradient(90deg, rgba(135,67,67,1) 30%, rgba(153,38,38,0) 50%, rgba(133,93,93,1) 56%);
 }
 .container {
+  /* z-index: -9; */
   overflow: hidden;
   position: relative;
   display: flex;
@@ -100,11 +107,26 @@ body::after {
   align-items: center;
   height: 100vh;
   /* background: no-repeat 20% 30%/50% url(img/containerBckgr1.svg), var(--bg-color); */
-  background: no-repeat 50% 50%/85% url(img/particles11.svg);
+  /* light */
+  /* background: no-repeat 50% 50%/85% url(img/particles11.svg); */
+  /* light */
+  
+
 
   /* background-color: #29424c; */
 
   /* background-color: #0e1e24; */
+}
+.container::before {
+  position: absolute;
+  z-index: -11;
+  content: "";
+  width: 100%;
+  height: 100%;
+  /* dark */
+  background: no-repeat 50% 50%/85% url(img/particles1.svg);
+  
+/* dark */
 }
 /*s.container::before {
   opacity: 0.3;
@@ -161,7 +183,9 @@ bg-moving {
   /* background: no-repeat center/100% url(/img/blur_filterBA5.svg), #f1f3f534; */
   background: no-repeat center/100% url(/img/bg-static-blur4.svg), #f1f3f534;
  /* favorits */ 
- 
+ /* favorits dark*/
+ background: no-repeat center/100% url(/img/bg-static-blur4.svg);
+ /* favorits dark*/
   /* background: no-repeat 20% 30%/20% url(/img/flies.svg), #f1f3f534; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #2c303334; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #ffffff75; */
