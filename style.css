@@ -274,7 +274,9 @@ i-full-screen {
   height: 12vw;
   border-radius: 2rem;
   background-color: var(--bk-rectangle);
+  /*dark*/
   background-color: transparent;
+  /*dark*/
   display: flex;
   flex-direction: row;
   justify-content: space-around;
