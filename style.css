@@ -157,9 +157,9 @@ bg-moving {
   /* background: no-repeat 20% 30%/80% url(/img/blur_filterW2.svg), #f1f3f534; */
   
  /* favorits */ 
-  /* background: no-repeat center/100% url(/img/bg-static-blurM.svg), #f1f3f534; */
+  background: no-repeat center/100% url(/img/bg-static-blurM.svg), #f1f3f534;
   /* background: no-repeat center/100% url(/img/blur_filterBA5.svg), #f1f3f534; */
-  background: no-repeat center/100% url(/img/bg-static-blur4.svg), #f1f3f534;
+  /* background: no-repeat center/100% url(/img/bg-static-blur4.svg), #f1f3f534; */
  /* favorits */ 
  
   /* background: no-repeat 20% 30%/20% url(/img/flies.svg), #f1f3f534; */
