@@ -292,7 +292,7 @@ i-full-screen {
   height: 10vw;
   justify-content: center;
   align-items: center;
-  background-color: rgb(152, 172, 231);
+  background-color: rgb(152, 172, 231, 0.34);
   transition: all 1s;
   border-radius: var(--border-radius-boxes);
   touch-action: none;
@@ -304,7 +304,7 @@ i-full-screen {
   transition: filter 0.3s ease-in-out;
 }
 .clockContainer:hover {
-  background-color: rgb(7, 41, 143);
+  background-color: rgb(7, 41, 143, 0.7);
 }
 .clockContainer > * {
   transform: scale(1);
