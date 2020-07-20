@@ -6,6 +6,7 @@ import {
 } from './helpers.js';
 import updateFruit from './updateFruit.js';
 import calculateDynamicValues from './calculateDynamicValues.js';
+import buildTheme from './createTheme.js';
 
 const { orange, tomato, pear, apple } = fruitContainer;
 
@@ -17,6 +18,7 @@ const main = () => {
         globalTimer.saveData();
     });
     registerSW();
+    buildTheme();
 }
 
 const addOnClickToClocks = () => {
