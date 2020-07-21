@@ -65,7 +65,9 @@
   --apple-success-start: "";
 }
 body {
-  background-color: var(--bg-color) !important;
+  /*dark*/
+  /* background-color: var(--bg-color) !important; */
+  /*dark*/
   overflow: hidden;
   font-size: 62.5%;
 }
@@ -164,7 +166,7 @@ bg-moving {
   
 /*dark*/
 
-  background: no-repeat 50% 70%/140% url(/img/blur_filterBA54.png);
+  /* background: no-repeat 50% 70%/140% url(/img/blur_filterBA54.png); */
 
 
 /*dark*/
@@ -275,7 +277,7 @@ i-full-screen {
   border-radius: 2rem;
   background-color: var(--bk-rectangle);
   /*dark*/
-  background-color: transparent;
+  /* background-color: transparent; */
   /*dark*/
   display: flex;
   flex-direction: row;
@@ -802,7 +804,7 @@ Extra large (xl) devices - large desktops,
 @media only screen and (min-width: 1280px) {
   body {
    
-    background-color: var(--body-color);
+    /* background-color: var(--body-color); */
     
   }
   .container {
