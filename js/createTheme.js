@@ -18,10 +18,19 @@ const setThemeCSS = (obj) => {
         setDocProperty("--" + key, value)
     }) 
 }
-// document.querySelector("i-toggle-themes").addEventListener("click", () => {
-   
-//     setThemeCSS(keys)
-// })
+ let THEME = "" 
+ document.querySelector("i-toggle-themes").addEventListener("click", () => {
+     
+     //let THEME = ""
+     if (THEME === "dark") {
+         THEME = "light"
+     } else {
+        THEME = "dark"
+     }
+     const theme = themeConfig[THEME];
+     setThemeCSS(theme);
+     
+ }) 
 
 
 
