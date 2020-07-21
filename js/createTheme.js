@@ -1,7 +1,7 @@
 import themeConfig from '../theme.js'
 import {setDocProperty} from './helpers.js'
 const buildTheme = () => {
-    const THEME = "dark"
+    const THEME = "light"
     const theme = themeConfig[THEME];
 
     setThemeCSS(theme)

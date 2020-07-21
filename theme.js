@@ -3,7 +3,7 @@ export default
     "dark": {
        "body-color": "#29364c",
       "container-after-bg": "no-repeat center/100% url(/img/bg-static-blurM.svg), #f1f3f534",
-      "container-bg": "no-repeat 50% 27%/47% url(img/apple-big7.svg),no-repeat 20% 30%/57% url(img/bg-moving-svg-final.svg),  var(--bg-color)",
+      "container-bg": "no-repeat 50% 27%/47% url(img/apple-big777.svg),no-repeat 20% 30%/57% url(img/bg-moving-svg-final.svg),  var(--bg-color)",
       "testDiv-z-index": "12",
       "testDiv-bg": "linear-gradient(90deg, var(--body-color) 5%, rgba(255,255,255,0) 50%, var(--body-color) 95%)",
       "bg-moving-opacity": "0.3",
