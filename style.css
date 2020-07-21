@@ -45,13 +45,19 @@
   --ui-colorto: rgba(0, 0, 0, 0.219);
   --bg-color: #29364c;
   /* --bg-color: rgba(204, 204, 204); */
-  --bg-moving-opacity: 0.5;
+  /* --bg-moving-opacity: 0.5; */
   /*dark*/
-  --bg-moving-opacity: 0.3;
-    --bg-moving-opacity: 0.3;
---rectangle-box-shadow-color: rgba(0, 0, 0, 0.4);
---rectangle-box-shadow-color:  rgba(255, 255, 255, 0.4);
-
+  /* --bg-moving-opacity: 0.3; */
+  --body-color: "";
+--container-after-bg: "";
+--container-bg: "";
+--testDiv-z-index: "";    
+--testDiv-bg:"";
+--rectangle-box-shadow-color:"";
+--rectangle-box-shadow-color:"";
+--rectangle-box-color:"";
+--bg-moving-z-index: "";
+--bg-moving-opacity: "";
 
 
 
@@ -82,15 +88,16 @@ body {
   font-size: 62.5%;
 }
 #testDiv {
-  z-index: 0;
+  z-index: var(--testDiv-z-index);
+  /* z-index: 0; */
   /*dark*/
-  z-index: 12;
+  /* z-index: 12; */
   /*dark*/
   position: absolute;
   display: block;
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, rgba(255,255,255,1) 5%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 95%);  
+  /* background: linear-gradient(90deg, rgba(255,255,255,1) 5%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 95%);   */
   /* background: linear-gradient(90deg,
     rgba(255,255,255,1) 0%,
     rgba(255,255,255,0.9) 5%,
@@ -100,8 +107,9 @@ body {
     rgba(255,255,255,0.9) 95%,
     rgba(255,255,255,1) 100%
     ); */
-  background: linear-gradient(90deg, var(--body-color) 5%, rgba(255,255,255,0) 50%, var(--body-color) 95%);  
- 
+    /*dark*/
+  /* background: linear-gradient(90deg, var(--body-color) 5%, rgba(255,255,255,0) 50%, var(--body-color) 95%);  */
+  background: var(--testDiv-bg); 
 }
 body::after {
   display: block;
@@ -117,8 +125,10 @@ body::after {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: no-repeat 20% 30%/50% url(img/containerBckgr1.svg), var(--bg-color);
-  background: no-repeat 50% 27%/47% url(img/apple-big6.svg),no-repeat 20% 30%/57% url(img/bg-moving-svg-final.svg),  var(--bg-color);
+  /* background: no-repeat 20% 30%/50% url(img/containerBckgr1.svg), var(--bg-color); */
+  /*dark*/
+  /* background: no-repeat 50% 27%/47% url(img/apple-big6.svg),no-repeat 20% 30%/57% url(img/bg-moving-svg-final.svg),  var(--bg-color); */
+  background: var(--container-bg);
   /* background: no-repeat 50% 50%/85% url(img/particles11.svg); */
 
   /* background-color: #29424c; */
@@ -142,11 +152,12 @@ bg-moving {
   left: 1%;
   width: 200%;
   height: 200%;
- 
-  z-index: -11;
+  z-index: var(--bg-moving-z-index);
+  /* z-index: -11; */
   /*dark*/
-   z-index: 11;
+   /* z-index: 11; */
    /*dark*/
+   opacity: var(--bg-moving-opacity);
 }
 
 .container::after {
@@ -179,15 +190,19 @@ bg-moving {
   /* background: no-repeat 20% 30%/80% url(/img/blur_filterW1.svg), #f1f3f534; */
   /* background: no-repeat 20% 30%/80% url(/img/blur_filterW2.svg), #f1f3f534; */
   
+
  /* favorits */ 
   background: no-repeat center/100% url(/img/bg-static-blurM.svg), #f1f3f534;
   /* background: no-repeat center/100% url(/img/blur_filterBA5.svg), #f1f3f534; */
   /* background: no-repeat center/100% url(/img/bg-static-blur4.svg), #f1f3f534; */
  /* favorits */ 
  
+
   /* background: no-repeat 20% 30%/20% url(/img/flies.svg), #f1f3f534; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #2c303334; */
   /* background: no-repeat center/100% url(/img/bg-static.svg), #ffffff75; */
+  background: var(--container-after-bg);
+
 }
 @keyframes whirl {
   0% {
@@ -286,9 +301,9 @@ i-full-screen {
   width: 80vw;
   height: 12vw;
   border-radius: 2rem;
-  background-color: var(--bk-rectangle);
+  background-color: var(--rectangle-box-color);
    /*dark*/
-  background-color: #29364c;
+  /* background-color: #29364c; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -304,9 +319,10 @@ i-full-screen {
   height: 10vw;
   justify-content: center;
   align-items: center;
-  background-color: rgb(152, 172, 231);
+  /* background-color: rgb(152, 172, 231); */
+  background-color: var(--clock-container-box-color);
    /*dark*/
-  background-color: var(--bk-rectangle);
+  /* background-color: var(--bk-rectangle); */
   transition: all 1s;
   border-radius: var(--border-radius-boxes);
   touch-action: none;
@@ -798,7 +814,7 @@ Extra large (xl) devices - large desktops,
     );  
   }
   .rectangle {
-    background-color: var(--bk-rectangle);
+    background-color: var(--rectangle-box-color);
     /* background-color: green; */
     /* z-index: 22; */
   }
