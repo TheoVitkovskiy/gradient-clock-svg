@@ -61,8 +61,8 @@ class ThemeToggling extends HTMLElement {
         console.log(this.root.querySelector('#left'));
         console.log(this.root.querySelector('#right'));
         this.addEventListener("click", () => {
-            this.root.querySelector('#left .fillArea').classList.add("animLeftFill");
-            this.root.querySelector('#right .fillArea').classList.add("animRightFill");
+            this.root.querySelector('#left .fillArea').classList.toggle("animLeftFill");
+            this.root.querySelector('#right .fillArea').classList.toggle("animRightFill");
         })
 
     }
