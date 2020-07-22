@@ -5,7 +5,12 @@ class ThemeToggling extends HTMLElement {
         this.html = /*html*/`
             <style>
             :host {
-                weight: 100%;
+                width: 100%;
+                height: 100%;
+            }
+            :host svg {
+                display: block;
+                width: 100%;
                 height: 100%;
             }
 
