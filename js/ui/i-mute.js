@@ -10,16 +10,18 @@ class iMute extends HTMLElement {
                 height: 100%;
                
             }
-            .sound-on {
+            .bar {
                 display: none;
             }
+            .sound-on {
+                display: block;
+            }
             
-            
-                .cls-1{opacity:0.2;}
-                .cls-2{fill:#fff;}
-                .cls-3,.cls-4,.cls-5,.cls-6{fill:none;stroke:#fff;stroke-miterlimit:10;}
-                .cls-3,.cls-4{stroke-width:4px;}.cls-4,.cls-5,.cls-6{stroke-linecap:round;}
-                .cls-5{stroke-width:4.66px;}.cls-6{stroke-width:2px;}
+            .cls-1{opacity:0.2;}
+            .cls-2{fill:#fff;}
+            .cls-3,.cls-4,.cls-5,.cls-6{fill:none;stroke:#fff;stroke-miterlimit:10;}
+            .cls-3,.cls-4{stroke-width:4px;}.cls-4,.cls-5,.cls-6{stroke-linecap:round;}
+            .cls-5{stroke-width:4.66px;}.cls-6{stroke-width:2px;}
             </style>
             
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 101">
@@ -31,15 +33,14 @@ class iMute extends HTMLElement {
     <line class="cls-3" x1="84" y1="30" x2="84" y2="66"/>
     <line class="cls-4" x1="84" y1="30" x2="84" y2="66"/>
     <line class="cls-5" x1="92" y1="26.5" x2="92" y2="69.5"/>
-    <line id="bar" class="cls-6" x1="1" y1="1" x2="99" y2="100"/>
+    <line class="bar cls-6" x1="1" y1="1" x2="99" y2="100"/>
     </g>
     </svg>
     `
         this.root = this.attachShadow({ mode: "open" })
         this.root.innerHTML = this.html;
         this.addEventListener("click", () => {
-            this.root.querySelector('#bar').classList.add("sound-on");
-
+            this.root.querySelector('.bar').classList.toggle("sound-on");
         })
     }
 }

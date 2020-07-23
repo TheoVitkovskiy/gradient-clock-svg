@@ -9,6 +9,7 @@ function createAlarm() {
 
     let alarmTimeout = null;
     let isPlaying = false;
+    let isMuted = false;
 
     const playAlarm = () => {
         isPlaying = true;
@@ -36,6 +37,10 @@ function createAlarm() {
     }
 
     const playSound = () => {
+        if (isMuted) {
+            resetSoundAlarm();
+            return
+        }
         if (isPlaying) {
             audio.play();
         }
@@ -59,6 +64,14 @@ function createAlarm() {
             resetSoundAlarm();
             clearTimeout(alarmTimeout);
         },
+        toggleMute() {
+            if(!isMuted) {
+                isMuted = true;
+            } else {
+                isMuted = false;
+            }
+            console.log(isMuted)
+        }
     }
 
 }
