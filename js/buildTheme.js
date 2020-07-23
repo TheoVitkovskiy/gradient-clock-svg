@@ -1,14 +1,10 @@
 import themeConfig from '../theme.js'
 import {setDocProperty} from './helpers.js'
-const buildTheme = () => {
-    const THEME = "light"
-    const theme = themeConfig[THEME];
+// let THEME = "";
 
-    setThemeCSS(theme)
-    // setThemeCSS(lightTheme)
-    // const variableNames = getVariableNames(darkTheme);
-    // console.log(getAllKeyValues(darkTheme));
-
+const buildTheme = (themeName) => {
+     const theme = themeConfig[themeName];
+     setThemeCSS(theme);
 }
 const setThemeCSS = (obj) => {
     
@@ -18,21 +14,9 @@ const setThemeCSS = (obj) => {
         setDocProperty("--" + key, value)
     }) 
 }
- let THEME = "" 
- document.querySelector("i-toggle-themes").addEventListener("click", () => {
-     
-     //let THEME = ""
-     if (THEME === "dark") {
-         THEME = "light"
-     } else {
-        THEME = "dark"
-     }
-     const theme = themeConfig[THEME];
-     setThemeCSS(theme);
-     
- }) 
 
 
+export default buildTheme;
 
 
 
@@ -94,5 +78,3 @@ const isObject = (obj) => {
 
 
 
-
-export default buildTheme;
