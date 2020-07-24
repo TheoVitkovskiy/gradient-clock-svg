@@ -10,6 +10,11 @@ class iShare extends HTMLElement {
                 height: 100%;
                
             }
+            :host svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
             
             </style>
             
@@ -33,10 +38,7 @@ class iShare extends HTMLElement {
     `
         this.root = this.attachShadow({ mode: "open" })
         this.root.innerHTML = this.html;
-        this.addEventListener("click", () => {
-            this.root.querySelector('#bar').classList.add("sound-on");
-
-        })
+        
     }
 }
 customElements.define("i-share", iShare);
