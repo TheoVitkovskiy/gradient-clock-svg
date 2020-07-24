@@ -1,4 +1,4 @@
-import buildTheme from "./buildTheme.js"
+import buildTheme from "./buildTheme.js";
 import { alarm } from "./alarm.js";
 
 const buildUi = () => { 
@@ -16,5 +16,18 @@ const buildUi = () => {
     document.querySelector("i-mute").addEventListener("click", () =>{ 
         alarm.toggleMute()
     } )
+
+
+    document.querySelector("i-full-screen").addEventListener("click", () => {
+        console.log("bin in buildUi")
+        toggleFullScreen()
+    })
+}
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+  } else {
+      document.exitFullscreen && document.exitFullscreen();
+  }
 }
 export default buildUi 

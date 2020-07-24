@@ -32,7 +32,7 @@ class iFullScreen extends HTMLElement {
         this.root = this.attachShadow({ mode: "open" })
         this.root.innerHTML = this.html;
         this.addEventListener("click", () => {
-            this.root.querySelector('#square').classList.add("full-screen");
+            this.root.querySelector('#square').classList.toggle("full-screen");
 
         })
     }
