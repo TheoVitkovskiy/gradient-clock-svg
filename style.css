@@ -686,7 +686,7 @@ Extra large (xl) devices - large desktops,
 
 /* ////////////////////////////////////// */
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 450px) {
  
   .container {
     background-size: cover;
