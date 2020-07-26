@@ -738,17 +738,20 @@ Extra large (xl) devices - large desktops,
   }
   .share-ui {
     z-index: 5400;
-    /* background-color: yellow; */
-    display: flex;
+    display: none;
+    justify-content: space-around;
     position: absolute;
     height: 110px;
-    width: 130px;
-    top: 105px;
-    left: 140px;
+    width: 60%;
+    top: 15%;
+  }
+  .displayFlex {
+    display: flex;
   }
 
   i-morph-share {
-    width: 60%;
+    min-width: 30px;
+    max-width: 55px;
   }
 
   .rectangle {

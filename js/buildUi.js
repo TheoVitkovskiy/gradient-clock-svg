@@ -22,11 +22,12 @@ const buildUi = () => {
 
     })
 
-    document.querySelector("body").addEventListener("click", () => {
+    document.querySelector("body").addEventListener("click", (event) => {
         document.querySelector(".ui").classList.remove("display-ui")
+        document.querySelector(".share-ui").classList.remove("displayFlex")
     })
 
-    document.querySelector("i-toggle-themes").addEventListener("click", () => {
+    document.querySelector("i-toggle-themes").addEventListener("click", (event) => {
         if (themeName === "dark") {
             themeName = "light"
         } else {
@@ -36,14 +37,19 @@ const buildUi = () => {
         event.stopPropagation();
     }) 
 
-    document.querySelector("i-mute").addEventListener("click", () => { 
+    document.querySelector("i-mute").addEventListener("click", (event) => { 
         alarm.toggleMute()
         event.stopPropagation();
     } )
 
-    document.querySelector("i-full-screen").addEventListener("click", () => {
+    document.querySelector("i-full-screen").addEventListener("click", (event) => {
         console.log("bin in buildUi")
         toggleFullScreen()
+        event.stopPropagation();
+    })
+
+    document.querySelector("i-share").addEventListener("click", (event) => {
+        document.querySelector(".share-ui").classList.toggle("displayFlex")
         event.stopPropagation();
     })
 
