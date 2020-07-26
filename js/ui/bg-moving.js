@@ -1,5 +1,5 @@
 
-class BgMoving extends HTMLElement {
+export default class BgMoving extends HTMLElement {
     constructor() {
         super();
         this.html = /*html*/`
@@ -100,4 +100,3 @@ class BgMoving extends HTMLElement {
         this.root.innerHTML = this.html;
     }
 }
-customElements.define("bg-moving", BgMoving);

@@ -736,6 +736,20 @@ Extra large (xl) devices - large desktops,
   i-full-screen {
     display: none !important;
   }
+  .share-ui {
+    z-index: 5400;
+    /* background-color: yellow; */
+    display: flex;
+    position: absolute;
+    height: 110px;
+    width: 130px;
+    top: 105px;
+    left: 140px;
+  }
+
+  i-morph-share {
+    width: 60%;
+  }
 
   .rectangle {
     box-shadow: none;
