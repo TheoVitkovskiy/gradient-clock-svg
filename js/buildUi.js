@@ -24,7 +24,7 @@ const buildUi = () => {
 
     document.querySelector("body").addEventListener("click", (event) => {
         document.querySelector(".ui").classList.remove("display-ui")
-        document.querySelector(".share-ui").classList.remove("displayFlex")
+        document.querySelector("share-ui").removeAttribute("visible")
     })
 
     document.querySelector("i-toggle-themes").addEventListener("click", (event) => {
@@ -49,7 +49,7 @@ const buildUi = () => {
     })
 
     document.querySelector("i-share").addEventListener("click", (event) => {
-        document.querySelector(".share-ui").classList.toggle("displayFlex")
+        document.querySelector("share-ui").toggleAttribute("visible")
         event.stopPropagation();
     })
 
