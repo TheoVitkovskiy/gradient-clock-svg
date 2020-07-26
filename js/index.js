@@ -8,6 +8,7 @@ import updateFruit from './updateFruit.js';
 import calculateDynamicValues from './calculateDynamicValues.js';
 import buildTheme from './buildTheme.js';
 import buildUi from './buildUi.js';
+import {registerElements} from './ui/index.js'; 
 
 const { orange, tomato, pear, apple } = fruitContainer;
 
@@ -21,6 +22,7 @@ const main = () => {
     registerSW();
     buildTheme("light");
     buildUi();
+    registerElements();
 }
 
 const addOnClickToClocks = () => {
