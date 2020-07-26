@@ -17,6 +17,11 @@ export default class ShareFacebook extends HTMLElement {
     get icon() {
         return this.getAttribute('icon');
     }
+
+    connectedCallback() {
+        console.log('display: flex');
+    }
+
     initHTML() {
         this.root = this.attachShadow({mode:"open"})
         this.root.innerHTML = /*html*/ `

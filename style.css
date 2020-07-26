@@ -736,10 +736,8 @@ Extra large (xl) devices - large desktops,
   i-full-screen {
     display: none !important;
   }
-  .share-ui {
+  share-ui {
     z-index: 5400;
-    display: none;
-    justify-content: space-around;
     position: absolute;
     height: 110px;
     width: 60%;
