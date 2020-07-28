@@ -5,19 +5,18 @@ class iFullScreen extends HTMLElement {
         this.html = /*html*/`
             <style>
             :host {
-                
                 width: 100%;
                 height: 100%;
-               
+            }
+            :host svg {
+                display: block;
+                width: 100%;
+                height: 100%;
             }
            .full-screen {
                transform-origin: center;
-                transform: scale(0.7);
-                
-            }
-            
-            
-                
+               transform: scale(0.7);
+            }   
             </style>
             
     
