@@ -22,6 +22,19 @@ export default class ShareUi extends HTMLElement {
                 display: flex;
                 justify-content: space-around;
             }
+            
+        @media only screen and (max-width: 450px) {
+            
+            :host {
+                    width: 100%; 
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+                
+            :host > * {
+                    width: 30%;
+                }
+            }
             </style>
             ${this.html()}
         `
@@ -32,9 +45,10 @@ export default class ShareUi extends HTMLElement {
             html = /*html*/`
             <i-morph-share icon="fb"></i-morph-share>
             <i-morph-share icon="in"></i-morph-share>
-            <!-- <i-morph-share icon="ln"></i-morph-share>-->
+            <i-morph-share icon="ln"></i-morph-share>
             <i-morph-share icon="tg"></i-morph-share>
-            <!-- <i-morph-share icon="tw"></i-morph-share>  -->
+            <i-morph-share icon="tw"></i-morph-share>
+            <i-morph-share icon="wa"></i-morph-share>  
             `
         }
         return html;
