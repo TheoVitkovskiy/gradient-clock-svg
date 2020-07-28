@@ -225,6 +225,11 @@ bg-moving {
   opacity: 1;
   margin: 4%;
 }
+share-ui {
+  position: absolute;
+  left: 24%;
+  top: 2%;
+}
 i-toggle-themes,
 i-share,
 i-mute,
@@ -738,7 +743,6 @@ Extra large (xl) devices - large desktops,
   }
   share-ui {
     z-index: 5400;
-    position: absolute;
     height: 110px;
     width: 60%;
     top: 18%;
