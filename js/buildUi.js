@@ -27,6 +27,7 @@ const buildUi = () => {
         document.querySelector(".ui").classList.remove("display-ui")
         document.querySelector("share-ui").removeAttribute("visible")
         document.querySelector(".underLayer").classList.remove("short")
+        document.querySelector(".underLayer").classList.remove("long")
     })
 
     document.querySelector("i-toggle-themes").addEventListener("click", (event) => {
@@ -51,7 +52,9 @@ const buildUi = () => {
     })
 
     document.querySelector("i-share").addEventListener("click", (event) => {
-        document.querySelector("share-ui").toggleAttribute("visible")
+        // setTimeout(() => { 
+            document.querySelector("share-ui").toggleAttribute("visible")
+        // }, 300)
         document.querySelector(".underLayer").classList.toggle("long")
         event.stopPropagation();
     })

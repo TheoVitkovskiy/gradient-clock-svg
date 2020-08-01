@@ -57,8 +57,11 @@ export default class ShareFacebook extends HTMLElement {
             }
             .initial {
                 fill: #EA3F63;
-                fill: #000; 
-                fill-opacity: 0.3;
+                /*fill: #7af471;
+                fill: royalblue;*/
+                /*fill: var(--dynamic-url-color);*/
+                /*fill: #000; 
+                fill-opacity: 0.3;*/
             }
             .icon {
                 transform: translate(${this.iconPath.offset_x}%, ${this.iconPath.offset_y}%);

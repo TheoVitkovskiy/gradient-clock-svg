@@ -55,6 +55,7 @@
   --col-orange-end: #f05e23;
   --border-radius-boxes: 20%;
   /* --- dynamic variables --- */
+  --dynamic-url-color: "";
   --ripe-delay: "";
   --orange-ripe-dur: "";
   --tomato-ripe-dur: "";
@@ -189,8 +190,8 @@ bg-moving {
   background-color: transparent;
 }
 .ui {
-  /* outline: 4px solid rgba(255, 255, 255, 0.345);
-  outline-offset: 23px; */
+  border-radius: var(--border-radius-boxes);
+  /* outline: 4px solid rgba(127, 255, 212, 0.699); */
   transform-origin: center;
   transition: 0.1s ease-in;
   z-index: 12;
@@ -202,8 +203,8 @@ bg-moving {
   top: 8vw;
   left: 8vw;
   border-radius: var(--border-radius-boxes);
-  background-color: rgba(255, 255, 255, 0.945);
-  background: radial-gradient(rgba(255, 255, 255, 0.945), var(--ui-colorto));
+  /* background-color: rgba(255, 255, 255, 0.945); */
+  background: radial-gradient(rgba(127, 255, 212, 0.699), var(--ui-colorto));
   /* background: radial-gradient(rgba(255, 255, 255, 0.945), #29364c); */
   position: absolute;
   display: flex;
@@ -216,7 +217,7 @@ bg-moving {
   position: absolute;
   z-index: 2;
   content: "";
-  background: radial-gradient(#29364c2f, rgba(255, 255, 255, 0.096));
+  background: radial-gradient(#29364c2f, rgba(127, 255, 212, 0.699));
   /* background-color: rgba(255, 255, 255, 0.281); */
   width: 12vw;
   height: 12vw;
@@ -746,17 +747,22 @@ Extra large (xl) devices - large desktops,
     /* display: none; */
     z-index: -100000;
     border-radius: 0 0 var(--border-radius-boxes) var(--border-radius-boxes);
-    position: absolute;
+    /* position: absolute; */
+    margin: 0 auto;
+    margin-top: 60px;
     height: 0%;
-    width: 100%;
-    transition: all 0.2s;
+    width: 1%;
+    top: 60px;
+    transition: all ease-out .1s;
     background-color: rgba(127, 255, 212, 0.445);
   }
   .short {
+    width: 100%;
+    margin-top: 0px;
     height: 72%;
   }
   .long {
-    height: 110%;
+    height: 123%;
   }
   .ui {
     /* background-color: rgba(127, 255, 212, 0.445); */

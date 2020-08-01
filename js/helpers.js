@@ -32,6 +32,11 @@ const saveValue = (key, value) => {
     return localStorage.setItem(key, value);
 }
 
+const getQueryParamValue = (qParam) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(qParam);
+}
+
 export {
   getNowMs,
   capitalize,
@@ -40,5 +45,6 @@ export {
   minutesToMs,
   vibrateInMs,
   vibrateInPattern,
-  saveValue
+  saveValue,
+  getQueryParamValue
 }

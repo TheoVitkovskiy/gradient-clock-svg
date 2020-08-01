@@ -2,7 +2,9 @@ import { globalTimer } from './globalTimer.js';
 import { customTimer } from './customTimer.js';
 import { fruitContainer } from './fruitContainer.js';
 import {
-    vibrateInMs 
+    vibrateInMs,
+    getQueryParamValue,
+    setDocProperty
 } from './helpers.js';
 import updateFruit from './updateFruit.js';
 import calculateDynamicValues from './calculateDynamicValues.js';
@@ -23,6 +25,12 @@ const main = () => {
     buildTheme("light");
     buildUi();
     registerElements();
+    setDynamicVariable();
+}
+
+const setDynamicVariable = () => {
+    const dynamicVarValue = getQueryParamValue('dynamic_var_color');
+    setDocProperty('--dynamic-url-color', dynamicVarValue);
 }
 
 const addOnClickToClocks = () => {
