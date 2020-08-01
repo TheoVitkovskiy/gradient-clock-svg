@@ -9,7 +9,6 @@ export default class ShareUi extends HTMLElement {
         ]
     }
     attributeChangedCallback(attrName, oldVal, newVal) {
-        console.log("jkj")
         this.renderHtml(); 
     }
     get visible() {
@@ -22,6 +21,7 @@ export default class ShareUi extends HTMLElement {
                 display: flex;
                 justify-content: space-around;
             }
+           
             
         @media only screen and (max-width: 450px) {
             
