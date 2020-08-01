@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap'); */
 
@@ -742,14 +743,17 @@ Extra large (xl) devices - large desktops,
     background-color: rgba(127, 255, 212, 0.445);
   } */
   .underLayer {
-    display: none;
+    /* display: none; */
     z-index: -100000;
     border-radius: 0 0 var(--border-radius-boxes) var(--border-radius-boxes);
     position: absolute;
-    height: 72%;
+    height: 0%;
     width: 100%;
     transition: all 0.2s;
     background-color: rgba(127, 255, 212, 0.445);
+  }
+  .short {
+    height: 72%;
   }
   .long {
     height: 110%;

@@ -16,7 +16,7 @@ const buildUi = () => {
         const toggleDisplayUi = () => {
             console.log("bin in toggle-display-ui")
             document.querySelector(".ui").classList.toggle("display-ui")
-            document.querySelector(".underLayer").classList.toggle("displayFlex")
+            document.querySelector(".underLayer").classList.toggle("short")
             event.stopPropagation();
         }
         toggleDisplayUi()
@@ -26,7 +26,7 @@ const buildUi = () => {
     document.querySelector("body").addEventListener("click", (event) => {
         document.querySelector(".ui").classList.remove("display-ui")
         document.querySelector("share-ui").removeAttribute("visible")
-        document.querySelector(".underLayer").classList.remove("displayFlex")
+        document.querySelector(".underLayer").classList.remove("short")
     })
 
     document.querySelector("i-toggle-themes").addEventListener("click", (event) => {
