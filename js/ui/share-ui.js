@@ -16,26 +16,35 @@ export default class ShareUi extends HTMLElement {
     }
     renderHtml() {
         this.root.innerHTML = /*html*/`
-            <style>
+        <style>
             :host {
                 display: flex;
                 justify-content: space-around;
             }
-           
+            :host > * {
+                margin: 0 5px;
+            }
+            :host > *:nth-child(even) {
+                transform: translateY(10px);
+            } 
             
         @media only screen and (max-width: 450px) {
             
             :host {
-                    width: 100%; 
-                    display: flex;
-                    flex-wrap: wrap;
-                }
+                width: 100%; 
+                display: flex;
+                flex-wrap: wrap;
+            }
                 
             :host > * {
-                    width: 30%;
-                }
+                margin: 0;
+                width: 30%;
             }
-            </style>
+            :host > *:nth-child(even) {
+                transform: translateY(0px);
+            } 
+        }
+        </style>
             ${this.html()}
         `
     }

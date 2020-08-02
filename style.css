@@ -204,7 +204,7 @@ bg-moving {
   left: 8vw;
   border-radius: var(--border-radius-boxes);
   /* background-color: rgba(255, 255, 255, 0.945); */
-  background: radial-gradient(rgba(127, 255, 212, 0.699), var(--ui-colorto));
+  background: radial-gradient(rgba(255, 255, 255, 0.945), var(--ui-colorto));
   /* background: radial-gradient(rgba(255, 255, 255, 0.945), #29364c); */
   position: absolute;
   display: flex;
@@ -217,7 +217,7 @@ bg-moving {
   position: absolute;
   z-index: 2;
   content: "";
-  background: radial-gradient(#29364c2f, rgba(127, 255, 212, 0.699));
+  background: radial-gradient(#29364c2f, rgba(255, 255, 255, 0.096));
   /* background-color: rgba(255, 255, 255, 0.281); */
   width: 12vw;
   height: 12vw;
@@ -237,10 +237,13 @@ bg-moving {
   margin: 4%;
 }
 share-ui {
+  width: 36%;
   position: absolute;
-  left: 24%;
-  top: 2%;
+  left: 20%;
+  top: 13%;
 }
+
+
 i-toggle-themes,
 i-share,
 i-mute,
@@ -401,12 +404,13 @@ i-full-screen {
   /* background-size: 4rem 4rem; */
 }
 .break_ico::before {
-  background: no-repeat 80% url(img/cup.svg);
-  /* background-image: url(img/break.svg); */
+  /* background: no-repeat 80% url(img/cup.svg); */
+  background-image: url(img/break.svg);
+  transform: scale(1.4);
 }
 .break_ico {
-  transform: translateY(0.2rem);
-  /* transform: translateY(0.1rem); */
+  /* transform: translateY(0.2rem); */
+  transform: translateY(0.1rem);
 }
 .key_return_ico::before {
   background-image: url(img/return_key.svg);
@@ -782,9 +786,12 @@ Extra large (xl) devices - large desktops,
       background-color: rgba(127, 255, 212, 0.699);
   }
   
-   /* .ui::before {
-    background-color: rgba(127, 255, 212, 0.445); 
-  }  */
+   .ui::before {
+    background: radial-gradient(rgba(255, 255, 255, 0.5), rgba(127, 255, 212, 0.534));
+    background: radial-gradient( rgba(127, 255, 212, 0.534), transparent);
+    /* background: radial-gradient(farthest-corner, transparent, rgba(22, 129, 94, 0.534) 90%); */
+    border-radius: var(--border-radius-boxes);
+  }  
 
   i-full-screen {
     display: none !important;
@@ -835,6 +842,10 @@ Extra large (xl) devices - large desktops,
     height: 2rem;
     width: 2rem;
   }
+  .break_ico::before {
+  /* background: no-repeat 80% url(img/cup.svg); */
+  background: no-repeat 200% url(img/break.svg); 
+}
 }
 @media only screen and (max-width: 991px) and (min-width: 769px) {
   #gradientDiv {

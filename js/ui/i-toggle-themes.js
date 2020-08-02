@@ -16,18 +16,16 @@ class ThemeToggling extends HTMLElement {
 
             .animLeftFill {
                 fill: #fff;
-                opacity: 0.2;
             }
             .animRightFill {
                 fill: #000 !important;
             }
 
             #left, #right {
-                opacity: 0.2;
+                opacity: var(--ui-icon-opacity);
             }
             #left .strokeArea {
                 fill: #fff;
-
             }
            
             #right .strokeArea  {

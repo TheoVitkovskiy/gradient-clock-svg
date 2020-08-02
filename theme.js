@@ -1,7 +1,9 @@
 export default
 {
     "dark": {
-      "body-color-mobile": "#29364cd3",
+      "ui-icon-opacity": "0.3",
+      "share-ui-icon-color": "royalblue",
+      "body-color-mobile": "#29364cd1",
        "body-color": "#29364c",
       "container-after-bg": "no-repeat center/100% url(/img/bg-static-blurM.svg), #f1f3f534",
       "container-bg": "no-repeat 50% 27%/47% url(img/apple-big777.svg),no-repeat 20% 30%/57% url(img/bg-moving-svg-final.svg),  var(--bg-color)",
@@ -15,6 +17,8 @@ export default
     },
 
     "light": {
+      "ui-icon-opacity": "0.28",
+      "share-ui-icon-color":"#EA3F63",
       "body-color-mobile": "transparent",
       "body-color": "transparent",
       "container-after-bg": "no-repeat center/80% url(/img/bg-static-blur4.svg)",

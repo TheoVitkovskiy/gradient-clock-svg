@@ -56,7 +56,9 @@ export default class ShareFacebook extends HTMLElement {
                 width: 100%;
             }
             .initial {
-                fill: #EA3F63;
+                fill: var(--share-ui-icon-color);
+                /*fill: #EA3F63;*/
+                
                 /*fill: #7af471;
                 fill: royalblue;*/
                 /*fill: var(--dynamic-url-color);*/
