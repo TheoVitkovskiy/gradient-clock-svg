@@ -37,6 +37,11 @@ const getQueryParamValue = (qParam) => {
     return urlParams.get(qParam);
 }
 
+const isMobile = () => {
+  let mql = window.matchMedia("only screen and (max-width: 450px)");
+  return mql.matches;
+}
+
 export {
   getNowMs,
   capitalize,
@@ -46,5 +51,6 @@ export {
   vibrateInMs,
   vibrateInPattern,
   saveValue,
-  getQueryParamValue
+  getQueryParamValue,
+  isMobile
 }
