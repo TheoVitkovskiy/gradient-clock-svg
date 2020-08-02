@@ -44,6 +44,12 @@ export default class ShareFacebook extends HTMLElement {
     get icon() {
         return this.getAttribute('icon');
     }
+    get appeardelay() {
+        return this.getAttribute('appeardelay');
+    }
+    set appeardelay(appearDelay) {
+        return this.setAttribute('appearDelay', appearDelay);
+    }
 
     initHTML() {
         this.root = this.attachShadow({mode:"open"})
@@ -92,12 +98,24 @@ export default class ShareFacebook extends HTMLElement {
             easing: "easeOutExpo", 
         });
 
-        timeline.add({
+        const appearDuration = 100
+
+        const appearAnim = timeline
+        .add({
+            targets: this,
+            opacity: [0, 1],
+            // easing: 'easeOutElastic(0.1, 3)',
+            duration: appearDuration,
+            delay: this.appeardelay
+        })
+        .add({
             targets: path,
             d: [
                 {value: morph},
             ]
         });
+
+        appearAnim.play();
     }
 }
 // path.animate([

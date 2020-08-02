@@ -50,15 +50,20 @@ export default class ShareUi extends HTMLElement {
     }
     html() {
         let html = '';
+        // const stepDuration = 150;
+        const stepFactor = 1.25;
+        let appearDelay = 100;
+
+        const icons = ['fb', 'in', 'ln', 'tg', 'tw', 'wa'];
         if (this.visible) {
-            html = /*html*/`
-            <i-morph-share icon="fb"></i-morph-share>
-            <i-morph-share icon="in"></i-morph-share>
-            <i-morph-share icon="ln"></i-morph-share>
-            <i-morph-share icon="tg"></i-morph-share>
-            <i-morph-share icon="tw"></i-morph-share>
-            <i-morph-share icon="wa"></i-morph-share>  
-            `
+            html = icons.map((icon) => {
+                // return '<h1>' + icon + '</h1>';
+                return /*html*/`
+                <i-morph-share 
+                    icon='${icon}'
+                    appeardelay='${appearDelay = appearDelay * stepFactor }'
+                ></i-morph-share>`
+            });
         }
         return html;
     }
