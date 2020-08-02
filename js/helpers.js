@@ -38,7 +38,7 @@ const getQueryParamValue = (qParam) => {
 }
 
 const isMobile = () => {
-  let mql = window.matchMedia("only screen and (max-width: 450px)");
+  const mql = window.matchMedia("only screen and (max-width: 450px)");
   return mql.matches;
 }
 

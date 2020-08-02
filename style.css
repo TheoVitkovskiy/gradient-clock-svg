@@ -755,7 +755,7 @@ Extra large (xl) devices - large desktops,
     margin: 0 auto;
     margin-top: 60px;
     height: 0%;
-    width: 1%;
+    width: 0%;
     top: 60px;
     transition: all ease-out .1s;
     background-color: rgba(127, 255, 212, 0.445);
