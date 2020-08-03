@@ -1,5 +1,5 @@
 
-class ThemeToggling extends HTMLElement {
+export default class ThemeToggling extends HTMLElement {
     constructor() {
         super();
         this.html = /*html*/`
@@ -66,4 +66,3 @@ class ThemeToggling extends HTMLElement {
     }
 
 }
-customElements.define("i-toggle-themes", ThemeToggling);

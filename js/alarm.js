@@ -5,7 +5,7 @@ function createAlarm() {
     const ALARM_AMOUNT = 3;
     const ALARM_DELAY_MS = 4500;
 
-    const audio = new Audio('./sounds/Tea-bell-sound-effect.mp3');
+    const audio = new Audio('sounds/Tea-bell-sound-effect.mp3');
 
     let alarmTimeout = null;
     let isPlaying = false;

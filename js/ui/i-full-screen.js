@@ -1,5 +1,5 @@
 
-class iFullScreen extends HTMLElement {
+export default class IFullScreen extends HTMLElement {
     constructor() {
         super();
         this.html = /*html*/`
@@ -36,4 +36,3 @@ class iFullScreen extends HTMLElement {
         })
     }
 }
-customElements.define("i-full-screen", iFullScreen);

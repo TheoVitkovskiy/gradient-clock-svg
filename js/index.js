@@ -1,3 +1,4 @@
+import '../style.css';
 import { globalTimer } from './globalTimer.js';
 import { customTimer } from './customTimer.js';
 import { fruitContainer } from './fruitContainer.js';

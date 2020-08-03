@@ -1,5 +1,5 @@
 
-class iShare extends HTMLElement {
+export default class IShare extends HTMLElement {
     constructor() {
         super();
         this.html = /*html*/`
@@ -43,4 +43,3 @@ class iShare extends HTMLElement {
         
     }
 }
-customElements.define("i-share", iShare);
