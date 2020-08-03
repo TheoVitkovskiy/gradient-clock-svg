@@ -56,14 +56,16 @@ export default class ShareUi extends HTMLElement {
 
         const icons = ['fb', 'in', 'ln', 'tg', 'tw', 'wa'];
         if (this.visible) {
-            html = icons.map((icon) => {
+            html = icons
+            .map((icon) => {
                 // return '<h1>' + icon + '</h1>';
                 return /*html*/`
                 <i-morph-share 
                     icon='${icon}'
                     appeardelay='${appearDelay = appearDelay * stepFactor }'
                 ></i-morph-share>`
-            });
+            })
+            .join((''));
         }
         return html;
     }
