@@ -22,7 +22,7 @@ const main = () => {
         globalTimer.saveData();
     });
     registerSW();
-    buildTheme("light");
+    buildTheme("dark");
     buildUi();
     registerElements();
     setDynamicVariable();

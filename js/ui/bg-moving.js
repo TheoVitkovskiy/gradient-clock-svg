@@ -11,7 +11,7 @@ export default class BgMoving extends HTMLElement {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                animation: whirl 100s linear infinite;
+                animation: whirl 600s linear infinite;
                 
             }
             :host svg {
