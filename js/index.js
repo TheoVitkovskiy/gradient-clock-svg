@@ -27,6 +27,11 @@ const main = () => {
     buildUi();
     registerElements();
     setDynamicVariable();
+    showContainer();
+}
+
+const showContainer = () => {
+    document.querySelector(".container").style.visibility = "visible";
 }
 
 const setDynamicVariable = () => {

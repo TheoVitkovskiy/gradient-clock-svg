@@ -23,6 +23,8 @@ module.exports = {
                 // { from: 'style.css', to: './' },
                 // { from: './js/ui', to: './js/ui' },
                 { from: 'img/favicons', to: './img' },
+                { from: 'img/bg-static-blur4.svg', to: './img'},
+                { from: 'img/bg-static-blur4-light.svg', to: './img'},
                 // { from: 'fonts', to: './fonts' },
                 { from: 'sounds', to: './sounds' },
                 // { from: 'vendor', to: './vendor' },
@@ -40,7 +42,10 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,
-                use: ['file-loader']
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]'
+                }
             },
             {
                 test: /\.(eot|woff|woff2|ttf)([\?]?.*)$/,
