@@ -9,14 +9,14 @@
       type="image/png"
       href="img/faviconGreen.png"
     />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
     <link rel="manifest" href="./manifest.json" />
     <title>Fruit Timer</title>
   </head>
   <body>
     <div id="gradientDiv"></div>
     <bg-moving></bg-moving>
-    <div class="container">
+    <div class="container" style="visibility: hidden;">
       <div class="container-ui">
           <div class="ui">
             <i-toggle-themes></i-toggle-themes>
@@ -350,13 +350,5 @@
     <script>
       document.getElementById("noSleepVideo").play();
     </script>
-
-    <script src="vendor/url-search-params-polyfill.js"></script>
-    <script src="js/ui/i-full-screen.js"></script>
-    <script src="js/ui/i-share.js"></script>
-    <script src="js/ui/i-mute.js"></script>
-    <!-- <script src="js/ui/bg-moving.js"></script> -->
-    <script src="js/ui/i-toggle-themes.js"></script>
-    <!-- <script type="module" src="js/ui/share-facebook.js"></script> -->
   </body>
 </html>

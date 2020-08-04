@@ -1,5 +1,5 @@
 
-class iMute extends HTMLElement {
+export default class iMute extends HTMLElement {
     constructor() {
         super();
         this.html = /*html*/`
@@ -49,4 +49,3 @@ class iMute extends HTMLElement {
         })
     }
 }
-customElements.define("i-mute", iMute);

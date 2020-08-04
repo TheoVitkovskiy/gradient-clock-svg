@@ -1,3 +1,4 @@
+import '../style.css';
 import { globalTimer } from './globalTimer.js';
 import { customTimer } from './customTimer.js';
 import { fruitContainer } from './fruitContainer.js';
@@ -26,6 +27,11 @@ const main = () => {
     buildUi();
     registerElements();
     setDynamicVariable();
+    showContainer();
+}
+
+const showContainer = () => {
+    document.querySelector(".container").style.visibility = "visible";
 }
 
 const setDynamicVariable = () => {
