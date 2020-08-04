@@ -23,11 +23,15 @@ const buildUi = () => {
 
     })
 
-    document.querySelector("body").addEventListener("click", (event) => {
+    document.querySelector("body:not(.rectangle)").addEventListener("click", (event) => {
         document.querySelector(".ui").classList.remove("display-ui")
         document.querySelector("share-ui").removeAttribute("visible")
         document.querySelector(".underLayer").classList.remove("short")
         document.querySelector(".underLayer").classList.remove("long")
+    })
+
+    document.querySelector(".rectangle").addEventListener("click", (event) => {
+        event.stopPropagation();
     })
 
     document.querySelector("i-toggle-themes").addEventListener("click", (event) => {
