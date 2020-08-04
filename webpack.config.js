@@ -22,12 +22,12 @@ module.exports = {
             patterns: [
                 // { from: 'style.css', to: './' },
                 // { from: './js/ui', to: './js/ui' },
-                 { from: 'img', to: './img' },
+                { from: 'img/favicons', to: './img' },
                 // { from: 'fonts', to: './fonts' },
                 { from: 'sounds', to: './sounds' },
                 // { from: 'vendor', to: './vendor' },
                 { from: 'manifest.json', to: './manifest.json' },
-                // { from: 'manifest.json', to: './manifest.json' },
+                // { from: 'img/faviconGreen.png', to: './img/faviconGreen.png' },
 
             ]
         }),
