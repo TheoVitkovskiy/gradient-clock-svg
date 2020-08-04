@@ -279,7 +279,6 @@ i-full-screen {
   z-index: 100;
   position: relative;
   display: flex;
-  cursor: pointer;
   width: 10vw;
   height: 10vw;
   justify-content: center;
@@ -289,8 +288,8 @@ i-full-screen {
   border-radius: var(--border-radius-boxes);
   touch-action: none;
 }
-.clockContainer:not() {
-  cursor: none;
+.clockContainer:not(.apple) {
+  cursor: pointer;
 }
 .clockFace,
 .clockBody,
@@ -323,9 +322,9 @@ i-full-screen {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   z-index: 100;
 }
+
 .clockContainer input {
   caret-color: var(--col-dot-end) !important;
 }
