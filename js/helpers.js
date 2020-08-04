@@ -32,6 +32,16 @@ const saveValue = (key, value) => {
     return localStorage.setItem(key, value);
 }
 
+const getQueryParamValue = (qParam) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(qParam);
+}
+
+const isMobile = () => {
+  const mql = window.matchMedia("only screen and (max-width: 450px)");
+  return mql.matches;
+}
+
 export {
   getNowMs,
   capitalize,
@@ -40,5 +50,7 @@ export {
   minutesToMs,
   vibrateInMs,
   vibrateInPattern,
-  saveValue
+  saveValue,
+  getQueryParamValue,
+  isMobile
 }

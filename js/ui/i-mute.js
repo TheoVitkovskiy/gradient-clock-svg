@@ -22,7 +22,7 @@ class iMute extends HTMLElement {
                 display: block;
             }
             
-            .cls-1{opacity:0.2;}
+            .cls-1{opacity: var(--ui-icon-opacity);}
             .cls-2{fill:#fff;}
             .cls-3,.cls-4,.cls-5,.cls-6{fill:none;stroke:#fff;stroke-miterlimit:10;}
             .cls-3,.cls-4{stroke-width:4px;}.cls-4,.cls-5,.cls-6{stroke-linecap:round;}

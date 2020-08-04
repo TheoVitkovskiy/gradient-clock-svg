@@ -2,12 +2,15 @@ import { globalTimer } from './globalTimer.js';
 import { customTimer } from './customTimer.js';
 import { fruitContainer } from './fruitContainer.js';
 import {
-    vibrateInMs 
+    vibrateInMs,
+    getQueryParamValue,
+    setDocProperty
 } from './helpers.js';
 import updateFruit from './updateFruit.js';
 import calculateDynamicValues from './calculateDynamicValues.js';
 import buildTheme from './buildTheme.js';
 import buildUi from './buildUi.js';
+import {registerElements} from './ui/index.js'; 
 
 const { orange, tomato, pear, apple } = fruitContainer;
 
@@ -19,8 +22,15 @@ const main = () => {
         globalTimer.saveData();
     });
     registerSW();
-    buildTheme("light");
+    buildTheme("dark");
     buildUi();
+    registerElements();
+    setDynamicVariable();
+}
+
+const setDynamicVariable = () => {
+    const dynamicVarValue = getQueryParamValue('dynamic_var_color');
+    setDocProperty('--dynamic-url-color', dynamicVarValue);
 }
 
 const addOnClickToClocks = () => {

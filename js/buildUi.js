@@ -16,17 +16,21 @@ const buildUi = () => {
         const toggleDisplayUi = () => {
             console.log("bin in toggle-display-ui")
             document.querySelector(".ui").classList.toggle("display-ui")
+            document.querySelector(".underLayer").classList.toggle("short")
             event.stopPropagation();
         }
         toggleDisplayUi()
 
     })
 
-    document.querySelector("body").addEventListener("click", () => {
+    document.querySelector("body").addEventListener("click", (event) => {
         document.querySelector(".ui").classList.remove("display-ui")
+        document.querySelector("share-ui").removeAttribute("visible")
+        document.querySelector(".underLayer").classList.remove("short")
+        document.querySelector(".underLayer").classList.remove("long")
     })
 
-    document.querySelector("i-toggle-themes").addEventListener("click", () => {
+    document.querySelector("i-toggle-themes").addEventListener("click", (event) => {
         if (themeName === "dark") {
             themeName = "light"
         } else {
@@ -36,14 +40,22 @@ const buildUi = () => {
         event.stopPropagation();
     }) 
 
-    document.querySelector("i-mute").addEventListener("click", () => { 
+    document.querySelector("i-mute").addEventListener("click", (event) => { 
         alarm.toggleMute()
         event.stopPropagation();
     } )
 
-    document.querySelector("i-full-screen").addEventListener("click", () => {
+    document.querySelector("i-full-screen").addEventListener("click", (event) => {
         console.log("bin in buildUi")
         toggleFullScreen()
+        event.stopPropagation();
+    })
+
+    document.querySelector("i-share").addEventListener("click", (event) => {
+        // setTimeout(() => { 
+            document.querySelector("share-ui").toggleAttribute("visible")
+        // }, 300)
+        document.querySelector(".underLayer").classList.toggle("long")
         event.stopPropagation();
     })
 
