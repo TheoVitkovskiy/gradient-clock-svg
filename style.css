@@ -42,7 +42,7 @@
   /* --body-color: rgb(57, 67, 98); */
   /* --body-color: rgba(127, 255, 212, 0.541); */
   /* --ui-colorto: #29364c; */
-  --ui-colorto: rgba(0, 0, 0, 0.219);
+  /* --ui-colorto: rgba(0, 0, 0, 0.219); */
   /* --bg-color: #29364c; */
   /* --bg-color: rgba(204, 204, 204); */
   --bg-moving-opacity: 0.5;
@@ -55,6 +55,9 @@
   --col-orange-end: #f05e23;
   --border-radius-boxes: 20%;
   /* --- dynamic variables --- */
+  --bg-static: "";
+  --ui-element-bg-color: "";
+  --ui-colorto: "";
   --dynamic-url-color: "";
   --ripe-delay: "";
   --orange-ripe-dur: "";
@@ -154,9 +157,10 @@ bg-moving {
  /* favorits */ 
   /* background: no-repeat center/100% url(/img/bg-static-blurM.svg), #f1f3f534; */
   /* background: no-repeat center/100% url(/img/blur_filterBA5.svg), #f1f3f534; */
-   background: no-repeat center/100% url(/img/bg-static-blurM.svg);
-  background: no-repeat center/100% url(/img/bg-static-blur6.svg);
-  background: no-repeat center/100% url(/img/bg-static-blur-august.svg);
+   /* background: no-repeat center/100% url(/img/bg-static-blur4.svg); */
+  background: var(--bg-static);
+  /* background: no-repeat center/100% url(/img/bg-static-blur6.svg);
+  background: no-repeat center/100% url(/img/bg-static-blur-august.svg); */
  /* favorits */ 
  
   /* background: no-repeat 20% 30%/20% url(/img/flies.svg), #f1f3f534; */
@@ -185,6 +189,7 @@ bg-moving {
   background-color: transparent;
 }
 .ui {
+  cursor: pointer;
   border-radius: var(--border-radius-boxes);
   /* outline: 4px solid rgba(127, 255, 212, 0.699); */
   transform-origin: center;
@@ -249,21 +254,13 @@ i-full-screen {
   width: 39%;
   height: 39%;
   /* transform: scale(0); */
-}
-i-toggle-themes {
-  background-color: #fcfa8f2c;
-}
-i-share {
-  background-color: #fcfa8f2c;
-}
-i-mute {
-  background-color: #fcfa8f2c;
-}
-i-full-screen {
-  background-color: #fcfa8f2c;
+  /* background-color: #fcfa8f2c; */
+  background-color: var(--ui-element-bg-color)
 }
 
+
 .rectangle {
+  
   box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
   /* z-index: 10; */
   position: relative;
@@ -278,6 +275,7 @@ i-full-screen {
 }
 
 .clockContainer {
+  padding: 0.4%;
   z-index: 100;
   position: relative;
   display: flex;
@@ -290,6 +288,9 @@ i-full-screen {
   transition: all 1s;
   border-radius: var(--border-radius-boxes);
   touch-action: none;
+}
+.clockContainer:not() {
+  cursor: none;
 }
 .clockFace,
 .clockBody,
@@ -399,8 +400,8 @@ i-full-screen {
   /* background-size: 4rem 4rem; */
 }
 .break_ico::before {
-  /* background: no-repeat 80% url(img/cup.svg); */
-  background-image: url(img/break.svg);
+  background: no-repeat 50% 60%/72% url(img/cup.svg);
+  /* background-image: url(img/break.svg); */
   transform: scale(1.4);
 }
 .break_ico {
@@ -776,7 +777,6 @@ Extra large (xl) devices - large desktops,
     height: 7vh;
   }
   .ui > * {
-      
       padding: 2px;
       background-color: rgba(127, 255, 212, 0.699);
   }

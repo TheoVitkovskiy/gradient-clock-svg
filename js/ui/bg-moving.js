@@ -11,22 +11,27 @@ export default class BgMoving extends HTMLElement {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                animation: whirl 600s linear infinite;
+                animation: whirl 400s ease-in-out infinite;
+                
                 
             }
             :host svg {
                 width: 100%;
                 height: 100%;
+                transform: scale(2);
             }
             
             @keyframes whirl {
                 0% {
+                    opacity: 0.15;
                     transform: scale(1) rotate(-270deg);
                 }
                 50% {
+                    opacity: 0.2;
                     transform: scale(1) rotate(0deg);
                 }
                 100% {
+                    opacity: 0.15;
                     transform: scale(1) rotate(-270deg);
                 }
             }
